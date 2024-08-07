@@ -19,7 +19,7 @@
     <style>   
 
 body{font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Ubuntu,roboto,noto,segoe ui,arial,sans-serif;--font-family-mono:Menlo,Consolas,Monaco,Liberation Mono,Lucida Console,monospace; line-height: 1.5;}
-/* .gmnoprint{top: -30px !important;} */
+
 .gmnoprint[role="menubar"]{display:none !important;}
 body {
     padding: 0;
@@ -31,31 +31,7 @@ body {
     position: relative;
     background:#222;
   }
-
-
-
 #tip::placeholder{font-size:.9rem !important;}
-
-  .button.drawing-mode {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .button.default-mode {
-        background-color: #f44336;
-        color: white;
-    }
-
-    /* .stripe-button.hidden {
-    display: none;
-} */
-
-.stripe-button.active {
-    /* Define styles for the button when active */
-    background-color: #f00; /* Example color */
-    color: #fff; /* Example text color */
-}
-
-
     </style>
 
 <script>
@@ -91,7 +67,7 @@ body {
 
     
     <div class="search-container">
-        <!-- <a href="/" class="cornerlogo"> -->
+
             <img src="/dogpooper-logo-text.svg" alt="Dog Poopers Logo" class="" 
             style="
                 position: relative;
@@ -105,7 +81,7 @@ body {
 
                 loading="eager"
                 fetchpriority="high" id="applogo" />
-        <!-- </a> -->
+
         <input type="text" id="address" placeholder="Enter your address">
     
         <select id="dogSelect">
@@ -127,7 +103,7 @@ body {
     <div class="custom-control draw-polygon" id="drawPolygonControl"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path></svg> &nbsp; Draw Yard</div>
     <div class="custom-control draw-rectangle" id="drawRectangleControl">Draw Rectangle</div>
     <button class="custom-control button" id="clearButton">Clear</button>
-    <!-- <button class="custom-control button" id="editShapesButton">Edit Yard</button> -->
+
 
 
 <div class="notification" id="notification"></div>
@@ -183,7 +159,7 @@ body {
 
 
 
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-iKnH_TwzkJytZvQiFNxdp_WQMlsJ4VQ&libraries=drawing,places,geometry&callback=initMap" async defer></script> -->
+
 
 
     <script>
@@ -311,18 +287,16 @@ body {
 ];
 
 
-    
-
-
-
-
 const SQ_METERS_TO_SQ_FEET = 10.7639;
 const MIN_AREA_SQ_FEET = 500;
 const MAX_AREA_SQ_FEET = 10000;
 const MIN_PRICE = 25;
 const MAX_PRICE = 85;
-    
-        function initMap() {
+    </script>
+
+
+        <script>
+            function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 30.38, lng: -89.03 },
                 zoom: 12,
@@ -473,7 +447,9 @@ const MAX_PRICE = 85;
     
             updateCalculations();
         }
+            </script>
     
+    <script>
         function updateCalculations() {
             let totalArea = 0;
             drawnShapes.forEach(polygon => {
@@ -504,20 +480,7 @@ const MAX_PRICE = 85;
             document.getElementById('checkout-button').classList.toggle('hidden', !showCalculations);
     
             const checkoutButton = document.getElementById('checkout-button');
-            
-            // checkoutButton.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z"></path></svg>';
-
-
-    
-
-
-            
-
-
             checkoutButton.innerHTML  = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="30px" width="30px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z"></path></svg> &nbsp; Pick Up The Poop! ($${totalCost.toFixed(2)})`;
-
-
-            // checkoutButton.textContent = `Order Now ($${totalCost.toFixed(2)})`;
         }
     
         function calculateTotalCost(area) {
@@ -591,15 +554,74 @@ function toggleCheckoutButton() {
         button.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="30px" width="30px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z"></path></svg> &nbsp; <span class="button-text">Processing...</span>';
     }
 }
-document.getElementById('checkout-button').addEventListener('click', function() {
-    toggleCheckoutButton();
-});
+// document.getElementById('checkout-button').addEventListener('click', function() {
+//     toggleCheckoutButton();
+// });
+
+const checkoutButton = document.getElementById('checkout-button');
+const nameInput = document.getElementById('customer-name');
+        const emailInput = document.getElementById('customer-email');
+
+        checkoutButton.addEventListener('click', (event) => {
+            if (!nameInput.value.trim() || !emailInput.value.trim()) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill out both your name and email.');
+                if (!nameInput.value.trim()) {
+                    nameInput.style.border = '1px solid red'; // Highlight field
+                }
+                if (!emailInput.value.trim()) {
+                    emailInput.style.border = '1px solid red'; // Highlight field
+                }
+            } else {
+                nameInput.style.border = '1px solid green'; // Reset border
+                emailInput.style.border = '1px solid green'; // Reset border
+            }
+        });
+
+        // Optional: Reset border color when user starts typing
+        nameInput.addEventListener('input', () => {
+            nameInput.style.border = '1px solid green';
+        });
+        emailInput.addEventListener('input', () => {
+            emailInput.style.border = '1px solid green';
+        });
 
 </script>
     
     
     
     
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkoutButton = document.getElementById('checkout-button');
+        const nameInput = document.getElementById('customer-name');
+        const emailInput = document.getElementById('customer-email');
+
+        checkoutButton.addEventListener('click', (event) => {
+            if (!nameInput.value.trim() || !emailInput.value.trim()) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill out both your name and email.');
+                if (!nameInput.value.trim()) {
+                    nameInput.style.border = '1px solid red'; // Highlight field
+                }
+                if (!emailInput.value.trim()) {
+                    emailInput.style.border = '1px solid red'; // Highlight field
+                }
+            } else {
+                nameInput.style.border = '1px solid green'; // Reset border
+                emailInput.style.border = '1px solid green'; // Reset border
+            }
+        });
+
+        // Optional: Reset border color when user starts typing
+        nameInput.addEventListener('input', () => {
+            nameInput.style.border = '1px solid green';
+        });
+        emailInput.addEventListener('input', () => {
+            emailInput.style.border = '1px solid green';
+        });
+    });
+</script>
 
 
     
