@@ -15,6 +15,11 @@ exports.handler = async (event, context) => {
       tipAmount = 0 // Tip amount in dollars
     } = JSON.parse(event.body);
 
+    // Validate email and name
+    if (!customerEmail || !customerName) {
+      throw new Error('Both customer email and customer name are required.');
+    }
+
     const truncatedUrl = pageUrl.length > 500 ? pageUrl.substring(0, 500) : pageUrl;
 
     // Convert dynamicAmount and tipAmount to cents
