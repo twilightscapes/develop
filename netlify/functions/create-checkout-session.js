@@ -58,19 +58,19 @@ exports.handler = async (event, context) => {
 
     switch (serviceFrequency) {
       case 1:
-        priceId = 'price_1PjceBKHJvXfkmw3FUxWmPU9';
+        priceId = 'price_1PiEAXKHJvXfkmw3mnKSjeSV';
         intervalCount = 1;
         break;
       case 2:
-        priceId = 'price_1PjceBKHJvXfkmw3JWxRMX6S';
+        priceId = 'price_1PiH4sKHJvXfkmw3SP43dBjz';
         intervalCount = 1;
         break;
       case 3:
-        priceId = 'price_1PjceBKHJvXfkmw3DZ9IPhP';
+        priceId = 'price_1PiGz5KHJvXfkmw3eyKQF3n9';
         intervalCount = 2;
         break;
       case 4: // One-time payment
-        priceId = 'price_1PjceBKHJvXfkmw3daeQd2mj';
+        priceId = 'price_1PirPRKHJvXfkmw3CoGToaOp';
         mode = 'payment'; // Change mode to payment for one-time purchase
         break;
       default:
