@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root,
+	:root[data-theme="light"] {
+		color-scheme: light;
+		/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
+		--theme-bg: 125deg 19% 76%;
+		--theme-link: 172deg 18% 41%;
+		--theme-text: 148deg 16% 10%;
+		--theme-accent: 138deg 52% 29%;
+		--theme-accent-2: 159deg 10% 32%;
+		--theme-quote: 351deg 66% 48%;
+	}
+
+	:root[data-theme="dark"] {
+		color-scheme: dark;
+		--theme-bg: 147deg 61% 26%;
+		--theme-link: 330deg 49% 67%;
+		--theme-text: 120deg 11% 93%;
+		--theme-accent: 138deg 52% 29%;
+		--theme-accent-2: 0deg 0% 93%;
+		--theme-quote: 102deg 100% 86%;
+	}
+
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply mx-auto flex min-h-screen max-w-3xl flex-col bg-bgColor px-8 pt-16  text-textColor antialiased;
+	}
+}

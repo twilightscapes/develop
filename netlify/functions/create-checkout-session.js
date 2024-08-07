@@ -1,0 +1,150 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+exports.handler = async (event, context) => {
+  try {
+    const {
+      pageUrl,
+      customerEmail,
+      poopArea,
+      dynamicAmount,
+      cost,
+      serviceFrequency,
+      numberOfDogs,
+      customerName,
+      customerAddress,
+      tipAmount = 0 // Tip amount in dollars
+    } = JSON.parse(event.body);
+
+    const truncatedUrl = pageUrl.length > 500 ? pageUrl.substring(0, 500) : pageUrl;
+
+    // Convert dynamicAmount and tipAmount to cents
+    let dynamicAmountCents = Math.round(cost * 100);
+    let tipAmountCents = Math.round(tipAmount * 100);
+
+    // Validate serviceFrequency
+    const validFrequencies = [1, 2, 3, 4];
+    if (!validFrequencies.includes(serviceFrequency)) {
+      throw new Error('Invalid service frequency. Must be 1, 2, 3 times per week, or Once Only.');
+    }
+
+    // Adjust dynamicAmountCents for twice a week service
+    if (serviceFrequency === 2) {
+      dynamicAmountCents *= 2;
+    }
+
+    // Check if a customer with this email already exists
+    let customer = await stripe.customers.list({
+      email: customerEmail,
+      limit: 1
+    }).then(customers => customers.data[0]);
+
+    if (!customer) {
+      // Create a customer if one doesn't exist
+      customer = await stripe.customers.create({
+        email: customerEmail,
+        name: customerName,
+        address: customerAddress,
+        metadata: {
+          pageUrl: truncatedUrl
+        }
+      });
+    }
+
+    // Determine the correct price ID and interval based on service frequency
+    let priceId;
+    let interval = 'week';
+    let intervalCount = 1;
+    let mode = 'subscription';
+
+    switch (serviceFrequency) {
+      case 1:
+        priceId = 'price_1PjceBKHJvXfkmw3FUxWmPU9';
+        intervalCount = 1;
+        break;
+      case 2:
+        priceId = 'price_1PjceBKHJvXfkmw3JWxRMX6S';
+        intervalCount = 1;
+        break;
+      case 3:
+        priceId = 'price_1PjceBKHJvXfkmw3DZ9IPhP';
+        intervalCount = 2;
+        break;
+      case 4: // One-time payment
+        priceId = 'price_1PjceBKHJvXfkmw3daeQd2mj';
+        mode = 'payment'; // Change mode to payment for one-time purchase
+        break;
+      default:
+        throw new Error('Invalid service frequency');
+    }
+
+    // Determine success URL based on service frequency
+    const successUrl = serviceFrequency === 4
+      ? `${process.env.URL}/success` // One-time payment success URL
+      : `${process.env.URL}/success-recurring`; // Recurring payment success URL
+
+    // Create a checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: mode,
+      customer: customer.id,
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `Dog Pooper's Pick Up By The Foot | ${poopArea} sq ft - ${numberOfDogs}`,
+              description: `Total area for pick up: ${poopArea} sq ft\nTotal Dogs: ${numberOfDogs}\n | Manage Your Lawn Map and account details by clicking this link: ${pageUrl}`,
+            },
+            recurring: mode === 'subscription' ? {
+              interval: interval,
+              interval_count: intervalCount,
+            } : undefined,
+            unit_amount: dynamicAmountCents,
+          },
+          quantity: 1,
+        },
+        {
+          price: priceId,
+          quantity: 1,
+        },
+        // Add the tip line item if a tip amount is provided
+        tipAmountCents > 0 ? {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Tip',
+              description: 'Optional tip',
+            },
+            unit_amount: tipAmountCents, // Tip amount in cents
+          },
+          quantity: 1,
+        } : undefined
+      ].filter(Boolean), // Remove undefined values
+      success_url: successUrl,
+      cancel_url: pageUrl,
+      metadata: {
+        pageUrl: truncatedUrl,
+        poopArea: poopArea,
+        dynamicAmount: dynamicAmount,
+        numberOfDogs: numberOfDogs,
+      },
+      shipping_address_collection: {
+        allowed_countries: ['US'],
+      },
+      phone_number_collection: {
+        enabled: true
+      },
+    });
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ id: session.id }),
+    };
+  } catch (error) {
+    console.error('Error creating Stripe session:', error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+};

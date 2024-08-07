@@ -1,0 +1,176 @@
+---
+import ThemeToggle from "../ThemeToggle.astro";
+// import Search from "../Search.astro";
+import { menuLinks } from "@/site-config";
+// import { ViewTransitions } from 'astro:transitions';
+import { Image } from "astro:assets";
+import localBirdImage from "../../../src/assets/dogpooper-logo-text.svg";
+// import BackgroundImage from "../../../src/assets/newspaper.webp";
+// import { BsLayoutSidebarInsetReverse } from "react-icons/bs";
+
+
+// import Switch from "@/components/Switch.jsx";
+// import GoBack from "../GoBack.jsx";
+// import SideBar from "../SideBar.astro"
+
+// import SideBar from "@/components/SideBar.astro";
+// import { slide } from 'astro:transitions';
+// transition:animate={fade({ duration: '0.4s' })}
+
+const url = new URL(Astro.request.url);
+---
+
+
+<!-- <ViewTransitions /> -->
+
+
+
+
+<div
+	id="menu"
+	class="menu header">
+	<a href="/" aria-current={url.pathname === "/" ? "page" : false}>
+		<Image src={localBirdImage} alt="Dog Poopers Logo" class="cornerlogo" style={{
+			position: "relative",
+			top: "1%",
+			left: "1%",
+			padding: "0 0 0 0",
+			marginLeft: "",
+			maxHeight: "60px",
+			minHeight: "60px",
+			maxWidth: "100px"
+		}}
+			loading="eager"
+			fetchpriority="high" />
+	</a>
+
+	<ul
+		class="topmenu"
+		style={{
+			fontSize: "clamp(.6rem, 1.6vw, 1.8rem)",
+			textAlign: "center",
+			maxHeight: "",
+			display: "flex",
+			justifyContent: "space-around",
+			gap: "4vw",
+			alignItems: "center",
+			margin: "0 auto 0 auto",
+			padding: "0 0 0 0",
+			border: "0px solid white",
+			height:'60px',
+			visibility:""
+		}}
+	>
+		{
+			menuLinks.map((link) => (
+				<li>
+					<a
+						href={link.path}
+						class="px-4 py-4 sm:py-0 sm:hover:underline"
+						aria-current={url.pathname === link.path ? "page" : false}
+						rel="prefetch"
+						data-astro-reload
+					>
+						{link.title}
+					</a>
+				</li>
+			))
+		}
+				<!-- <div class="user-info" style="display:flex; gap:2vw;">
+					<button id="left">Manage Account</button>
+					<button id="right">Become a Pooper</button>
+				  </div> -->
+	</ul>
+
+
+	<div
+		id="missioncontrol"
+		class="missioncontrol sitecontrols"
+		style={{
+			display: "flex",
+			justifyContent: "space-around",
+			fontSize: "clamp(.8rem, 2.3vw, 2.5rem)",
+			gap: "3vw",
+			textAlign: "center",
+			maxHeight: "",
+			alignItems: "center",
+			padding: "0 10px 0 0",
+		}}
+	>
+
+
+
+		<!-- <Search /> -->
+		<!-- <Switch client:load /> -->
+		<ThemeToggle />
+		
+
+		<!-- <label id="menuicon" html-for="openSidebarMenu" class="sidebarIconToggle1 backdrop1 " style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', zIndex:'10000', marginTop: '0', textAlign: 'center', color:'#fff', height:'', cursor:'pointer' }}>
+			<BsLayoutSidebarInsetReverse style={{ height: '30px', width:'30px', color:'#ddd', filter:'drop-shadow(0px 1px 0px var(--theme-ui-colors-textShadow))' }} />
+			<span class="themetext" style="">Menu</span>
+			</label> -->
+
+			
+	
+	</div>
+</div>
+
+
+
+
+<button
+		aria-label="Back to Top"
+		class=" fixed bottom-12 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12"
+		data-show="false"
+		id="to-top-btn"
+		><svg
+	aria-hidden="true"
+	class="h-6 w-6"
+	fill="none"
+	focusable="false"
+	stroke="currentColor"
+	stroke-width="2"
+	viewBox="0 0 24 24"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+  const scrollBtn = document.getElementById("to-top-btn");
+  const targetHeader = document.getElementById("menu");
+
+  if (!scrollBtn || !targetHeader) {
+    console.error('One or more elements not found');
+    return;
+  }
+
+  // Function to toggle button visibility
+  const toggleButtonVisibility = () => {
+    if (window.scrollY > 200) { // Show button after scrolling 200px
+      scrollBtn.classList.add("show");
+      scrollBtn.classList.remove("hide");
+    } else {
+      scrollBtn.classList.add("hide");
+      scrollBtn.classList.remove("show");
+    }
+  };
+
+  // Initial check
+  toggleButtonVisibility();
+
+  // Check on scroll
+  window.addEventListener("scroll", toggleButtonVisibility);
+
+  // Smooth scroll to top on button click
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ behavior: "smooth", top: 0 });
+  });
+});
+
+  </script>
+  
+  
+  

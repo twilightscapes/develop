@@ -1,0 +1,54 @@
+---
+import Mapper from '@/components/checkout.html';
+// import PageLayout from "@/layouts/Base.astro";
+
+
+
+const meta = {
+  description: "Map Testing",
+  title: "Map Testing",
+};
+
+
+---
+<link
+	href="/map.css"
+	rel="stylesheet"
+/>
+<!-- <link
+	href="/map-headless.css"
+	rel="stylesheet"
+/> -->
+<!-- <PageLayout meta={meta}> -->
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden !important;
+    min-height: 100dvh !important;
+    height: 100dvh !important;
+    width: 100vw;
+    max-width: 100vw;
+    overscroll-behavior: none !important;
+    position: relative;
+    background:#222;
+  }
+
+
+
+
+  /* :root[data-theme="dark"] #map{filter: invert(80%) grayscale(.2) !important;
+    -webkit-filter: sepia(30%) hue-rotate(80deg) !important;} */
+  
+  /* footer{display:none !important;
+    .button#to-top-btn.hide, .button#to-top-btn { display:none !important; }}
+    button.swipescroll{display:none !important;} */
+</style>
+
+
+
+  <Mapper />
+
+
+<!-- </PageLayout> -->

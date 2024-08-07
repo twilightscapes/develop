@@ -1,0 +1,97 @@
+---
+import ThemeToggle from "../components/ThemeToggle.astro";
+// import Switch from "@/components/Switch.jsx";
+import Switch from "../components/Switch.jsx";
+// import { menuLinks } from "@/site-config";
+// import { Image } from "astro:assets";
+// import localBirdImage from "../../src/assets/dogpooper-logo-text.svg";
+
+// const url = new URL(Astro.request.url);
+---
+<style>
+#openSidebarMenu{display:none;}
+
+#sidebarMenu{position:fixed;top:0;transition:transform .25s ease-in-out}
+
+#sidebarMenu{display:flex;flex-direction:column;height:80vh;justify-content:flex-end;padding:75vh 0 0;right:0;transform:translateX(100vw);z-index:10}
+
+
+#sidebarMenu input[type=checkbox]:checked~.sidebarIconToggle{display:none}
+
+.sidebarMenuInner{
+  background-color:rgba(0, 0, 0, 0.8);
+  filter:brightness(.99);
+}
+
+.sidebarMenuInner li{
+  color:#fff !important;
+  filter:brightness(.99);
+  text-shadow: 0 0px 1px var(--theme-ui-colors-textShadow) !important;
+}
+
+.sidebarIconToggle[type=checkbox]{box-sizing:border-box; position:fixed; top:10px; right:20px; z-index: 99999; width:50px; height:50px; visibility:hidden; }
+
+input[type=checkbox]:checked~#sidebarMenu{transform:translateX(100%)}
+
+label.backdrop1{display:none;}
+  </style>
+  
+  <!-- <input type="checkbox" id="toggle" /> -->
+
+
+  
+
+    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
+  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+    <label for="openSidebarMenu" class="backdrop1" style="display:block; width:50px; height:60px; background:rgba(0,0,0,.01); position:fixed; top:0; right:1%; z-index:9999; cursor:pointer;"></label>
+    <div id="sidebarMenu" style={{ minWidth: '', width: '', }}>
+  
+      <ul class="sidebarMenuInner post-card panel" style={{ maxWidth: '260px', position: 'absolute', right: '0', display: '', justifyContent: '' }}>
+
+      <!-- <li style="justify-content:center;"><a aria-label="Home" href="/" >
+      <Image src={localBirdImage} alt="Dog Poopers Logo" class="" style={{
+        position: "relative",
+        top: "",
+        left: "",
+        padding: "0 0 0 0",
+        margin: "0 auto",
+        maxHeight: "60px",
+        minHeight: "60px",
+        maxWidth: "100px"
+      }}
+        loading="eager"
+        fetchpriority="high" /></a></li> -->
+  
+      <!-- <Menu id="sidechick" /> -->
+
+      <!-- {
+        menuLinks.map((link) => (
+          <li>
+            <a
+              href={link.path}
+              class="px-4 py-4 sm:py-0 sm:hover:underline"
+              aria-current={url.pathname === link.path ? "page" : false}
+              rel="prefetch"
+              data-astro-reload
+            >
+              {link.title}
+            </a>
+          </li>
+        ))
+      } -->
+      
+      <li>
+        <ul class="missioncontrol sitecontrols" style={{ display: 'flex', justifyContent: 'space-around', fontSize: 'clamp(.8rem, 2.3vw, 2.5rem)', gap: '', textAlign: 'center', maxHeight: '', alignItems: 'start', paddingTop: '' }}>
+        <li>
+          <ThemeToggle client:load />
+        </li>
+          <li>
+            <Switch client:load />
+          </li>
+        </ul>
+      </li>
+  
+      </ul>
+    </div>
+  
+    

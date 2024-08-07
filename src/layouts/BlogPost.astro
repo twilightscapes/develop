@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import BlogHero from "@/components/blog/Hero.astro";
+import TOC from "@/components/blog/TOC.astro";
+// import WebMentions from "@/components/blog/webmentions/index.astro";
+
+import BaseLayout from "./Base.astro";
+import GoBack from "../components/GoBack";
+
+interface Props {
+	post: CollectionEntry<"post">;
+}
+
+const { post } = Astro.props;
+const {
+	data: { description, ogImage, publishDate, title, updatedDate },
+	slug,
+} = post;
+const socialImage = ogImage ?? `/og-image/${slug}.png`;
+const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
+const { headings } = await post.render();
+---
+<GoBack client:load />
+<BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+
+	<div class="gap-x-10 lg:flex lg:items-start" >
+		{!!headings.length && <TOC headings={headings} />}
+		<div class="" transition:animate="slide">
+			<article class="" data-pagefind-body>
+				<div id="blog-hero" style="width:100vw; z-index: 30000;"><BlogHero content={post} /></div>
+				{/* Render dynamic elements */}
+	
+				{!!headings.length && <TOC headings={headings} />}
+				<div class="" style={{ padding: "0 4%", width:'98vw', margin:'0 auto' }}>
+					<!-- <img src={svgImage} /> -->
+	
+					<!-- {
+						additionalImage && (
+							<Fragment>
+								<img src={getImagePath(additionalImage)} alt="Additional Image" />
+							</Fragment>
+						)
+					} -->
+					<slot />
+				</div>
+			</article>
+		</div>
+	</div>
+
+</BaseLayout>
+
+

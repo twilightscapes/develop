@@ -1,0 +1,93 @@
+---
+import aboutImg from "@/assets/header-blank.webp";
+// import GoBack from "@/components/GoBack";
+import { Image } from "astro:assets";
+// import PageLayout from "@/layouts/Base.astro";
+const meta = {
+	description: "Contact Dog Poopers",
+	title: "Contact Us",
+};
+import "../styles/global1.css";
+
+const getNextServiceDay = () => {
+  const today = new Date();
+  const day = today.getDay(); // Sunday - Saturday: 0 - 6
+  const nextMonday = new Date(today);
+  const nextThursday = new Date(today);
+
+  // Calculate next Monday
+  nextMonday.setDate(today.getDate() + ((1 + 7 - day) % 7));
+  // Calculate next Thursday
+  nextThursday.setDate(today.getDate() + ((4 + 7 - day) % 7));
+
+  const nextServiceDay = day < 4 ? nextThursday : nextMonday; // If today is before Thursday, next service is Thursday, otherwise Monday
+
+  const options: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+  return nextServiceDay.toLocaleDateString(undefined, options);
+};
+
+
+const nextServiceDay = getNextServiceDay();
+
+
+---
+
+<style>
+  input, textarea{background-color: rgba(0, 0, 0, 0.8); color:#ddd; padding:.3vh .5vw;}
+
+  .backimage{
+  height:100%;
+  width: 100%;
+  position: fixed;
+  display:grid;
+  place-self: center;
+  z-index:-2;
+  top:20vh;
+  object-fit:cover;
+  margin:0 auto;
+  scale: 1;
+}
+.backer{
+  background-attachment: fixed;
+  background-image: url(/src/assets/header-blank.webp);
+  background-size: cover;
+  background-position: center bottom;
+  display:grid;
+  place-content: center;
+  height:100vh;
+  align-content: center;
+}
+.introheader{font-size:clamp(1rem, 4.5vw, 4rem) ; display:block; width: 60vw; min-width: 400px; max-width: 500px; height:28vh; border:0px solid red; margin-top:65vh}
+a:visited{color:transparent}
+</style>
+<!-- <GoBack client:load /> -->
+<!-- <PageLayout meta={meta}> -->
+
+
+
+
+
+		
+
+
+
+		
+
+		
+
+        
+	
+
+<!-- <Image class="backimage" src={aboutImg} alt="Default Image" style={{height:'100vh', width:'100vw', position:'absolute', top:'0', bottom:'0', left:'0', right:'0', zIndex:'0', border:'0px solid #888 !important', objectFit:'cover', margin:'0'}} /> -->
+          
+
+<div class="backer">
+
+  
+  <div style="text-align: center; padding: 50px 20px; background:rgba(0, 0, 0, 0.8); color:#fff; border-radius: 10px;">
+    <h1>Thank you for your order!</h1>
+    <p>Your cleaning service is scheduled for {nextServiceDay}.</p>
+  </div>
+        
+	</div>
+<!-- </PageLayout> -->

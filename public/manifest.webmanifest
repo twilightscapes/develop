@@ -1,0 +1,21 @@
+{
+	"name": "Poopr",
+	"short_name": "Poopr",
+	"description": "Pet Waste Removal",
+	"icons": [
+		{
+			"src": "/192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/map/",
+	"background_color": "#15683e",
+	"theme_color": "#15683e",
+	"display": "standalone"
+}

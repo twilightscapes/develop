@@ -1,0 +1,43 @@
+---
+import type { SiteMeta } from "@/types";
+import { ViewTransitions } from "astro:transitions";
+import BaseHead from "@/components/BaseHead.astro";
+import SkipLink from "@/components/SkipLink.astro";
+import ThemeProvider from "@/components/ThemeProvider.astro";
+import Footer from "@/components/layout/Footer.astro";
+import Header from "@/components/layout/Header.astro";
+import { siteConfig } from "@/site-config";
+
+interface Props {
+	meta: SiteMeta;
+}
+
+const {
+	meta: { articleDate, description = siteConfig.description, ogImage, title },
+} = Astro.props;
+---
+
+<html lang={siteConfig.lang}>
+	<head>
+		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
+
+		
+
+	</head>
+	<body>
+		<ThemeProvider />
+		<SkipLink />
+		<ViewTransitions />
+		
+
+
+			<iframe id="frontmap" title="location map" class="flexcheek beta" width="100vw" height="65vh" frame-border="0" scrolling="no" margin-height="0" margin-width="0" src="/intro" allow-full-screen={true} loading="eager" style={{maxWidth:'100%', width:'100vw', minHeight:'78vh', margin:'0 auto -60px auto', border:'0 solid rgba(0,0,0,0.60)', borderRadius:'', pointerEvents:'', zIndex:'999999'}}></iframe>
+			<Header />
+			<!-- <main id="main">
+				<slot /> -->
+				<main id="main" transition:animate="slide">
+					<slot  transition:animate="slide" />
+		</main>
+		<Footer />
+	</body>
+</html>
