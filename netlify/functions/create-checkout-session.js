@@ -43,6 +43,7 @@ exports.handler = async (event, context) => {
       limit: 1
     }).then(customers => customers.data[0]);
 
+    let isNewCustomer = false;
     if (!customer) {
       // Create a customer if one doesn't exist
       customer = await stripe.customers.create({
@@ -53,6 +54,7 @@ exports.handler = async (event, context) => {
           pageUrl: truncatedUrl
         }
       });
+      isNewCustomer = true;
     }
 
     // Determine the correct price ID and interval based on service frequency
@@ -87,44 +89,59 @@ exports.handler = async (event, context) => {
       ? `${process.env.URL}/success` // One-time payment success URL
       : `${process.env.URL}/success-recurring`; // Recurring payment success URL
 
+    // Create line items for the session
+    const lineItems = [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `Dog Pooper's Pick Up By The Foot | ${poopArea} sq ft - ${numberOfDogs}`,
+            description: `Total area for pick up: ${poopArea} sq ft\nTotal Dogs: ${numberOfDogs}\n | Manage Your Lawn Map and account details by clicking this link: ${pageUrl}`,
+          },
+          recurring: mode === 'subscription' ? {
+            interval: interval,
+            interval_count: intervalCount,
+          } : undefined,
+          unit_amount: dynamicAmountCents,
+        },
+        quantity: 1,
+      },
+      {
+        price: priceId,
+        quantity: 1,
+      },
+    ];
+
+    // Add the tip line item if a tip amount is provided
+    if (tipAmountCents > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Tip',
+            description: 'Optional tip',
+          },
+          unit_amount: tipAmountCents, // Tip amount in cents
+        },
+        quantity: 1,
+      });
+    }
+
+    // Add an additional fee for non-existing customers
+    if (isNewCustomer) {
+      const feeProductId = 'price_1PiX1234567890abcdefgh'; // Replace with the actual fee product ID
+      lineItems.push({
+        price: feeProductId,
+        quantity: 1,
+      });
+    }
+
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: mode,
       customer: customer.id,
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: `Dog Pooper's Pick Up By The Foot | ${poopArea} sq ft - ${numberOfDogs}`,
-              description: `Total area for pick up: ${poopArea} sq ft\nTotal Dogs: ${numberOfDogs}\n | Manage Your Lawn Map and account details by clicking this link: ${pageUrl}`,
-            },
-            recurring: mode === 'subscription' ? {
-              interval: interval,
-              interval_count: intervalCount,
-            } : undefined,
-            unit_amount: dynamicAmountCents,
-          },
-          quantity: 1,
-        },
-        {
-          price: priceId,
-          quantity: 1,
-        },
-        // Add the tip line item if a tip amount is provided
-        tipAmountCents > 0 ? {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'Tip',
-              description: 'Optional tip',
-            },
-            unit_amount: tipAmountCents, // Tip amount in cents
-          },
-          quantity: 1,
-        } : undefined
-      ].filter(Boolean), // Remove undefined values
+      line_items: lineItems,
       success_url: successUrl,
       cancel_url: pageUrl,
       metadata: {
