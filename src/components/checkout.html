@@ -563,24 +563,40 @@ const nameInput = document.getElementById('customer-name');
         const emailInput = document.getElementById('customer-email');
 
         checkoutButton.addEventListener('click', (event) => {
-            if (!nameInput.value.trim() || !emailInput.value.trim()) {
-                event.preventDefault(); // Prevent form submission
-                alert('Please fill out both your name and email.');
-                if (!nameInput.value.trim()) {
-                    nameInput.style.border = '1px solid red'; // Highlight field
-                }
-                if (!emailInput.value.trim()) {
-                    emailInput.style.border = '1px solid red'; // Highlight field
-                }
-            } else {
-                nameInput.style.border = '1px solid green'; // Reset border
-                emailInput.style.border = '1px solid green'; // Reset border
-            }
-        });
+    // Initialize a flag to determine if form is valid
+    let formIsValid = true;
+
+    // Check for empty name input
+    if (!nameInput.value.trim()) {
+        nameInput.style.border = '1px solid red'; // Highlight field
+        formIsValid = false;
+    } else {
+        nameInput.style.border = '1px solid green'; // Reset border
+    }
+
+    // Check for empty email input
+    if (!emailInput.value.trim()) {
+        emailInput.style.border = '1px solid red'; // Highlight field
+        formIsValid = false;
+    } else {
+        emailInput.style.border = '1px solid green'; // Reset border
+    }
+
+    // If form is not valid, prevent submission and alert
+    if (!formIsValid) {
+        event.preventDefault(); // Prevent form submission
+        // alert('Please fill out both your name and email.');
+    } else {
+        toggleCheckoutButton();
+    }
+
+    
+});
+
 
         // Optional: Reset border color when user starts typing
         nameInput.addEventListener('input', () => {
-            nameInput.style.border = '1px solid green';
+            nameInput.style.border = '1px solid green !important';
         });
         emailInput.addEventListener('input', () => {
             emailInput.style.border = '1px solid green';
@@ -591,37 +607,7 @@ const nameInput = document.getElementById('customer-name');
     
     
     
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const checkoutButton = document.getElementById('checkout-button');
-        const nameInput = document.getElementById('customer-name');
-        const emailInput = document.getElementById('customer-email');
 
-        checkoutButton.addEventListener('click', (event) => {
-            if (!nameInput.value.trim() || !emailInput.value.trim()) {
-                event.preventDefault(); // Prevent form submission
-                alert('Please fill out both your name and email.');
-                if (!nameInput.value.trim()) {
-                    nameInput.style.border = '1px solid red'; // Highlight field
-                }
-                if (!emailInput.value.trim()) {
-                    emailInput.style.border = '1px solid red'; // Highlight field
-                }
-            } else {
-                nameInput.style.border = '1px solid green'; // Reset border
-                emailInput.style.border = '1px solid green'; // Reset border
-            }
-        });
-
-        // Optional: Reset border color when user starts typing
-        nameInput.addEventListener('input', () => {
-            nameInput.style.border = '1px solid green';
-        });
-        emailInput.addEventListener('input', () => {
-            emailInput.style.border = '1px solid green';
-        });
-    });
-</script>
 
 
     
