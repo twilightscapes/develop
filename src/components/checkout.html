@@ -646,7 +646,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
         const session = await response.json();
 
         if (response.ok) {
-            const stripe = Stripe('pk_live_51O3tWYKHJvXfkmw3F98KZ7I7367B5T8zSl7qIWhmDzP5o4XR4hRlCWdsAdiLDaLZ3Kfal2jTTitRIDC2azwyuwgl00T2NoCR5m');
+            const stripe = Stripe('pk_test_51O3tWYKHJvXfkmw3hQZoonC7lle3IIkuhioddtQCk7qhx7qUNfN2kqLeW9BWTZib9PVVPZCtGyOSjJmCRLrbTHjm00PrPZc1BM');
             const result = await stripe.redirectToCheckout({ sessionId: session.id });
             if (result.error) {
                 console.error(result.error.message);
