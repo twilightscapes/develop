@@ -129,7 +129,7 @@ exports.handler = async (event, context) => {
 
     // Add an additional fee for non-existing customers
     if (isNewCustomer) {
-      const feeProductId = 'price_1PirPRKHJvXfkmw3CoGToaOp'; 
+      const feeProductId = 'price_1Pl0ZfKHJvXfkmw3nw7zrHWD'; 
       lineItems.push({
         price: feeProductId,
         quantity: 1,
