@@ -173,9 +173,9 @@ exports.handler = async (event, context) => {
       phone_number_collection: {
         enabled: true
       },
-      payment_intent_data: {
-        on_behalf_of: connectedAccountId, // Route funds to connected account
-      },
+      // Set on_behalf_of for subscription mode
+      on_behalf_of: connectedAccountId,
+      // Do not include payment_intent_data in subscription mode
     });
 
     return {
