@@ -1,6 +1,5 @@
 const stripe = require('stripe')(process.env.DEV_STRIPE_SECRET_KEY);
 
-// Function to fetch connected accounts
 async function getConnectedAccountId() {
   try {
     const accounts = await stripe.accounts.list();
@@ -103,6 +102,9 @@ exports.handler = async (event, context) => {
       ? `${process.env.URL}/success` // One-time payment success URL
       : `${process.env.URL}/success-recurring`; // Recurring payment success URL
 
+    // Fetch the connected account ID
+    const connectedAccountId = await getConnectedAccountId();
+
     // Create line items for the session
     const lineItems = [
       {
@@ -150,9 +152,6 @@ exports.handler = async (event, context) => {
       });
     }
 
-    // Fetch the connected account ID
-    const connectedAccountId = await getConnectedAccountId();
-
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -173,9 +172,9 @@ exports.handler = async (event, context) => {
       phone_number_collection: {
         enabled: true
       },
-      // Set on_behalf_of for subscription mode
-      on_behalf_of: connectedAccountId,
-      // Do not include payment_intent_data in subscription mode
+      transfer_data: {
+        destination: connectedAccountId,
+      },
     });
 
     return {
