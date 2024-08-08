@@ -174,8 +174,10 @@ exports.handler = async (event, context) => {
       phone_number_collection: {
         enabled: true
       },
-      transfer_data: {
-        destination: connectedAccountId,
+      payment_intent_data: {
+        transfer_data: {
+          destination: connectedAccountId,
+        },
       },
     });
 
