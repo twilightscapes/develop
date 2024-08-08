@@ -1,4 +1,4 @@
-const stripe = require('stripe')('process.env.DEV_STRIPE_SECRET_KEY');
+const stripe = require('stripe')(process.env.DEV_STRIPE_SECRET_KEY);
 
 // Function to fetch connected accounts
 async function getConnectedAccountId() {
