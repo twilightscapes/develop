@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.6);
     filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));
     padding: 0 1vw;
     gap:2vw;
@@ -19,7 +19,7 @@
   }
   .search-container input, #customer-email, #customer-name {
     font-size: 16px !important;
-    padding:.4vh 2vw  ;
+    padding:.4vh 1vw  ;
     background:#000;
     border: 1px solid #1f3829 !important;
     color:#fff;
@@ -29,7 +29,7 @@
 
   .payarea input::placeholder{color:rgb(119, 150, 119) !important; font-size:clamp(.8rem,1.5vw,2.2rem) !important;}
 
-  .search-container input, .payarea input{width:100%; max-width: 500px; height:30px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
+  .search-container input, .payarea input{width:100%; max-width: 500px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
 
   #tip{ max-width: 70px; height:20px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
 
@@ -44,7 +44,7 @@
     place-content: center;
     flex-direction: column;
     align-items: center;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 0;
     padding: 0 0 2vh 0;
@@ -64,6 +64,12 @@
   #applogo{display: none;}
   #bottomblocker {height: 33px !important;}
   }
+  @media( display-mode:standalone) {
+    #bottomblocker::after {display: none !important;}
+  }
+
+
+
   a, a:hover, a:visited{color:#fff;}
   
   #drawPolygonControl{position:absolute; top: 80px; right: 0 !important;  z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#06a154;  color:#fff; border:1px solid #a3d4a9; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8)); display:flex; align-items: center; text-shadow: 1px 2px 1px #1f3829;}
@@ -82,7 +88,7 @@
           footer{display:none !important;}
   
           #bottomblocker{position:fixed; bottom:0; height:6vh; background:rgba(1, 24, 6, 0.2); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
-          #bottomblocker::after{content:'Click "Share" and then "Save to Desktop" to install this site as a Web App'; position:absolute; width:100%; bottom:1.2vh; left:5px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.7rem, .3vw, 1rem); color:#ddd }
+          #bottomblocker::after{content:'Click "Share" and then "Save to Desktop" to install this site as a Web App'; position:absolute; width:100%; bottom:1.2vh; left:2px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.6rem, .3vw, 1rem); color:#ddd }
   
   
           .green{color:rgba(27, 39, 33, 0.5)}
@@ -217,7 +223,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin:.5vh auto .5vh auto;
+    margin:1vh auto .5vh auto;
     transition: opacity 0.5s ease-in;
   }
   .stripe-button:hover{

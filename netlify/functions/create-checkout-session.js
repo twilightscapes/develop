@@ -12,32 +12,28 @@ exports.handler = async (event, context) => {
       numberOfDogs,
       customerName,
       customerAddress,
-      tipAmount = 0 // Tip amount in dollars
+      tipAmount = 0,
+      connectedAccountId,  // New field for connected account ID
     } = JSON.parse(event.body);
 
-    // Validate email and name
     if (!customerEmail || !customerName) {
       throw new Error('Both customer email and customer name are required.');
     }
 
     const truncatedUrl = pageUrl.length > 500 ? pageUrl.substring(0, 500) : pageUrl;
 
-    // Convert dynamicAmount and tipAmount to cents
     let dynamicAmountCents = Math.round(cost * 100);
     let tipAmountCents = Math.round(tipAmount * 100);
 
-    // Validate serviceFrequency
     const validFrequencies = [1, 2, 3, 4];
     if (!validFrequencies.includes(serviceFrequency)) {
       throw new Error('Invalid service frequency. Must be 1, 2, 3 times per week, or Once Only.');
     }
 
-    // Adjust dynamicAmountCents for twice a week service
     if (serviceFrequency === 2) {
       dynamicAmountCents *= 2;
     }
 
-    // Check if a customer with this email already exists
     let customer = await stripe.customers.list({
       email: customerEmail,
       limit: 1
@@ -45,7 +41,6 @@ exports.handler = async (event, context) => {
 
     let isNewCustomer = false;
     if (!customer) {
-      // Create a customer if one doesn't exist
       customer = await stripe.customers.create({
         email: customerEmail,
         name: customerName,
@@ -57,7 +52,6 @@ exports.handler = async (event, context) => {
       isNewCustomer = true;
     }
 
-    // Determine the correct price ID and interval based on service frequency
     let priceId;
     let interval = 'week';
     let intervalCount = 1;
@@ -76,20 +70,18 @@ exports.handler = async (event, context) => {
         priceId = 'price_1PiGz5KHJvXfkmw3eyKQF3n9';
         intervalCount = 2;
         break;
-      case 4: // One-time payment
+      case 4:
         priceId = 'price_1PirPRKHJvXfkmw3CoGToaOp';
-        mode = 'payment'; // Change mode to payment for one-time purchase
+        mode = 'payment';
         break;
       default:
         throw new Error('Invalid service frequency');
     }
 
-    // Determine success URL based on service frequency
     const successUrl = serviceFrequency === 4
-      ? `${process.env.URL}/success` // One-time payment success URL
-      : `${process.env.URL}/success-recurring`; // Recurring payment success URL
+      ? `${process.env.URL}/success`
+      : `${process.env.URL}/success-recurring`;
 
-    // Create line items for the session
     const lineItems = [
       {
         price_data: {
@@ -112,7 +104,6 @@ exports.handler = async (event, context) => {
       },
     ];
 
-    // Add the tip line item if a tip amount is provided
     if (tipAmountCents > 0) {
       lineItems.push({
         price_data: {
@@ -121,13 +112,12 @@ exports.handler = async (event, context) => {
             name: 'Tip',
             description: 'Optional tip',
           },
-          unit_amount: tipAmountCents, // Tip amount in cents
+          unit_amount: tipAmountCents,
         },
         quantity: 1,
       });
     }
 
-    // Add an additional fee for non-existing customers
     if (isNewCustomer) {
       const feeProductId = 'price_1Pl0ZfKHJvXfkmw3nw7zrHWD'; 
       lineItems.push({
@@ -136,7 +126,6 @@ exports.handler = async (event, context) => {
       });
     }
 
-    // Create a checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: mode,
@@ -155,6 +144,12 @@ exports.handler = async (event, context) => {
       },
       phone_number_collection: {
         enabled: true
+      },
+      payment_intent_data: {
+        application_fee_amount: Math.round(dynamicAmountCents * 0.1), // 10% platform fee
+        transfer_data: {
+          destination: connectedAccountId,
+        },
       },
     });
 
