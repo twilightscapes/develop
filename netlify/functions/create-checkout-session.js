@@ -1,10 +1,9 @@
-const stripe = require('stripe')(process.env.DEV_STRIPE_SECRET_KEY);
+const stripe = require('stripe')('process.env.DEV_STRIPE_SECRET_KEY');
 
 // Function to fetch connected accounts
 async function getConnectedAccountId() {
   try {
     const accounts = await stripe.accounts.list();
-    // Assuming you want to use the first account in the list; modify as needed
     if (accounts.data.length === 0) {
       throw new Error('No connected accounts found.');
     }
@@ -175,9 +174,7 @@ exports.handler = async (event, context) => {
         enabled: true
       },
       payment_intent_data: {
-        transfer_data: {
-          destination: connectedAccountId,
-        },
+        on_behalf_of: connectedAccountId, // Route funds to connected account
       },
     });
 
