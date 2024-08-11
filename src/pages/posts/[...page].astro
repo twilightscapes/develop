@@ -47,9 +47,9 @@ const paginationProps = {
 const groupedByYear = groupPostsByYear(page.data);
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 ---
-<GoBack client:load />
+
 <PageLayout meta={meta}>
-	
+	<GoBack client:load />
 	<!-- <div class="container1" style="padding:0 4%">
 	<h1 class="title mb-6">Posts</h1>
 </div> -->

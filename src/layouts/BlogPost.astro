@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-
+import { ViewTransitions } from "astro:transitions";
 import BlogHero from "@/components/blog/Hero.astro";
 import TOC from "@/components/blog/TOC.astro";
 // import WebMentions from "@/components/blog/webmentions/index.astro";
@@ -21,9 +21,10 @@ const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings } = await post.render();
 ---
-<GoBack client:load />
-<BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
 
+<ViewTransitions />
+<BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+<GoBack client:load />
 	<div class="gap-x-10 lg:flex lg:items-start" >
 		{!!headings.length && <TOC headings={headings} />}
 		<div class="" transition:animate="slide">
@@ -42,7 +43,7 @@ const { headings } = await post.render();
 							</Fragment>
 						)
 					} -->
-					<slot />
+					<slot  transition:animate="slide" />
 				</div>
 			</article>
 		</div>

@@ -19,7 +19,7 @@
   }
   .search-container input, #customer-email, #customer-name {
     font-size: 16px !important;
-    padding:.4vh 1vw  ;
+    padding:.4vh 2vw  ;
     background:#000;
     border: 1px solid #1f3829 !important;
     color:#fff;
@@ -29,7 +29,7 @@
 
   .payarea input::placeholder{color:rgb(119, 150, 119) !important; font-size:clamp(.8rem,1.5vw,2.2rem) !important;}
 
-  .search-container input, .payarea input{width:100%; max-width: 500px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
+  .search-container input, .payarea input{width:100%; max-width: 500px; height:30px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
 
   #tip{ max-width: 70px; height:20px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
 

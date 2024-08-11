@@ -57,7 +57,7 @@ export default defineConfig({
 		},
 	},
 	prefetch: true,
-	site: "https://astropoop.netlify.app",
+	site: "https://dogpoopers.com",
 	vite: {
 		optimizeDeps: { exclude: ["@resvg/resvg-js"] },
 		plugins: [rawFonts([".ttf", ".woff"])],
