@@ -34,7 +34,8 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.webp", Astro.ur
 
 <meta http-equiv="Content-Security-Policy" content={`default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; media-src 'self' *; font-src 'self' *; connect-src 'self' *; object-src 'self' *; frame-src 'self' *;`}/>
 
-<meta name="robots" content="index, follow" />
+<!-- <meta name="robots" content="index, follow" /> -->
+<meta name="robots" content="noindex, nofollow">
 
 {/* Theme Colour */}
 <meta content="#15683e" name="theme-color" />
