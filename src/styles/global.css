@@ -9,8 +9,8 @@
 		/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
 		--theme-bg: 125deg 19% 76%;
 		--theme-link: 172deg 18% 41%;
-		--theme-text: 148deg 16% 10%;
-		--theme-accent: 138deg 52% 29%;
+		--theme-text: 0deg 0% 22%;
+		--theme-accent: 34deg 62% 43%;
 		--theme-accent-2: 159deg 10% 32%;
 		--theme-quote: 351deg 66% 48%;
 	}

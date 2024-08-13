@@ -36,7 +36,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 <PageLayout meta={{ title: "Dog Poopers" }}>
 
 
-		  <section class="scroll-area1 panel" id="profile" style={{ display:'', height:'', minHeight:'', position:'relative', overflow:'hidden', margin:'0 auto 0 auto', padding:'3vh 0 20px 0', background:'var(--theme-ui-colors-background)', color:'var(--theme-ui-colors-text)', width:'100vw', borderRadius:'var(--theme-ui-colors-borderRadius)', }}>
+		  <section class="scroll-area1 panel" id="profile" style={{ display:'', height:'', minHeight:'', position:'relative', overflow:'hidden', margin:'0 auto 0 auto', padding:'3vh 0 20px 0', width:'100vw', borderRadius:'var(--theme-ui-colors-borderRadius)', }}>
 			<article style={{ margin:'0 0 0 0'}}>
 		  
 		  
@@ -50,13 +50,13 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 		  
 		  
 			<div class=" mob print" style={{ position:'sticky', top:'0', fontSize: 'clamp(1rem, 1.5vw, 3.2rem)', textAlign:'' }}>
-				<h1 class="title" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 3rem)', fontStyle:'normal', textWrap:'balance', textAlign:'center', lineHeight:'1.2', color:'' }}>Pet Waste Removal Service Mississippi Gulf Coast</h1>
+				<h1 class="title" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 3rem)', fontStyle:'normal', textWrap:'balance', textAlign:'center', lineHeight:'1.2', color:'inherit' }}>Pet Waste Removal Service Mississippi Gulf Coast</h1>
 		  
 		  
 		  
-				<h3 class="tagline1" style={{ fontSize: 'clamp(1.2rem, 2.3vw, 1.8rem)', textWrap:'', textAlign:'center', lineHeight:'1', textShadow:'none' }}>
+				<h2 class="tagline1" style={{ fontSize: 'clamp(1.2rem, 2.3vw, 1.8rem)', textWrap:'', textAlign:'center', lineHeight:'1', textShadow:'none' }}>
 					We pick up the poop!
-				</h3>
+				</h2>
 				
 				<div style={{ fontSize: 'clamp(1.2rem, 2vw, 2.8rem)', textAlign:'left',textWrap:'',padding: '0 1rem 0 1rem' }} class="description">
 
@@ -78,7 +78,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 				}}>
 	
 		  
-		  <h2 class="title" style={{textAlign:'center', fontSize: 'clamp(1.3rem, 2.4vw, 3rem)', fontStyle:'normal', margin:'0 0 3vh 0'}}><a href="tel:6013851781">Call (601) 385-1781</a></h2>
+		  <h2 class="title" style={{textAlign:'center', fontSize: 'clamp(1.3rem, 2.4vw, 3rem)', fontStyle:'normal', margin:'0 0 3vh 0', color:'inherit'}}><a href="tel:6013851781">Call (601) 385-1781</a></h2>
 		  
 		  
 		  
@@ -98,9 +98,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 			<li class="tag">Saucier</li>
 			<li class="tag">Pass Christian</li>
 			<li class="tag">Gautier</li>
-			<div style={{background:'rgba(8, 44, 20, 0.4)', backdropFilter:'blur(12px)', marginTop:'2vh', padding:'1vh 5%', color:'#fff', borderRadius:'var(--theme-ui-colors-borderRadius)', fontSize:'clamp(1rem, 1.8vw, 3.2rem)'}}>Interested in the Dog Poopers business?<br /><a href='/contact' class=" print" style={{ display: 'flex', justifyContent: 'center', padding:'', maxWidth:'', margin:'1vh auto', }}>Contact Us Today 💩</a></div>
+			
 		  </ul>
-		  
+		  <div style={{background:'rgba(8, 44, 20, 0.4)', backdropFilter:'blur(12px)', marginTop:'2vh', padding:'1vh 5%', color:'#fff', borderRadius:'var(--theme-ui-colors-borderRadius)', justifyContent:'center', textAlign:'center', fontSize:'clamp(1rem, 1.8vw, 3.2rem)', width:'90%', margin:'0 auto'}}>Interested in the Dog Poopers business?<br /><a href='/contact' class=" print" style={{ display: 'flex', justifyContent: 'center', padding:'', maxWidth:'', margin:'1vh auto', }}>Contact Us Today 💩</a></div>
 		  
 		  
 		  </div>
@@ -128,10 +128,10 @@ backdropFilter:'blur(12px)', color:'#fff' }}>
     <h2 class="glow">How It Works</h2>
   </div>
 <section id="SecondaryInfo4" class="nameblock" style={{margin:'0 auto 0 auto', padding:'2vh 4% 10vh 0',alignContent:'center', display:'grid', textAlign:'left', justifyContent:'center', verticalAlign:'center',
-  color:'var(--theme-ui-colors-text)',
+//   color:'var(--theme-ui-colors-text)',
   border:'0px solid red', 
   fontSize:'clamp(1rem, 1.8vw, 3.2rem)',
-  background:'var(--theme-ui-colors-cardBg)',
+//   background:'var(--theme-ui-colors-cardBg)',
   backdropFilter:'blur(8px)',
   borderRadius:'10px',
   maxWidth:'95%' ,
@@ -269,7 +269,7 @@ Twitch
 		<h2 class="glow">Our Latest News</h2>
 	  </div>
 			<div class="contentpanel horizontal-scroll panels">
-			<div class="contentpanel grid-container panels">
+			<div class="contentpanel grid-container panels" transition:animate="slide">
 				<div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }}></div>
 
 				{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}
