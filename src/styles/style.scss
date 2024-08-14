@@ -1,14 +1,7 @@
----
-import Phone from "@/assets/pooper-ui-device2.webp";
-import { Image } from "astro:assets";
-// import { MdOutlineCleaningServices } from "react-icons/md";
----
-<style>
-
 .numblist {
     clear: both;
     list-style: none;
-  counter-reset:item 0;
+  counter-reset:item 11;
   }
   .numblist li {
     margin: 0 0;
@@ -17,9 +10,9 @@ import { Image } from "astro:assets";
     display: block;
     position: relative;
     /* counter-increment: inst; */
-  counter-increment:item;
+  counter-increment:item -1;
   }
-  /* .numblist li::before {
+  .numblist li::before {
   content:counter(item) " ";
     background: rgba(0, 0, 0, .2);
     backdrop-filter: blur(12px);
@@ -35,7 +28,7 @@ import { Image } from "astro:assets";
     position: absolute;
     transition: all 0.2s ease-in-out;
     text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(40, 8, 202),0px 12px 10px rgb(139, 142, 167),0 2px rgb(39, 67, 227),0 5px 2px rgb(39, 61, 227),0 0 2px rgb(39, 52, 227),0 0 2px rgb(39, 42, 227),0 0 1px rgb(39, 73, 227); 
-  } */
+  }
   
   .numblist li::after {
   content:counter(item) " ";
@@ -47,10 +40,9 @@ import { Image } from "astro:assets";
     font-style: italic;
     border-radius: 0.675em 0 0 0.675em;
     text-align: left;
-    right: 0;
+    right: -20%;
   top:0;
-    width: 40px;
-    padding-left:2vw;
+    width: 140px;
     position: absolute;
     transition: all 0.2s ease-in-out;
     text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(40, 8, 202),0px 12px 10px rgb(139, 142, 167),0 2px rgb(39, 67, 227),0 5px 2px rgb(39, 61, 227),0 0 2px rgb(39, 52, 227),0 0 2px rgb(39, 42, 227),0 0 1px rgb(39, 73, 227); 
@@ -64,9 +56,9 @@ import { Image } from "astro:assets";
     }
     
       .numblist li::after {
-      width: 100px;
+      width: 250px;
       right: -15vw;
-      top:5vh;
+      top:1vh;
     }
   }
   
@@ -79,43 +71,3 @@ import { Image } from "astro:assets";
       color: #ddd;
         text-align:center;
   }
-
-  </style>
-  
-
-
-  <div id="" class="flexbutt" style={{display:'flex', gap:'10px', justifyContent:'center', alignItems:"start", margin:'0 0',
-  padding:'0 2% 0 2%', position:'relative', color: ''}}>
-
-<div class="flexcheek">
-<ul class="numblist" style={{maxWidth:'clamp(380px, 90%, 600px)', padding: '2%'}}>
-<li style="height:150px;">Locate your property<br /> Select the number of dogs<br /> Select the frequency of service</li>
-<li style="height:250px;">Click the "Draw Yard" button to enter draw mode</li>
-
-<li style="height:150px;">Drop points as needed to create an outline of your yard</li>
-    </ul>
-</div>
-
-
-
-    
-<div class="flexcheek mob2 print" style={{position:'', top:'0', minWidth:'500px', overflow:'', marginBottom:'', paddingTop:'0'}}>
-  <Image src={Phone} loading="lazy" alt="Phone" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'0px solid #222', objectFit:'contain', margin:'0 auto'}} />
-</div>
-  </div>
-
-
-<!-- <img src="./pooper-ui-device2.png" alt="Default Image" style={{height:'auto', width:'100dvw', maxHeight:'100dvh', position:'relative', zIndex:'1', top:'0', left:'0', right:'0', border:'0px solid #888 !important', objectFit:'contain', margin:'0'}} /> -->
-
-
-    
-    
-
-    
-    
-
-
-  
-
-  
-    
