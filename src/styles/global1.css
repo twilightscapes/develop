@@ -30,6 +30,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica n
 
 
 
+	body, html {
+  overflow-y: auto; /* Ensure overflow is not restricted */
+}
+
+
 
 /* backtotop CSS */
 /* button#to-top-btn {

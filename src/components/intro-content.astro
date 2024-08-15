@@ -41,19 +41,19 @@ import { Image } from "astro:assets";
   content:counter(item) " ";
     background: rgba(0, 0, 0, .2);
     backdrop-filter: blur(12px);
-    color: #999;
+    color: #f9f6f6;
     font-size:clamp(3rem, 6vw, 5rem);
     font-weight: 700;
     font-style: italic;
     border-radius: 0.675em 0 0 0.675em;
     text-align: left;
-    right: 0;
+    right: -10vw;
   top:0;
     width: 40px;
     padding-left:2vw;
     position: absolute;
     transition: all 0.2s ease-in-out;
-    text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(40, 8, 202),0px 12px 10px rgb(139, 142, 167),0 2px rgb(39, 67, 227),0 5px 2px rgb(39, 61, 227),0 0 2px rgb(39, 52, 227),0 0 2px rgb(39, 42, 227),0 0 1px rgb(39, 73, 227); 
+    text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(8, 202, 11),0px 12px 10px rgb(139, 167, 139),0 2px rgb(55, 227, 39),0 5px 2px rgb(39, 227, 99),0 0 2px rgb(39, 227, 77),0 0 2px rgb(39, 227, 80),0 0 1px rgb(39, 227, 80); 
   }
   
   @media (min-width:50em) {
@@ -65,9 +65,13 @@ import { Image } from "astro:assets";
     
       .numblist li::after {
       width: 100px;
-      right: -15vw;
+      right: -16vw;
       top:5vh;
     }
+  }
+
+  @media (max-width:48rem){
+    .numblist li::after {background:none !important;}
   }
   
   li h2{
@@ -83,16 +87,19 @@ import { Image } from "astro:assets";
   </style>
   
 
-
+<h3 class="title" style="text-align: center; font-size:clamp(1.4rem, 2.5vw, 3rem); text-wrap:balance; line-height:1.2;">Three easy steps to never picking up poop again!</h3>
   <div id="" class="flexbutt" style={{display:'flex', gap:'10px', justifyContent:'center', alignItems:"start", margin:'0 0',
   padding:'0 2% 0 2%', position:'relative', color: ''}}>
 
-<div class="flexcheek">
-<ul class="numblist" style={{maxWidth:'clamp(380px, 90%, 600px)', padding: '2%'}}>
-<li style="height:150px;">Locate your property<br /> Select the number of dogs<br /> Select the frequency of service</li>
-<li style="height:250px;">Click the "Draw Yard" button to enter draw mode</li>
 
-<li style="height:150px;">Drop points as needed to create an outline of your yard</li>
+<div class="flexcheek">
+<ul class="numblist" style="max-width:clamp(380px, 90%, 600px); padding: 2%;font-size:clamp(1.4rem, 2vw, 3rem); ">
+<li style="height:150px;">Locate your property<br /> Select the number of dogs<br /> Select the frequency of service</li>
+<li style="height:250px;">Click the "Draw Yard" button.
+<br /><br />
+Drop as many points as needed to create an outline of your yard. You can edit the area after you connect the dots.</li>
+
+<li style="">Enter your information and then sit back and enjoy your clean yard!</li>
     </ul>
 </div>
 

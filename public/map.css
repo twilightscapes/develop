@@ -64,6 +64,8 @@
     #area{ bottom:0 !important; border-radius:0; }
   #applogo{display: none;}
   #bottomblocker {height: 33px !important;}
+  #clearButton{top:50px !important;}
+  #drawPolygonControl{top:50px !important;}
   }
   @media( display-mode:standalone) {
     #bottomblocker::after {display: none !important;}

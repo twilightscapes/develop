@@ -34,6 +34,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 
 
 <script src="@/components/scrollListener.js"></script>
+
+
+
 <PageLayout meta={{ title: "Dog Poopers" }}>
 
 
@@ -121,7 +124,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 			<section class="scroll-area1 panel" id="profile" style={{ display:'', height:'', minHeight:'', position:'relative', overflow:'hidden', margin:'0 auto 0 auto', padding:'3vh 0 20px 0', width:'100vw', borderRadius:'var(--theme-ui-colors-borderRadius)', }}>
 			<Phone />
 
-			<a href="/map" target="mapframe" class="stripe-button button" style="width:30%; margin:1vh auto 5vh auto;">Get Started Now!</a>
+
+		
+			<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top" style="max-width:350px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
+
 </section>
 
 
@@ -206,7 +212,7 @@ Happy pets that will thank you for keeping their yard clean AND you can have com
 
 
 
-<a href="#maptop" class="stripe-button button" style="width:30%; margin:1vh auto 5vh auto;">Get Started Now!</a>
+<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top" style="max-width:350px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
 
 
 <div class="nameblock flexcheek headline" style={{position:'', top:'', marginTop: '', width:'100%', padding: '1vh 2vh', margin:'0 auto 5vh auto', maxHeight: '', fontSize: 'clamp(1.3rem, 3.5vw, 3.2rem)', textAlign:'center', textShadow: '0 2px 3px #000', background:'rgba(8, 44, 20, 0.3)', backdropFilter:'blur(12px)', color:'#fff' }}>
@@ -317,7 +323,27 @@ Twitch
 			</div>
 </div>
 
-<a href="#maptop" class="stripe-button button" style="width:30%; margin:1vh auto 5vh auto;">Get Started Now!</a>
+
+
+<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top" style="max-width:350px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
+
+
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('.scroll-to-top');
+	  links.forEach(function(link) {
+		link.addEventListener('click', function() {
+		  setTimeout(function() {
+			window.scrollTo(0, 0);
+		  }, 0); // Delay to ensure other actions complete
+		});
+	  });
+	});
+  </script>
+  
+  
+
 
 </PageLayout>
 
