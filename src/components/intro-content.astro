@@ -11,9 +11,8 @@ import { Image } from "astro:assets";
   counter-reset:item 0;
   }
   .numblist li {
-    margin: 0 0;
-    padding-top: 1rem;
-    padding-left: 1rem;
+    margin: 0 auto;
+    padding: 1rem 0;
     display: block;
     position: relative;
     /* counter-increment: inst; */
@@ -45,11 +44,11 @@ import { Image } from "astro:assets";
     font-size:clamp(3rem, 6vw, 5rem);
     font-weight: 700;
     font-style: italic;
-    border-radius: 0.675em 0 0 0.675em;
+    border-radius: 0.675em;
     text-align: left;
-    right: -10vw;
-  top:0;
-    width: 60px;
+    right: 0;
+    top:10vh;
+    width: 90%;
     padding-left:2vw;
     position: absolute;
     transition: all 0.2s ease-in-out;
@@ -57,28 +56,22 @@ import { Image } from "astro:assets";
   }
   
   @media (min-width:50em) {
-    .numblist li:before {
-      width: 250px;
-      left: -15vw;
-      top:1vh;
-    }
-    
       .numblist li::after {
-      width: 100px;
-      right: -17vw;
-      top:2vh;
+      width: 90%;
+      right: -100%;
+      top:4vh;
     }
   }
 
   @media (max-width:48rem){
-    .numblist li::after {background:none !important;border-radius:0 0.675em 0.675em 0;}
+    .numblist li::after {background: !important; top:0 !important; right:-50px !important; width:50px !important;}
     
   }
   
   li{
       background: rgba(0, 0, 0, 0.7);
       padding:1px 1vw 1px 1vw;
-      margin:5vh auto 6vh auto !important;
+      margin:2vh auto 6vh auto !important;
       border-radius: 12px;
       /* font-size:clamp(1.2rem, 2.8vw, 3.8rem) !important; */
       color: #ddd;
@@ -94,7 +87,7 @@ import { Image } from "astro:assets";
 
 
 <div class="flexcheek">
-<ul class="numblist" style="max-width:clamp(380px, 90%, 600px); padding: 2%;font-size:clamp(1.4rem, 2vw, 3rem); ">
+<ul class="numblist" style="max-width:clamp(380px, 90%, 600px); padding: 0;font-size:clamp(1.4rem, 2vw, 3rem); ">
 <li style="height:;">Locate your property<br /> Select the number of dogs<br /> Select the frequency of service<br /><br /></li>
 <li style="height:;">Click the "Draw Yard" button.
 <br />
@@ -109,7 +102,7 @@ Drop as many points as needed to create an outline of your yard. You can edit th
     
 <div class="flexcheek mob2 print" style={{position:'', top:'0', minWidth:'', overflow:'', marginBottom:'', paddingTop:'0'}}>
   
-  <Image src={Phone} loading="lazy" alt="Phone" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'0px solid #222', objectFit:'contain', margin:'0 auto'}} />
+  <Image src={Phone} loading="lazy" alt="Phone" style={{height:'auto', width:'', maxHeight:'90vh', position:'relative', zIndex:'', top:'', left:'', border:'0px solid #222', objectFit:'contain', margin:'0 auto'}} />
 </div>
 
   </div>
