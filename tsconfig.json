@@ -15,7 +15,6 @@
 		"@/site-config": ["src/site.config.ts"]
 	  },
 	  "jsx": "react-jsx",
-	  "types": ["leaflet", "googlemaps"],
 	  "jsxImportSource": "react"
 	},
 	"include": ["./.eslintrc.cjs", "**/*"],

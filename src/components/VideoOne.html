@@ -1,0 +1,13 @@
+<script src='https://cdn.jsdelivr.net/npm/react-player/dist/ReactPlayer.standalone.js'></script>
+<script>
+  const container = document.getElementById('container')
+  const url = 'https://www.youtube.com/watch?v=d46Azg3Pm4c'
+
+  renderReactPlayer(container, { url, playing: true })
+
+  function pausePlayer () {
+    renderReactPlayer(container, { url, playing: false })
+  }
+</script>
+
+<div id="container"></div>
