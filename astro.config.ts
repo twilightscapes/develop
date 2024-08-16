@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
-// import icon from "astro-icon";
+import icon from "astro-icon";
 import fs from "fs";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkUnwrapImages from "remark-unwrap-images";
@@ -18,6 +18,7 @@ export default defineConfig({
 	},
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
+		icon(),
 		tailwind({ applyBaseStyles: false }),
 		sitemap(),
 		mdx(),
@@ -59,21 +60,21 @@ export default defineConfig({
 	site: "https://dogpoopers.com",
 	vite: {
 		optimizeDeps: { exclude: ["@resvg/resvg-js"] },
-		// plugins: [rawFonts([".ttf", ".woff"])],
+		plugins: [rawFonts([".ttf", ".woff"])],
 	},
 });
 
-// function rawFonts(ext: string[]) {
-// 	return {
-// 		name: "vite-plugin-raw-fonts",
-// 		transform(_, id) {
-// 			if (ext.some(e => id.endsWith(e))) {
-// 				const buffer = fs.readFileSync(id);
-// 				return {
-// 					code: `export default ${JSON.stringify(buffer)}`,
-// 					map: null,
-// 				};
-// 			}
-// 		},
-// 	};
-// }
+function rawFonts(ext: string[]) {
+	return {
+		name: "vite-plugin-raw-fonts",
+		transform(_, id) {
+			if (ext.some(e => id.endsWith(e))) {
+				const buffer = fs.readFileSync(id);
+				return {
+					code: `export default ${JSON.stringify(buffer)}`,
+					map: null,
+				};
+			}
+		},
+	};
+}
