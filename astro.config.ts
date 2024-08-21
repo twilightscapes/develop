@@ -11,70 +11,59 @@ import remarkUnwrapImages from "remark-unwrap-images";
 import { expressiveCodeOptions } from "./src/site.config";
 import { remarkReadingTime } from "./src/utils/remark-reading-time";
 import AstroPWA from '@vite-pwa/astro';
+import markdoc from "@astrojs/markdoc";
+import keystatic from '@keystatic/astro';
 
+import netlify from "@astrojs/netlify";
+
+// https://astro.build/config
 export default defineConfig({
-	image: {
-		domains: ["webmention.io"],
-	},
-	integrations: [
-		expressiveCode(expressiveCodeOptions),
-		icon(),
-		tailwind({ applyBaseStyles: false }),
-		sitemap(),
-		mdx(),
-		react(),
-		AstroPWA({
-			registerType: 'autoUpdate',
-			includeAssets: ['favicon.svg', 'robots.txt'],
-			manifest: {
-				name: 'Dog Poopers',
-				short_name: 'Dog Poopers',
-				description: 'We Pick Up The Poop!',
-				theme_color: '#15683e',
-				start_url: '/map',
-				background_color: '#15683e',
-				display: 'standalone',
-				icons: [
-					{ src: '192x192.png', sizes: '192x192', type: 'image/png' },
-					{ src: '512x512.png', sizes: '512x512', type: 'image/png' },
-				],
-			},
-		}),
-	],
-	markdown: {
-		rehypePlugins: [
-			[
-				rehypeExternalLinks,
-				{
-					rel: ["nofollow", "noopener", "noreferrer"],
-					target: "_blank",
-				},
-			],
-		],
-		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-		remarkRehype: {
-			footnoteLabelProperties: { className: [""] },
-		},
-	},
-	prefetch: true,
-	site: "https://dogpoopers.com",
-	vite: {
-		optimizeDeps: { exclude: ["@resvg/resvg-js"] },
-		plugins: [rawFonts([".ttf", ".woff"])],
-	},
+  image: {
+    domains: ["webmention.io"]
+  },
+  integrations: [expressiveCode(expressiveCodeOptions), icon(), tailwind({
+    applyBaseStyles: false
+  }), sitemap(), mdx(), react(), keystatic(), AstroPWA({
+    registerType: 'autoUpdate',
+    includeAssets: ['favicon.svg', 'robots.txt'],
+    manifest: {
+      name: 'Dog Poopers',
+      short_name: 'Dog Poopers',
+      description: 'We Pick Up The Poop!',
+      theme_color: '#15683e',
+      start_url: '/map',
+      background_color: '#15683e',
+      display: 'standalone',
+      icons: [{
+        src: '192x192.png',
+        sizes: '192x192',
+        type: 'image/png'
+      }, {
+        src: '512x512.png',
+        sizes: '512x512',
+        type: 'image/png'
+      }]
+    }
+  }), markdoc()],
+  markdown: {
+    rehypePlugins: [[rehypeExternalLinks, {
+      rel: ["nofollow", "noopener", "noreferrer"],
+      target: "_blank"
+    }]],
+    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    remarkRehype: {
+      footnoteLabelProperties: {
+        className: [""]
+      }
+    }
+  },
+  output: 'hybrid',
+  prefetch: true,
+  site: "https://dogpoopers.com",
+  vite: {
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"]
+    }
+  },
+  adapter: netlify()
 });
-
-function rawFonts(ext: string[]) {
-	return {
-		name: "vite-plugin-raw-fonts",
-		transform(_, id) {
-			if (ext.some(e => id.endsWith(e))) {
-				const buffer = fs.readFileSync(id);
-				return {
-					code: `export default ${JSON.stringify(buffer)}`,
-					map: null,
-				};
-			}
-		},
-	};
-}

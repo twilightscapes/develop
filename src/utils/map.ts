@@ -1,4 +1,4 @@
-/// <reference types="@types/googlemaps" />
+
 
 interface PolygonPath extends google.maps.MVCArray<google.maps.LatLng> {}
 
