@@ -13,6 +13,8 @@ const titleSeparator = "•";
 const siteTitle = `${description} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.webp", Astro.url).href;
+// const socialImageURL = new URL("/social-card.webp", Astro.url).href;
+
 ---
 
 <meta charset="utf-8" />
