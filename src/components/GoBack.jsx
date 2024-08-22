@@ -19,7 +19,7 @@ const GoBack = () => {
     <button
       id="gobacker"
       className="back button"
-      onClick={() => { navigate(-1) }}
+      onClick={() => { navigate(-1); }}
     >
       <span className="icon -left" style={{ paddingRight: '' }}>
         <BiLeftArrow />

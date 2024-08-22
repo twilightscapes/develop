@@ -13,12 +13,17 @@ const {
 	content: { data, render },
 } = Astro.props;
 
-const { remarkPluginFrontmatter } = await render();
+// const { remarkPluginFrontmatter } = await render();
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
 	month: "long",
 };
+const imageDimensions = {
+	width: 800,  // Replace with actual width
+	height: 450, // Replace with actual height
+};
 ---
+
 
 {
 	data.coverImage && (
@@ -29,6 +34,8 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 				fetchpriority="high"
 				loading="eager"
 				src={data.coverImage.src}
+				width={imageDimensions.width}
+				height={imageDimensions.height}
 			/>
 		</div>
 	)
@@ -41,7 +48,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
 	<p class="font-semibold">
 		<FormattedDate date={data.publishDate} dateTimeOptions={dateTimeOptions} /> /{" "}
-		{remarkPluginFrontmatter.minutesRead}
+		<!-- {remarkPluginFrontmatter.minutesRead} -->
 	</p>
 	{
 		data.updatedDate && (

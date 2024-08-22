@@ -61,6 +61,11 @@ export default defineConfig({
   prefetch: true,
   site: "https://dogpoopers.com",
   vite: {
+	resolve: {
+		alias: {
+		  '~/': '/src/',
+		},
+	  },
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
     }

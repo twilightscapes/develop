@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
@@ -9,26 +8,28 @@ export default config({
     posts: collection({
       label: 'Posts',
       slugField: 'title',
-      path: 'src/content/post/*', // Adjusted path pattern
+      path: 'src/content/post/*/',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description' }),
+        description: fields.text({ label: 'Description', validation: { length: { min: 50, max: 160 } } }),
         content: fields.markdoc({ label: 'Content' }),
-        
         publishDate: fields.datetime({ label: 'Publish Date' }),
+        coverImage: fields.object({
+          src: fields.image({
+            label: 'Image file',
+            directory: 'public/images/posts',
+            publicPath: '/images/posts',
+          }),
+          alt: fields.text({ label: 'Alt Text' }),
+        }),
+        tags: fields.array(fields.text({ label: 'Tag' }), {
+          label: 'Tags',
+          itemLabel: (props) => props.value,
+        }),
+        draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
         updatedDate: fields.datetime({ label: 'Updated Date' }),
-        // coverImage: fields.object({
-        //   name: { label: 'Cover Image' },
-        //   fields: {
-        //     src: fields.text({ name: { label: 'Image Source' } }),
-        //     alt: fields.text({ name: { label: 'Image Alt Text' } }),
-        //   },
-        // }),
-        // tags: fields.object({ 
-        //   name: { label: 'Tags' },
-        //   of: fields.markdoc({ name: { label: 'Tag' } }),
-        // }),
+        ogImage: fields.text({ label: 'OG Image' }),
       },
     }),
   },

@@ -19,12 +19,14 @@ const defaultImageHeight = 630; // Specify the height of the default image
 		<!-- Check if coverImage exists and is an object -->
 		{post.data.coverImage && typeof post.data.coverImage === "object" ? (
 			<Image
-				src={post.data.coverImage.src}
-				alt={post.data.coverImage.alt}
-				class="object-cover"
-				loading="eager"
-				fetchpriority="high"
-			/>
+        src={`${post.data.coverImage.src}`} 
+        alt={post.data.coverImage.alt || "Cover image"}
+        class="object-cover"
+        loading="eager"
+        fetchpriority="high"
+        width={defaultImageWidth}
+        height={defaultImageHeight}
+      />
 		) : post.data.coverImage && typeof post.data.coverImage === "string" ? (
 		<Image
 				src={defaultImageSrc}
