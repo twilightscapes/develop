@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-// import fs from "fs";
+import fs from "fs";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkUnwrapImages from "remark-unwrap-images";
 import { expressiveCodeOptions } from "./src/site.config";
@@ -63,7 +63,24 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
-    }
+    },
+	plugins: [rawFonts([".ttf", ".woff"])],
   },
   adapter: netlify()
 });
+
+function rawFonts(ext: string[]) {
+	return {
+		name: "vite-plugin-raw-fonts",
+		// @ts-expect-error:next-line
+		transform(_, id) {
+			if (ext.some((e) => id.endsWith(e))) {
+				const buffer = fs.readFileSync(id);
+				return {
+					code: `export default ${JSON.stringify(buffer)}`,
+					map: null,
+				};
+			}
+		},
+	};
+}

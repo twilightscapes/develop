@@ -9,25 +9,25 @@ import { Resvg } from "@resvg/resvg-js";
 import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
 
-// const ogOptions: SatoriOptions = {
-// 	// debug: true,
-// 	fonts: [
-// 		{
-// 			data: Buffer.from(RobotoMono),
-// 			name: "Roboto Mono",
-// 			style: "normal",
-// 			weight: 400,
-// 		},
-// 		{
-// 			data: Buffer.from(RobotoMonoBold),
-// 			name: "Roboto Mono",
-// 			style: "normal",
-// 			weight: 700,
-// 		},
-// 	],
-// 	height: 630,
-// 	width: 1200,
-// };
+const ogOptions: SatoriOptions = {
+	// debug: true,
+	fonts: [
+		{
+			data: Buffer.from(RobotoMono),
+			name: "Roboto Mono",
+			style: "normal",
+			weight: 400,
+		},
+		{
+			data: Buffer.from(RobotoMonoBold),
+			name: "Roboto Mono",
+			style: "normal",
+			weight: 700,
+		},
+	],
+	height: 630,
+	width: 1200,
+};
 
 const markup = (title: string, pubDate: string) =>
 	html`<div tw="flex flex-col w-full h-full bg-[#1d1f21] text-[#c9cacc]">
