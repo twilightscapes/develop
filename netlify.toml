@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm run astro build"
+  command = "pnpm run start"
   publish = "dist"
   functions = "netlify/functions"
   
