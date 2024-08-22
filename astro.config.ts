@@ -12,9 +12,7 @@ import { expressiveCodeOptions } from "./src/site.config";
 import { remarkReadingTime } from "./src/utils/remark-reading-time";
 import AstroPWA from '@vite-pwa/astro';
 import markdoc from "@astrojs/markdoc";
-import keystatic from '@keystatic/astro';
-
-import netlify from "@astrojs/netlify";
+import keystatic from '@keystatic/astro'
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,6 +42,7 @@ export default defineConfig({
         type: 'image/png'
       }]
     }
+	
   }), markdoc()],
   markdown: {
     rehypePlugins: [[rehypeExternalLinks, {
@@ -61,14 +60,8 @@ export default defineConfig({
   prefetch: true,
   site: "https://dogpoopers.com",
   vite: {
-	resolve: {
-		alias: {
-		  '~/': '/src/',
-		},
-	  },
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
     }
-  },
-  adapter: netlify()
+  }
 });
