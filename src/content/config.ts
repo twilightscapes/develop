@@ -1,5 +1,4 @@
 import { defineCollection, z } from "astro:content";
-import path from 'path';
 
 function removeDupsAndLowerCase(array: string[]) {
     if (!array.length) return array;
@@ -18,8 +17,8 @@ const post = defineCollection({
             .transform((val) => new Date(val)),
         coverImage: z
             .object({
-                src: z.string(),
-                alt: z.string(),
+                src: z.string().optional(),
+                alt: z.string().default(""), // Make alt required, default to empty string
             })
             .optional(),
         tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
@@ -32,5 +31,6 @@ const post = defineCollection({
     }),
     type: "content",
 });
+
 
 export const collections = { post };

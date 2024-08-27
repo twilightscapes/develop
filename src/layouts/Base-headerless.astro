@@ -1,6 +1,6 @@
 ---
 import type { SiteMeta } from "@/types";
-import { ViewTransitions } from "astro:transitions";
+// import { ViewTransitions } from "astro:transitions";
 import BaseHead from "@/components/BaseHead.astro";
 import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
@@ -22,8 +22,8 @@ const {
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 
 		<style>
-			body{scroll-snap-type: y proximity;}
-			.mapsection {scroll-snap-align: start;}
+			/* body{scroll-snap-type: y proximity;}
+			.mapsection {scroll-snap-align: start;} */
 			@media(max-width:48rem) {
 				#frontmap{height:100dvh !important;}
 			}
@@ -33,7 +33,7 @@ const {
 	<body>
 		<ThemeProvider />
 		<SkipLink />
-		<ViewTransitions />
+		<!-- <ViewTransitions /> -->
 		
 
 
@@ -41,8 +41,8 @@ const {
 			<Header />
 			<!-- <main id="main">
 				<slot /> -->
-				<section class="mapsection" style="height:100vh; zIndex:999999;"><main id="main" transition:animate="slide" style="padding-top:50px">
-					<slot  transition:animate="slide" />
+				<section class="mapsection" style="height:100vh; zIndex:999999;"><main id="main" style="padding-top:20px">
+					<slot />
 		</main>
 		<Footer /></section>
 	</body>

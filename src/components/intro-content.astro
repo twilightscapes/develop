@@ -18,36 +18,18 @@ import { Image } from "astro:assets";
     /* counter-increment: inst; */
   counter-increment:item;
   }
-  /* .numblist li::before {
-  content:counter(item) " ";
-    background: rgba(0, 0, 0, .2);
-    backdrop-filter: blur(12px);
-    color: #999;
-    font-size:clamp(3rem, 6vw, 5rem);
-    font-weight: 700;
-    font-style: italic;
-    border-radius: 0 0.675em 0.675em 0;
-    text-align: right;
-    left: -20%;
-  top:0;
-    width: 150px;
-    position: absolute;
-    transition: all 0.2s ease-in-out;
-    text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(40, 8, 202),0px 12px 10px rgb(139, 142, 167),0 2px rgb(39, 67, 227),0 5px 2px rgb(39, 61, 227),0 0 2px rgb(39, 52, 227),0 0 2px rgb(39, 42, 227),0 0 1px rgb(39, 73, 227); 
-  } */
-  
+
   .numblist li::after {
   content:counter(item) " ";
     background: rgba(0, 0, 0, .2);
     backdrop-filter: blur(12px);
     color: #f9f6f6;
-    font-size:clamp(3rem, 6vw, 5rem);
+    font-size:clamp(5rem, 6vw, 5rem);
     font-weight: 700;
     font-style: italic;
     border-radius: 0.675em;
     text-align: left;
-    right: 0;
-    top:10vh;
+    top:8vh;
     width: 90%;
     padding-left:2vw;
     position: absolute;
@@ -57,59 +39,89 @@ import { Image } from "astro:assets";
   
   @media (min-width:50em) {
       .numblist li::after {
-      width: 90%;
-      right: -100%;
-      top:4vh;
+      width: 80%;
+      right: -90%;
+      top:0vh;
     }
   }
 
   @media (max-width:48rem){
-    .numblist li::after {background: !important; top:0 !important; right:0 !important; width:0px !important;}
-    li{width:85% !important;}
-    
+    .numblist li::after { display:; background:none !important; top:-10% !important; left:-10%  !important; right:inherit !important; width:0px !important; border:none !important; backdrop-filter: none !important;}
+
+    li{width:85% !important; text-align:left !important; padding:1px 0 1px 50px !important;}
+    .numblist{padding:0 !important;}
+    li.mob2 {margin-top:-40px !important;}
+
+      .numblist li::before {
+  content:counter(item) " ";
+  background: none;
+    backdrop-filter: none;
+    color: #f9f6f6;
+    font-size:clamp(5rem, 6vw, 5rem);
+    font-weight: 700;
+    font-style: italic;
+    border-radius: 0.675em;
+    text-align: left;
+    top:600px;
+    right:0;
+    width: 0;
+    height:300px;
+    margin-bottom: 20rem !important;
+    padding-left:2vw;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.2s ease-in-out;
+    text-shadow: .5vw -.5vh .3vw #000,0 8px 20px rgb(8, 202, 11),0px 12px 10px rgb(139, 167, 139),0 2px rgb(55, 227, 39),0 5px 2px rgb(39, 227, 99),0 0 2px rgb(39, 227, 77),0 0 2px rgb(39, 227, 80),0 0 1px rgb(39, 227, 80); 
+  }
+
+
   }
   
   li{
-      background: rgba(0, 0, 0, 0.7);
+      /* background: rgba(0, 0, 0, 0.4); */
       padding:1px 1vw 1px 1vw;
-      margin:2vh auto 6vh auto !important;
+      margin:2vh auto 3vh auto !important;
       border-radius: 12px;
       /* font-size:clamp(1.2rem, 2.8vw, 3.8rem) !important; */
-      color: #ddd;
-        text-align:center;
+      /* color: #ddd; */
+        text-align:right;
   }
 
   </style>
   
 
-<h3 class="" style="text-align: center; font-size:clamp(1.4rem, 2.5vw, 3rem); text-wrap:balance; line-height:1.2;">Three easy steps to never picking up poop again!</h3>
-  <div id="" class="flexbutt" style={{display:'flex', gap:'10px', justifyContent:'center', alignItems:"start", margin:'0 0',
-  padding:'0 2% 0 2%', position:'relative', color: ''}}>
+<h3 class="" style="text-align: center; font-size:clamp(1.4rem, 2.5vw, 3rem); text-wrap:balance; line-height:1.2; margin-bottom:1rem;">Three easy steps to never picking up poop again!</h3>
+  <div id="" class="flexbutt" style={{display:'flex', gap:'10px', justifyContent:'', alignItems:"start",
+  padding:'0 2% 0 2%', position:'relative', background: 'rgba(0, 0, 0, .2)', maxWidth:'1600px', margin:'0 auto'}}>
 
 
 <div class="flexcheek">
-<ul class="numblist" style="max-width:clamp(380px, 90%, 600px); padding: 0;font-size:clamp(1.4rem, 2vw, 3rem); ">
-<li style="height:;">Locate your property<br /> Select the number of dogs<br /> Select the frequency of service<br /><br /></li>
-<li style="height:;">Click the "Draw Yard" button.
+<ul class="numblist" style="max-width:clamp(380px, 90%, 600px); font-size:clamp(1.4rem, 2vw, 3rem); padding:80px 0; ">
+<li style="height:;">Locate your property<br /> Select the # of dogs<br /> Select frequency of service</li>
+<li style="height:;">Click "Draw Yard" button.
 <br />
-Drop as many points as needed to create an outline of your yard. You can edit the area after you connect the dots.<br /><br /></li>
+Click to drop as many points as needed to create an outline of your yard.<br /><span style="font-size:60%;">(You can edit the area after you connect the dots)</span>.</li>
 
-<li style="">Enter your information and then sit back and enjoy your clean yard!<br /><br /></li>
+<li style="">Enter your information and sit back with your best friend and enjoy your clean yard!</li>
+
+
+
+
     </ul>
 </div>
 
 
 
     
-<div class="flexcheek mob2 print" style={{position:'', top:'0', minWidth:'', overflow:'', marginBottom:'', paddingTop:'0'}}>
+<div class="flexcheek mob2 print" style={{position:'sticky', top:'0', minWidth:'', overflow:'', marginBottom:'', paddingTop:'0'}}>
   
-  <Image src={Phone} loading="lazy" alt="Phone" style={{height:'auto', width:'', maxHeight:'90vh', position:'relative', zIndex:'', top:'', left:'', border:'0px solid #222', objectFit:'contain', margin:'0 auto'}} />
+  <Image src={Phone} loading="eager" alt="Phone" style={{height:'auto', width:'', maxHeight:'88vh', position:'sticky', zIndex:'', top:'0', right:'', border:'0px solid #222', objectFit:'contain', margin:'0 auto'}} />
 </div>
 
   </div>
-  <h3 class="" style="text-align: center; font-size:clamp(1.4rem, 2.5vw, 3rem);  line-height:1.2;">Just three steps!</h3>
+  <h3 class="" style="text-align: center; font-size:clamp(1.4rem, 2.5vw, 3rem);  line-height:1.2; margin-top:1rem;">Just three steps!</h3>
 
-<!-- <img src="./pooper-ui-device2.png" alt="Default Image" style={{height:'auto', width:'100dvw', maxHeight:'100dvh', position:'relative', zIndex:'1', top:'0', left:'0', right:'0', border:'0px solid #888 !important', objectFit:'contain', margin:'0'}} /> -->
+
 
 
     
