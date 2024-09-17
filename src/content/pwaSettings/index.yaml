@@ -1,0 +1,12 @@
+showRobots: false
+siteUrl: https://dev.dogpoopers.com
+name: Dog Poopers
+shortName: Dog Poopers
+screenshot: /images/pwa/screenshot.png
+description: We Pick Up The Poop - Order Now!
+themeColor: rgba(0, 0, 0, 1)
+backgroundColor: rgba(0, 0, 0, 1)
+startUrl: /map
+display: standalone
+icon192: /images/pwa/icon192.png
+icon512: /images/pwa/icon512.png

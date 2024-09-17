@@ -1,16 +1,22 @@
 ---
 import type { GetStaticPaths, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-
+import { getEntry } from 'astro:content';
 import Pagination from "@/components/Paginator.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, getUniqueTags, groupPostsByYear, sortMDByDate } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
-import GoBack from "../../components/GoBack";
+import GoBack from "@/components/GoBack.astro";
 
+
+
+
+const language = await getEntry('language', 'index');
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const MAX_POSTS_PER_PAGE = 25;
+	const siteSettings = await getEntry('siteSettings', 'main');
+const { MAX_POSTS_PER_PAGE } = siteSettings.data;
+
 	const allPosts = await getAllPosts();
 	const allPostsByDate = sortMDByDate(allPosts);
 	const uniqueTags = getUniqueTags(allPosts);
@@ -46,18 +52,39 @@ const paginationProps = {
 
 const groupedByYear = groupPostsByYear(page.data);
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
+
+const siteSettings = await getEntry('siteSettings', 'main');
+const { defaultView } = siteSettings.data;
 ---
 
 <PageLayout meta={meta}>
-	<GoBack client:load />
-	<!-- <div class="container1" style="padding:0 4%">
-	<h1 class="title mb-6">Posts</h1>
-</div> -->
-<div style="padding:0 0">
-	{
-		!!uniqueTags.length && (
-			<aside style="padding:4vh 1vw 2vh 1vw; margin:0; display:flex; gap:2vw; align-items:start;">
-				<h2 class="title mb-4 flex items-center text-lg" >
+	<GoBack />
+	
+		
+
+		<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="min-height:; padding-top:7vh;">
+			<div class="sliderSpacer"></div>
+
+			{descYearKeys.map((yearKey) => (
+				<>
+					<div class="grid place-content-center">
+						<h2 class="title text-lg">{yearKey}</h2>
+					</div>
+					{groupedByYear[yearKey]?.map((p) => (
+						<PostPreview post={p}  />
+					))}
+				</>
+			))}
+
+			<div class="grid place-content-center min-w-[380px] min-h-[180px] max-h-[85%]">
+				<Pagination {...paginationProps} />
+			</div>
+		</div>
+
+<div class="">
+		{!!uniqueTags.length && (
+			<aside class="p-4 flex gap-4 items-center" style="max-width: 100%;">
+				<h2 class="title mb-4 flex items-center text-lg">
 					<svg
 						aria-hidden="true"
 						class="h-6 w-6"
@@ -74,14 +101,14 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 						<path d="M17.573 18.407l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-7.117 -7.116" />
 						<path d="M6 9h-.01" />
 					</svg>
-					Tags
+					{language.data.tags}
 				</h2>
-				<ul class="flex flex-wrap gap-2 text-bgColor button">
+				<ul class="flex flex-wrap gap-2 text-bgColor button" style="">
 					{uniqueTags.map((tag) => (
 						<li>
 							<a
 								aria-label={`View all posts with the tag: ${tag}`}
-								class="flex items-center justify-center rounded-lg  p-1"
+								class="flex items-center justify-center rounded-lg p-1"
 								href={`/tags/${tag}/`}
 							>
 								{tag}
@@ -89,42 +116,14 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 						</li>
 					))}
 				</ul>
-				<span class="mt-4 block sm:text-start">
+				<span class="mt-4 block sm:text-start" style="width:170px; text-align: right; display:flex; justify-content: end;">
 					<a aria-label="View all blog categories" class="sm:hover:text-accent" href="/tags/">
-						View all →
+						{language.data.viewall} →
 					</a>
 				</span>
 			</aside>
-		)
-	}
-	<div class="contentpanel grid-container panels">
+		)}
 
 
-
-			{
-				descYearKeys.map((yearKey) => (
-					<>
-						{/* <div style="display:grid; place-content:center; align-content:center;"><h2 class="title text-lg">{yearKey}</h2></div> */}
-				
-							{groupedByYear[yearKey]?.map((p) => (
-								// <li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
-									<PostPreview post={p} />
-								// </li>
-							))}
-						
-
-					</>
-				))
-			}
-
-
-
-			<div class="" style="display:grid; place-content:center; align-content:center; min-width:380px; min-height:180px; max-height:85%;"><Pagination {...paginationProps} /></div>
-
-			
-			
-		</div>
-		
 	</div>
-
 </PageLayout>

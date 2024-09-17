@@ -1,28 +1,11 @@
-<div align="center">
-  <img alt="Astro Cactus logo" src="https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/85aa0d3c-ef6a-44e2-954d-ef035b4f4315" width="70" />
-</div>
+
 <h1 align="center">
-  Astro Cactus
+  Astro Pirate
 </h1>
 
-Astro Cactus is a simple opinionated starter built with the Astro framework. Use it to create an easy-to-use blog or website.
+Astro Pirate is built with the Astro framework. Use it to create an easy-to-use blogs or websites.
 
-## Table Of Contents
 
-1. [Key Features](#key-features)
-2. [Demo](#demo-💻)
-3. [Quick start](#quick-start)
-4. [Preview](#preview)
-5. [Commands](#commands)
-6. [Configure](#configure)
-7. [Updating](#updating)
-8. [Adding Posts](#adding-posts)
-   - [Frontmatter](#frontmatter)
-   - [Frontmatter Snippet](#frontmatter-snippet)
-9. [Pagefind search](#pagefind-search)
-10. [Analytics](#analytics)
-11. [Deploy](#deploy)
-12. [Acknowledgment](#acknowledgment)
 
 ## Key Features
 
@@ -33,7 +16,6 @@ Astro Cactus is a simple opinionated starter built with the Astro framework. Use
 - Dark / Light mode, using Tailwind and CSS variables
 - [Astro Assets Integration](https://docs.astro.build/en/guides/assets/) for optimised images
 - MD & [MDX](https://docs.astro.build/en/guides/markdown-content/#mdx-only-features) posts
-- [Satori](https://github.com/vercel/satori) for creating open graph png images
 - Pagination
 - [Automatic RSS feed](https://docs.astro.build/en/guides/rss)
 - [Webmentions](https://webmention.io/)
@@ -44,27 +26,71 @@ Astro Cactus is a simple opinionated starter built with the Astro framework. Use
 
 ## Demo 💻
 
-Check out the [Demo](https://astro-cactus.chriswilliams.dev/), hosted on Netlify
+Check out the [Demo](https:/pirateweb.org/), hosted on Netlify
+
+> **Update** PIRATE is now built with the latest version of Astro and Keystatic!
+
+---
+
+
+
+# PIRATE
+
+PIRATE is not your typical social network. It's a decentralized network of individualy owned personal websites acting together as a new social content distribution model. 
+
+Here's how it works: instead of relying on a central platform, PIRATE leverages the power of Netlify and GitHub to utelize their free services for hosting your own platorm.  Your individual website becomes your hub for social interactions on both PIRATE and other social media. The content you produce, you fully own and control the rights to.
+
+More than just a collection of individual websites, PIRATE uses the magic of RSS feeds, you can enjoy a central timeline that aggregates posts from across the network. You get to see what others are sharing, discover new voices, and engage in meaningful conversations.
+
+Your PIRATE website is actually a Progressive Web App (PWA), which means you can access it seamlessly from any of your devices. Being a PWA also means there are no App Stores to worry about! 
+
+PIRATE gives you the tools to easily edit your homepage, update your profile, and publish engaging posts. It's super easy to get started, without any complicated technical barriers. 
+
+## But wait, there is more...
+
+PIRATE is ALSO:
+
+A complete website/web app platform with multimedia blog, that you can use however you wish. Configurable through the built in Content Management System, PIRATE comes with a customizable profile page and timeline. It also comes with a custom resume, cover letter and skills and notes pages with integrated contact forms that send directly to any email address.
+
+Basically, PIRATE enables you to have YOUR OWN space on the web, where you can be confident that the content you produce is FULLY in your control. Twitter and other social media sites may change or come and go. With PIRATE, that doesn't matter - your content you share, is ALWAYS under your control. 
+
+PIRATE is built to operate using FREE Cloud Based Services. This means that your PIRATE account is basically free to operate month to month with no cost. You only pay a metered cost for what you use over their generous limits. 
+
+PIRATE is built to OPERATE FOR FREE using FREE Cloud Based Services
+
+## 👌 Features
+
+- Next-Gen Blogging Platform.
+- State-of-the-art multimdedia/animation layering
+- FULL animated SVG support
+- User-installable PWA (Progressive Web Apps)
+- Responsive Web Design
+- Dark / Light Mode
+- Customize Resume, Profile, Cover Letter, Skills, Interview Notes and Contact page.
+- Add / Modify / Delete posts - no limitations.
+- Edit website settings, seo settings, logos, etc all from  within the CMS.
+- SEO Optimized (Scores 100 on PageSpeed)
+- Social media icons
+- OpenGraph structured data
+- Twitter Cards meta
+- XML Sitemaps
 
 ## Quick start
 
-[Create a new repo](https://github.com/chrismwilliams/astro-theme-cactus/generate) from this template.
+[Create a new repo](https://github.com/twilightscapes/pirate/generate) from this template.
 
 ```bash
 # npm 7+
-npm create astro@latest -- --template chrismwilliams/astro-theme-cactus
+npm create astro@latest -- --template pirate/astro-pirate
 
 # pnpm
-pnpm dlx create-astro --template chrismwilliams/astro-theme-cactus
+pnpm dlx create-astro --template pirate/astro-pirate
 ```
 
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chrismwilliams/astro-theme-cactus) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchrismwilliams%2Fastro-theme-cactus&project-name=astro-theme-cactus)
+[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/twilightscapes/pirate) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftwilightscapes%2Fpirate&project-name=astro-pirate-theme)
 
-## Preview
 
-![Astro Theme Cactus in a light theme mode](https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/84c89d42-4525-4674-b10c-6d6ebdc06382)
 
-![Astro Theme Cactus in a dark theme mode](https://github.com/chrismwilliams/astro-theme-cactus/assets/12715988/e0e575e2-445f-4c2d-a812-b5b53d2d9031)
 
 ## Commands
 
@@ -82,28 +108,16 @@ Replace pnpm with your choice of npm / yarn
 ## Configure
 
 - Edit the config file `src/site.config.ts` for basic site meta data
-  - Read [this post](http://astro-cactus.chriswilliams.dev/posts/webmentions/) for adding webmentions to your site, otherwise set `siteConfig.webmentions.link` to an empty value.
 - Update file `astro.config.ts` site property with your own domain.
 - Replace & update files within the `/public` folder:
   - favicon.ico & other social icons
   - robots.txt - update the Sitemap url to your own domain
   - manifest.webmanifest
 - Modify file `src/styles/global.css` with your own light and dark styles.
-  - You can also modify the theme(s) for markdown code blocks generated by [Expressive Code](https://expressive-code.com). Astro Cactus has both a dark (dracula) and light (github-light) theme, which can be found in `src/site.config.ts`. You can find more theme(s) and options [here](https://expressive-code.com/guides/themes/#available-themes).
+  - You can also modify the theme(s) for markdown code blocks generated by [Expressive Code](https://expressive-code.com). Pirate has both a dark (dracula) and light (github-light) theme, which can be found in `src/site.config.ts`. You can find more theme(s) and options [here](https://expressive-code.com/guides/themes/#available-themes).
 - Edit social links in `src/components/SocialList.astro` to add/replace your media profile. Icons can be found @ [icones.js.org](https://icones.js.org/), per [Astro Icon's instructions](https://www.astroicon.dev/guides/customization/#find-an-icon-set).
 - Create / edit posts for your blog within `src/content/post/` with .md/mdx file(s). See [below](#adding-posts) for more details.
-- OG Image:
-  - If you would like to change the style of the generated image the Satori library creates, open up `src/pages/og-image/[slug].png.ts` to the markup function where you can edit the html/tailwind-classes as necessary. You can also use this [satori playground](https://og-playground.vercel.app/) to aid your design.
-  - If you would like to generate svg og images rather than the default .png ones, you will need to remove the @resvg/resvg-js library, and return the svg within the body of the get function from the file `src/pages/og-image/[slug].png.ts`.
-  - You can also create your own og images and skip satori generating it for you by adding an ogImage property in the frontmatter with a link to the asset, an example can be found in `src/content/post/social-image.md`. More info on frontmatter can be found [here](#frontmatter)
-- Optional:
-  - Fonts: This theme sets the body element to the font family `font-mono`, located in the global css file `src/styles/global.css`. You can change fonts by removing the variant `font-mono`, after which TailwindCSS will default to the `font-sans` [font family stack](https://tailwindcss.com/docs/font-family).
 
-## Updating
-
-If you've forked the template, you can [sync the fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) with your own project, remembering to not click Discard Changes as you will lose your own.
-
-If you have a template repository, you can add this template as a remote, as discussed [here](https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository).
 
 ## Adding posts
 
@@ -111,22 +125,8 @@ This theme utilises [Content Collections](https://docs.astro.build/en/guides/con
 
 Adding a post is as simple as adding your .md(x) files to the `src/content/post` folder, the filename of which will be used as the slug/url. The posts included with this template are there as an example of how to structure your frontmatter. Additionally, the [Astro docs](https://docs.astro.build/en/guides/markdown-content/) has a detailed section on markdown pages.
 
-### Frontmatter
 
-| Property (\* required) | Description                                                                                                                                                                                                                                                                                                  |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| title \*               | Self explanatory. Used as the text link to the post, the h1 on the posts' page, and the pages title property. Has a max length of 60 chars, set in `src/content/config.ts`                                                                                                                                   |
-| description \*         | Similar to above, used as the seo description property. Has a min length of 50 and a max length of 160 chars, set in the post schema.                                                                                                                                                                        |
-| publishDate \*         | Again pretty simple. To change the date format/locale, currently **en-GB**, update the date option in `src/site.config.ts`. Note you can also pass additional options to the component `<FormattedDate>` if required.                                                                                        |
-| updatedDate            | This is an optional date representing when a post has been updated, in the same format as the publishDate. Note that by providing this field, the sorting function, found in `src/utils/post.ts`, `sortMDByDate` will order by this field rather than its published date.                                    |
-| tags                   | Tags are optional with any created post. Any new tag(s) will be shown in `yourdomain.com/posts` & `yourdomain.com/tags`, and generate the page(s) `yourdomain.com/tags/[yourTag]`                                                                                                                            |
-| coverImage             | This is an optional object that will add a cover image to the top of a post. Include both a `src`: "_path-to-image_" and `alt`: "_image alt_". You can view an example in `src/content/post/cover-image.md`.                                                                                                 |
-| ogImage                | This is an optional property. An OG Image will be generated automatically for every post where this property **isn't** provided. If you would like to create your own for a specific post, include this property and a link to your image, the theme will then skip automatically generating one.            |
-| draft                  | This is an optional property as it is set to false by default in the schema. By adding true, the post will be filtered out of the production build in a number of places, inc. getAllPosts() calls, og-images, rss feeds, and generated page[s]. You can view an example in `src/content/post/draft-post.md` |
 
-### Frontmatter snippet
-
-Astro Cactus includes a helpful VSCode snippet which creates a frontmatter 'stub' for a blog post, found here -> `.vscode/post.code-snippets`. Start typing the word `frontmatter` on your newly created .md(x) file to trigger it. Visual Studio Code snippets appear in IntelliSense via (⌃Space) on mac, (Ctrl+Space) on windows.
 
 ## Pagefind search
 
@@ -138,7 +138,7 @@ It also allows you to filter posts by tags added in the frontmatter of blog post
 
 If you would rather not include this integration, simply remove the component `src/components/Search.astro`, and uninstall both `@pagefind/default-ui` & `pagefind` from package.json. You will also need to remove the postbuild script from here as well.
 
-You can reduce the initial css payload of your css, as demonstrated [here](https://github.com/chrismwilliams/astro-theme-cactus/pull/145#issue-1943779868), by lazy loading the web components styles.
+
 
 ## Analytics
 
@@ -156,7 +156,16 @@ By default the site will be built (see [Commands](#commands) section above) to a
 
 ## Acknowledgment
 
-This theme was inspired by [Hexo Theme Cactus](https://github.com/probberechts/hexo-theme-cactus)
+This theme was inspired by [Astro Cactus](https://github.com/chrismwilliams/astro-theme-cactus/)
+
+## 🙏 Thank you
+
+We really appreciate you choosing to become a PIRATE!
+
+[PIRATE]: https://PIRATEpro.app
+[Astro]: https://astro.build
+[Keystatic]: https://keystatic.com
+
 
 ## License
 

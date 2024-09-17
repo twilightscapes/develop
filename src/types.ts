@@ -25,7 +25,7 @@ export interface SiteMeta {
 	articleDate?: string | undefined;
 	description?: string;
 	ogImage?: string | undefined;
-	title: string;
+	title?: string;
 }
 
 /** Webmentions */
@@ -86,3 +86,18 @@ export interface Summary {
 
 
 
+
+export interface PwaSettings {
+  showRobots: boolean;
+  description: string;
+  name: string;
+  shortName: string;
+  themeColor: string;
+  backgroundColor: string;
+  startUrl: string;
+  display: "standalone" | "fullscreen" | "minimal-ui" | "browser";
+  icon192: string;
+  icon512: string;
+  siteUrl?: string;
+  screenshot?: string;
+}

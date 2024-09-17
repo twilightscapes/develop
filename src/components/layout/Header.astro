@@ -1,154 +1,73 @@
 ---
 import ThemeToggle from "../ThemeToggle.astro";
-// import Search from "../Search.astro";
+import Search from "../Search.astro";
 import Switch from "@/components/Switch.jsx";
-import { menuLinks } from "@/site-config";
-// import { ViewTransitions } from 'astro:transitions';
-import { Image } from "astro:assets";
-import LogoImage from "../../../src/assets/dogpooper-logo-text.webp";
-// import BackgroundImage from "../../../src/assets/newspaper.webp";
-// import { BsLayoutSidebarInsetReverse } from "react-icons/bs";
+import { getMenuLinks } from "@/site-config";
+import { getEntry } from 'astro:content';
+
+const siteSettings = await getEntry('siteSettings', 'main');
+const { showHeader, showLogo, showTheme, showSearch, showSwitch, showHome, logoImage, defaultView } = siteSettings.data;
 
 
+// const language = await getEntry('language', 'index');
 
-// import GoBack from "../GoBack.jsx";
-// import SideBar from "../SideBar.astro"
-
-// import SideBar from "@/components/SideBar.astro";
-// import { slide } from 'astro:transitions';
-// transition:animate={fade({ duration: '0.4s' })}
+const styleAppearance = await getEntry('styleapps', 'index');
+const { backgroundImage } = styleAppearance.data;
 
 const url = new URL(Astro.request.url);
+const menuLinks = await getMenuLinks();
 ---
 
+{showHeader && (
+  <div id="menu" class="menu header" style="min-height:60px; padding: 2px 100px 2px 0;">
+    {showLogo && logoImage && (
+      <a href="/" aria-current={url.pathname === "/" ? "page" : false} class="relative top-1 left-2.5 p-0">
+        <img 
+          src={logoImage}
+          alt="Site Logo"
+          class="max-h-[60px] max-w-[140px]"
+          loading="eager"
+          fetchpriority="high"
+          width="90px"
+          height="60"
+          style="width:100%; max-height:55px; max-width:140px"
+        />
+      </a>
+    )}
 
-<!-- <ViewTransitions /> -->
+    <ul class="topmenu flex justify-around items-center gap-4 m-auto p-0 h-15 text-center text-[clamp(0.6rem,1.6vw,1.8rem)]">
+      {menuLinks.map((link) => (
+        <li>
+          <a
+            href={link.path}
+            class="px-4 py-4 sm:py-0 sm:hover:underline"
+            aria-current={url.pathname === link.path ? "page" : false}
+            rel="prefetch"
+            data-astro-reload
+          >
+            {link.title}
+          </a>
+        </li>
+      ))}
+    </ul>
 
+    
+  </div>
+)}
 
+<div id="missioncontrol" class="missioncontrol sitecontrols flex justify-around items-center gap-3 pr-2.5">
+  {showHome && (
+  <button
+		class="flex h-9 w-9 items-center justify-center rounded-md ring-zinc-400 transition-all hover:ring-2"
+	><a href="/" aria-current={url.pathname === "/" ? "page" : false}>
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" height="28px" width="28px" xmlns="http://www.w3.org/2000/svg"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg></a></button>
+  )}
 
-
-<div
-	id="menu"
-	class="menu header">
-	<a href="/" aria-current={url.pathname === "/" ? "page" : false}>
-		<Image src={LogoImage} alt="Dog Poopers Logo" class="cornerlogo" style={{
-			position: "relative",
-			top: "1%",
-			left: "1%",
-			padding: "0 0 0 0",
-			marginLeft: "",
-			maxHeight: "60px",
-			
-			maxWidth: "90px"
-		}}
-			loading="eager"
-			fetchpriority="high" />
-	</a>
-
-	<ul
-		class="topmenu"
-		style={{
-			fontSize: "clamp(.6rem, 1.6vw, 1.8rem)",
-			textAlign: "center",
-			maxHeight: "",
-			display: "flex",
-			justifyContent: "space-around",
-			gap: "4vw",
-			alignItems: "center",
-			margin: "0 auto 0 auto",
-			padding: "0 0 0 0",
-			border: "0px solid white",
-			height:'60px',
-			visibility:""
-		}}
-	>
-		{
-			menuLinks.map((link) => (
-				<li>
-					<a
-						href={link.path}
-						class="px-4 py-4 sm:py-0 sm:hover:underline"
-						aria-current={url.pathname === link.path ? "page" : false}
-						rel="prefetch"
-						data-astro-reload
-					>
-						{link.title}
-					</a>
-				</li>
-			))
-		}
-				<!-- <div class="user-info" style="display:flex; gap:2vw;">
-					<button id="left">Manage Account</button>
-					<button id="right">Become a Pooper</button>
-				  </div> -->
-	</ul>
-
-
-	<div
-		id="missioncontrol"
-		class="missioncontrol sitecontrols"
-		style={{
-			display: "flex",
-			justifyContent: "space-around",
-			fontSize: "clamp(.8rem, 2.3vw, 2.5rem)",
-			gap: "3vw",
-			textAlign: "center",
-			maxHeight: "",
-			alignItems: "center",
-			padding: "0 10px 0 0",
-		}}
-	>
-
-
-
-		<!-- <Search /> -->
-		<Switch client:load />
-		<ThemeToggle />
-		
-
-			
-	
-	</div>
+  {showSearch && <Search />}
+  {showTheme && <ThemeToggle />}
+  {showSwitch && <Switch client:load defaultView={defaultView} />}
 </div>
-<!-- 
-<button
-	aria-label="Back to Top"
-	class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 dark:bg-zinc-700 sm:end-8 sm:h-12 sm:w-12"
-	data-show="false"
-	id="to-top-btn"
-	><svg
-		aria-hidden="true"
-		class="h-6 w-6"
-		fill="none"
-		focusable="false"
-		stroke="currentColor"
-		stroke-width="2"
-		viewBox="0 0 24 24"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-	</svg>
-</button> -->
 
-
-
-  
-  
-<!-- <script>
-	const scrollBtn = document.getElementById("to-top-btn") as HTMLButtonElement;
-	const targetHeader = document.getElementById("blog-hero") as HTMLDivElement;
-
-	function callback(entries: IntersectionObserverEntry[]) {
-		entries.forEach((entry) => {
-			// only show the scroll to top button when the heading is out of view
-			scrollBtn.dataset.show = (!entry.isIntersecting).toString();
-		});
-	}
-
-	scrollBtn.addEventListener("click", () => {
-		document.documentElement.scrollTo({ behavior: "smooth", top: 0 });
-	});
-
-	const observer = new IntersectionObserver(callback);
-	observer.observe(targetHeader);
-</script> -->
+{backgroundImage && (
+  <img class="backimage w-2.5 h-2.5" src={backgroundImage} alt="Default Background" width="10" height="10" />
+)}

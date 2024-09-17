@@ -26,7 +26,7 @@ export default {
 		require("@tailwindcss/aspect-ratio"),
 		plugin(function ({ addComponents }) {
 			addComponents({
-				".cactus-link": {
+				".pirate-link": {
 					"&:hover": {
 						"@apply decoration-link decoration-2": {},
 					},
@@ -63,7 +63,7 @@ export default {
 				DEFAULT: {
 					css: {
 						a: {
-							"@apply cactus-link": "",
+							"@apply pirate-link": "",
 						},
 						blockquote: {
 							borderLeftWidth: "0",
@@ -108,7 +108,7 @@ export default {
 						},
 					},
 				},
-				cactus: {
+				pirate: {
 					css: {
 						"--tw-prose-body": theme("colors.textColor / 1"),
 						"--tw-prose-bold": theme("colors.textColor / 1"),

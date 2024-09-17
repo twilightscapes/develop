@@ -1,15 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
-// import { ViewTransitions } from "astro:transitions";
 import BlogHero from "@/components/blog/Hero.astro";
 import TOC from "@/components/blog/TOC.astro";
-// import WebMentions from "@/components/blog/webmentions/index.astro";
-
 import BaseLayout from "./Base.astro";
-import GoBack from "../components/GoBack";
+import GoBack from "@/components/GoBack.astro";
+
 
 interface Props {
-	post: CollectionEntry<"post">;
+	post: CollectionEntry<"post"> & { data: { youtube?: string } };
 }
 
 const { post } = Astro.props;
@@ -17,23 +15,30 @@ const {
 	data: { description, ogImage, publishDate, title, updatedDate },
 	slug,
 } = post;
+
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings } = await post.render();
 ---
 
-<!-- <ViewTransitions /> -->
-<BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
-<GoBack client:load />
+<style>
+		.panel {
+		backdrop-filter: blur(54px);
+		-webkit-backdrop-filter: blur(54px);
+	}
+</style>
+<BaseLayout title={title} description={description} articleDate={articleDate} ogImage={socialImage}>
+<GoBack />
 	<div class="gap-x-10 lg:flex lg:items-start" >
-		{!!headings.length && <TOC headings={headings} />}
 		
-			<article class="" data-pagefind-body>
-				<div id="blog-hero" style="width:100vw; z-index: 2;"><BlogHero content={post} /></div>
+		
+<article class="" data-pagefind-body>
+				{!!headings.length && <TOC headings={headings} />}
+	<div id="blog-hero" style="width:100vw; z-index: 0;"><BlogHero content={post} /></div>
 				{/* Render dynamic elements */}
 	
 				{!!headings.length && <TOC headings={headings} />}
-				<div class="" style={{ padding: "0 4%", width:'98vw', margin:'0 auto' }}>
+	<div class="panel" style={{ padding: "0 4%", width:'90%', margin:'0 auto', maxWidth:'1400px', display:'flex' }}>
 					<!-- <img src={svgImage} /> -->
 	
 					<!-- {
@@ -43,7 +48,9 @@ const { headings } = await post.render();
 							</Fragment>
 						)
 					} -->
-					<slot />
+									<div class="prose prose-lg dark:prose-invert max-w-none">
+										<slot />
+									</div>
 				</div>
 			</article>
 		
@@ -66,7 +73,7 @@ const { headings } = await post.render();
 		<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
 	</svg>
 </button>
-</BaseLayout>
+
 <script>
 	const scrollBtn = document.getElementById("to-top-btn") as HTMLButtonElement;
 	const targetHeader = document.getElementById("blog-hero") as HTMLDivElement;

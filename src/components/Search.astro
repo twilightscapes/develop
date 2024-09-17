@@ -2,6 +2,8 @@
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
 import "@pagefind/default-ui/css/ui.css";
+import { getEntry } from 'astro:content';
+const language = await getEntry('language', 'index');
 ---
 
 <site-search class="ms-auto" id="search">
@@ -30,11 +32,12 @@ import "@pagefind/default-ui/css/ui.css";
 	<dialog
 		aria-label="search"
 		class="h-full max-h-full w-full max-w-full border border-zinc-400 bg-bgColor shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md"
+		style="background:#777;"
 	>
-		<div class="dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6">
+		<div class="dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6" >
 			<button
 				class="ms-auto cursor-pointer rounded-md bg-zinc-200 p-2 font-semibold dark:bg-zinc-700"
-				data-close-modal>Close</button
+				data-close-modal>{language.data.close}</button
 			>
 			{
 				import.meta.env.DEV ? (
@@ -46,7 +49,7 @@ import "@pagefind/default-ui/css/ui.css";
 					</div>
 				) : (
 					<div class="search-container">
-						<div id="cactus__search" />
+						<div id="pirate__search" />
 					</div>
 				)
 			}
@@ -119,7 +122,7 @@ import "@pagefind/default-ui/css/ui.css";
 				new PagefindUI({
 					baseUrl: import.meta.env.BASE_URL,
 					bundlePath: import.meta.env.BASE_URL.replace(/\/$/, "") + "/pagefind/",
-					element: "#cactus__search",
+					element: "#pirate__search",
 					showImages: false,
 					showSubResults: true,
 				});
@@ -139,16 +142,16 @@ import "@pagefind/default-ui/css/ui.css";
 		--pagefind-ui-font: inherit;
 	}
 
-	#cactus__search .pagefind-ui__search-clear {
+	#pirate__search .pagefind-ui__search-clear {
 		width: calc(60px * var(--pagefind-ui-scale));
 		padding: 0;
 		background-color: transparent;
 		overflow: hidden;
 	}
-	#cactus__search .pagefind-ui__search-clear:focus {
+	#pirate__search .pagefind-ui__search-clear:focus {
 		outline: 1px solid theme("colors.accent-2");
 	}
-	#cactus__search .pagefind-ui__search-clear::before {
+	#pirate__search .pagefind-ui__search-clear::before {
 		content: "";
 		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'%3E%3C/path%3E%3C/svg%3E")
 			center / 60% no-repeat;
@@ -160,11 +163,11 @@ import "@pagefind/default-ui/css/ui.css";
 		height: 100%;
 	}
 
-	#cactus__search .pagefind-ui__result {
+	#pirate__search .pagefind-ui__result {
 		border: 0;
 	}
 
-	#cactus__search .pagefind-ui__result-link {
+	#pirate__search .pagefind-ui__result-link {
 		background-size: 100% 6px;
 		background-position: bottom;
 		background-repeat: repeat-x;
@@ -176,7 +179,7 @@ import "@pagefind/default-ui/css/ui.css";
 		);
 	}
 
-	#cactus__search .pagefind-ui__result-link:hover {
+	#pirate__search .pagefind-ui__result-link:hover {
 		text-decoration: none;
 		background-image: linear-gradient(
 			transparent,
@@ -186,7 +189,7 @@ import "@pagefind/default-ui/css/ui.css";
 		);
 	}
 
-	#cactus__search mark {
+	#pirate__search mark {
 		color: theme("colors.quote");
 		background-color: transparent;
 		font-weight: 600;
@@ -194,7 +197,7 @@ import "@pagefind/default-ui/css/ui.css";
 </style>
 
 <style>
-	#cactus__search {
+	#pirate__search {
 		--pagefind-ui-primary: theme("colors.accent");
 		--pagefind-ui-text: theme("colors.textColor");
 		--pagefind-ui-background: theme("colors.bgColor");

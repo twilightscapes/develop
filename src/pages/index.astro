@@ -1,365 +1,83 @@
 ---
-// import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, sortMDByDate } from "@/data/post";
-// import PageLayout from "@/layouts/Base.astro";
-import PageLayout from "@/layouts/Base-headerless.astro";
-import { Image } from "astro:assets";
-import aboutImg from "@/assets/dogpoopers-header-sm.webp";
-import Twitch from "@/assets/twitch.jpg"
-import Lexy from "@/assets/Lexy.jpg"
-import Buddy from "@/assets/buddy.jpg"
-import Rex from "@/assets/rex.png"
-import Poop1 from "@/assets/dog-poop1.jpg"
-import DeluxePromo from "@/assets/deluxe-promo.webp"
-import ReportCard from "@/assets/report-card.webp"
-import HappyYard from "@/assets/happy-yard.webp"
-// import MapEmbed from "./map-embed.html";
-// import Map from '@/pages/checkout.html';
-
-// import NewSign from "../components/newssign";
+import PageLayout from "@/layouts/Base.astro";
 import Faqs from "@/components/Faqs.astro";
-import Phone from "@/components/intro-content.astro";
-// import { MdOutlineCleaningServices } from "react-icons/md";
-// import { PiCalendarDuotone } from "react-icons/pi";
-// import { AiOutlineGift } from 'react-icons/ai';
+import Testimonials from '../components/Testimonials.astro';
+import Feature from "@/components/Feature.astro";
+import Bio from "@/components/Bio.astro";
+import { getEntry } from 'astro:content';
+import keystaticConfig from '../../keystatic.config';
+import { createReader } from '@keystatic/core/reader';
+import PhotoSection from "@/components/PhotoGallery.astro"
+const siteSettings = await getEntry('siteSettings', 'main');
+const pwaSettings = await getEntry('pwaSettings', 'index');
+const { defaultView, MAX_POSTS } = siteSettings.data;
+const homeContent = await getEntry('homepage', 'index');
+import Mapper from '@/components/checkout.html';
+const reader = createReader(process.cwd(), keystaticConfig);
 
 
-const MAX_POSTS = 3;
+const homepage = await reader.singletons.home.read();
+
+
+const showBioOnHome = homepage?.showBioOnHome ?? false;
+const showFaqOnHome = homepage?.showFaqOnHome ?? false;
+const showTestOnHome = homepage?.showTestOnHome ?? false;
+const showFeature = homepage?.showFeature ?? false;
+const showPosts = homepage?.showPosts ?? false;
+const ShowMore = homepage?.showMore ?? false;
+
+
+const showHomeGallery = homepage?.showHomeGallery ?? false;
+
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const language = await getEntry('language', 'index');
 ---
 
+<PageLayout meta={{ title: homeContent.data.title, description: pwaSettings.data.description }}>
+	<!-- {showFeature && <Feature content={homeContent.data} />} -->
+
+	{showFeature && <div id="homemap"><Mapper /></div>}
 
 
 
-<script src="@/components/scrollListener.js"></script>
+	{showHomeGallery && <PhotoSection />}
 
+	{showBioOnHome && <Bio />}
 
+	{showFaqOnHome && (
+		<div class="w-full py-1 px-2 mb-4 text-center theme-accent backdrop-blur-lg">
+			<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
+		</div>
+		<Faqs />
+	)}
 
-<PageLayout meta={{ title: "Dog Poopers" }}>
+	{showTestOnHome && <Testimonials />}
 
-	
-		  <section class="scroll-area1 panel" id="profile" style={{ display:'', height:'', minHeight:'', position:'relative', overflow:'hidden', margin:'0 auto 0 auto', padding:'3vh 0 20px 0', width:'100vw', borderRadius:'var(--theme-ui-colors-borderRadius)', }}>
-			<article style={{ margin:'0 0 0 0'}}>
-		  
-		  
-		  <div id="profiletop" class="flexbutt" style={{display:'', gap:'10px', justifyContent:'center', alignItems:"center", margin:'0 0',
-			padding:'0 2% 0 2%', position:'relative', color: ''}}>
-		  
-		  
-		  
-		  
-			<div class="nameblock flexcheek" style={{position:'', top:'0', marginTop: '', padding: '0 0 0 0', maxHeight: '', fontSize: 'clamp(1rem, 1.4vw, 3.2rem)',  borderRadius: 'var(--theme-ui-colors-borderRadius)' }}>
-		  
-		  
-			<div class=" mob print" style={{ position:'sticky', top:'0', fontSize: 'clamp(1rem, 1.5vw, 3.2rem)', textAlign:'' }}>
-				<h1 class="title" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 3rem)', fontStyle:'normal', textWrap:'balance', textAlign:'center', lineHeight:'1.2', color:'inherit' }}>Pet Waste Removal Service Mississippi Gulf Coast</h1>
-		  
-		  
-		  
-				<h2 class="tagline1" style={{ fontSize: 'clamp(1.2rem, 2.3vw, 1.8rem)', textWrap:'', textAlign:'center', lineHeight:'1', textShadow:'none' }}>
-					We pick up the poop!
-				</h2>
+	{showPosts && (
+		<section class="scroll-container mb-4 px-2 home">
+			<div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
+				<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
+			</div>
+			
+			<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} transition:animate="slide" style="">
 				
-				<div style={{ fontSize: 'clamp(1.2rem, 2vw, 2.8rem)', textAlign:'left',textWrap:'',padding: '0 1rem 0 1rem' }} class="description">
-
-			<p>Our professional dog waste removal service makes your life easier, your yard cleaner, and you and your dogs happier!</p>
-
-			<p>Dog Poopers arrive in branded vehicles and uniforms, removing unsightly and unhealthy dog waste from your yard on a weekly basis.</p>
-
-			</div>
-			  </div>
-		  
-		  
-			
-			</div>
-		  
-		  
-		  
-		  
-				<div class="flexcheek mob2 print" style={{position:'', top:'0', minWidth:'500px', overflow:'', marginBottom:'', paddingTop:'0', borderRadius:'var(--theme-ui-colors-borderRadius)',
-				}}>
-	
-		  
-		  <h2 class="title" style={{textAlign:'center', fontSize: 'clamp(1.3rem, 2.4vw, 3rem)', fontStyle:'normal', margin:'0 0 3vh 0', color:'inherit'}}><a href="tel:6013851781">Call (601) 385-1781</a></h2>
-		  
-		  
-		  
-		  <div class="" style={{position:'', top:'', marginTop: '', width:'100%', margin:'0 auto', maxHeight: '', fontSize: 'clamp(1/2.7rem, 1.3vw, 2rem)', textAlign:'center',  color:'' }}>
-			  <h3 class="font" style={{textAlign:'center', fontFamily:'',fontSize: 'clamp(1.2rem, 2vw, 2.4rem)'}}>Serving all of South Mississippi</h3>
-			</div>
-			<ul class="tags" style={{maxWidth:'clamp(380px, 90%, 600px)', padding: '2%'}}>
-			<li class="tag">Gulfport</li>
-		  
-			<li class="tag">Biloxi</li>
-			<li class="tag">Long Beach</li>
-			<li class="tag">Orange Grove</li>
-			<li class="tag">Ocean Springs</li>
-			<li class="tag">Bay St. Louis</li>
-			<li class="tag">D'Iberville</li>
-			
-			<li class="tag">Saucier</li>
-			<li class="tag">Pass Christian</li>
-			<li class="tag">Gautier</li>
-			
-		  </ul>
-		  <div style={{background:'rgba(8, 44, 20, 0.4)', backdropFilter:'blur(12px)', marginTop:'2vh', padding:'1vh 5%', color:'#fff', borderRadius:'var(--theme-ui-colors-borderRadius)', justifyContent:'center', textAlign:'center', fontSize:'clamp(1rem, 1.8vw, 3.2rem)', width:'90%', margin:'0 auto'}}>Interested in the Dog Poopers business?<br /><a href='/contact' class=" print" style={{ display: 'flex', justifyContent: 'center', padding:'', maxWidth:'', margin:'1vh auto', }}>Contact Us Today 💩</a></div>
-		  
-		  
-		  </div>
-		  </div> 
-		  </article>
-		  </section>
-		 
-
-			</div>
-			
-			</div>
-	  
-	  
-
-	  
-
-			<section class="scroll-area1 panel" id="profile" style={{ display:'', height:'', minHeight:'', position:'relative', overflow:'hidden', margin:'0 auto 0 auto', padding:'3vh 0 20px 0', width:'100vw', borderRadius:'var(--theme-ui-colors-borderRadius)', }}>
-			<Phone />
-
-
-		
-			<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top major font" style="max-width:280px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
-
-</section>
-
-
-
-
-<div class="nameblock flexcheek headline" style={{position:'', top:'', width:'100vw', padding: '1vh 2vh', margin:'0 auto 0 auto', maxHeight: '', fontSize: 'clamp(1.3rem, 3.5vw, 3.2rem)', textAlign:'center', textShadow: '0 2px 3px #000',
-background:'rgba(27, 39, 33, 0.5)', 
-backdropFilter:'blur(12px)', color:'#fff' }}>
-    <h2 class="glow">How It Works</h2>
-  </div>
-<section id="SecondaryInfo4" class="nameblock" style={{margin:'0 auto 0 auto', padding:'2vh 4% 10vh 0',alignContent:'center', display:'grid', textAlign:'left', justifyContent:'center', verticalAlign:'center',
-//   color:'var(--theme-ui-colors-text)',
-  border:'0px solid red', 
-  fontSize:'clamp(1rem, 1.8vw, 3.2rem)',
-//   background:'var(--theme-ui-colors-cardBg)',
-  backdropFilter:'blur(8px)',
-  borderRadius:'10px',
-  maxWidth:'95%' ,
-  }}>
-
-
-
-
-
-
-
-
-<div class="flexbutt" style={{gap:'10vw'}}>
-<div class="flexcheek mobileporkfat" style={{order:'', display:'flex', flexDirection:'column', justifyContent:'space-around'}}>
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Place Your Order:</h3> 
-<p>Using the Dog Poopers website, simply locate your yard on the map and select "Draw Yard". Proceed to outline your yard by dropping points on the boundaries. Once your area is defined,  you simply select the number of dogs and the frequency of service.
-</p>
-
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Our Services:</h3> <p>Our friendly and professional team will arrive at your residence on Mondays and Thursdays. You don’t need to be home – just provide us access to your yard, and we’ll take care of the rest. </p>
-
-
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>You Can Rest Assured:</h3> <p>Dog Poopers provides a Poopers Report Card that will let you know when we did our business, as well as monitor your dog's business too! With our provided service cards we'll let you know if there was blood or worms present when we picked up.</p>
-
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Enjoy your yard:</h3> <p>It's about time for you to start enjoying your back yard again! With the poop gone, you can enjoy a clean, fresh yard without the hassle.
-<br /><br />
-Let us take care of the mess so you can enjoy a spotless yard and more quality time with your four-legged friends. Schedule your first service today and experience the delight of a poop-free yard!
-<br /><br />Our team is trained, insured, and dedicated to providing top-notch service with a smile.</p>
-</div>
-
-<div class="flexcheek mobilepork" style={{display:'flex', gap:'2vw', flexDirection:'column', justifyContent:'space-between', fontSize: 'clamp(1rem, 1vw, 2.2rem)', textAlign:'left', padding:'1rem 0'}}> 
-
-
-
-<Image src={Poop1} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Dog Poopers will scan your yard for hidden "bundles of joy", removing all the waste and leaving both you and your pet happy!
-
-
-
-<Image src={ReportCard} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Dog Poopers provides a Poopers Report Card on each visit, keeping you involved with your pet's health.
-
-
-<Image src={HappyYard} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Happy pets that will thank you for keeping their yard clean AND you can have company over again and not be embarrassed! 
-
-</div>
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-
-<div style="width:100%; max-width:1200px; margin:0 auto;"><Faqs /></div>
-
-
-
-
-
-
-
-
-<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top major font" style="max-width:280px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
-
-
-<div class="nameblock flexcheek headline" style={{position:'', top:'', marginTop: '', width:'100%', padding: '1vh 2vh', margin:'0 auto 5vh auto', maxHeight: '', fontSize: 'clamp(1.3rem, 3.5vw, 3.2rem)', textAlign:'center', textShadow: '0 2px 3px #000', background:'rgba(8, 44, 20, 0.3)', backdropFilter:'blur(12px)', color:'#fff' }}>
-    <h2 class="glow">Our Happy Customers</h2>
-  </div>
-
-<div class="horizontal-slider" style="padding:0 30%; height:450px;">
-
-
-<div class="quotecard" style={{width:'', justifyContent:'center', alignItems:'center'}}>
-<div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center', minWidth:'380px', padding:''}}>
-    <Image src={Twitch} loading="lazy" alt="Twitch Image" style={{height:'', width:'auto', maxHeight:'140px', position:'relative', zIndex:'', top:'', left:'', border:'1px solid !important', objectFit:'contain', margin:'0 auto'}} />
-Twitch
-  <blockquote style={{width:'100%', minWidth:'', position:'relative', fontsize:'clamp(.8rem, 1vw, 1.5rem)', marginLeft:''}}>Dog Poopers has been a game-changer for us. No more arguing about whose turn it is to pick up the poop. The yard is always clean, and our dogs are happy<span>- Poopless in Biloxi</span></blockquote>
-</div>
-</div>
-
-
-<div class="quotecard" style={{width:''}}>
-<div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center', minWidth:'380px'}}>
-    <Image src={Lexy} loading="lazy" alt="Twitch Image" style={{height:'', width:'auto', maxHeight:'140px', position:'relative', zIndex:'', top:'0', left:'', border:'1px solid !important', objectFit:'contain', margin:'0 auto'}} /><br />
-  Lexy
-
-<blockquote style={{width:'100%', minWidth:'', position:'relative', fontsize:'clamp(.8rem, 1vw, 1.5rem)', marginLeft:''}}>My hooman loves me and always make sure my yard is clean every week. <span>- Turd free in Gulfport</span></blockquote>
-</div>
-</div>
-
-<div class="quotecard" style={{width:''}}>
-  <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center', minWidth:'380px'}}>
-    <Image src={Buddy} loading="lazy" alt="Twitch Image" style={{height:'', width:'auto', maxHeight:'140px', position:'relative', zIndex:'', top:'0', left:'', border:'1px solid !important', objectFit:'contain', margin:'0 auto'}} /><br />
-  Buddy
-
-<blockquote style={{width:'100%', minWidth:'', position:'relative', fontsize:'clamp(.8rem, 1vw, 1.5rem)', marginLeft:''}}>They hav transformed our yard. The service is always consistent. I recommend them to every dog owner I know. <span>- Clean and fresh in Long Beach</span></blockquote>
-</div>
-</div>
-
-
-<div class="quotecard" style={{width:''}}>
-  <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center', minWidth:'380px'}}>
-    <Image src={Rex} loading="lazy" alt="Twitch Image" style={{height:'', width:'auto', maxHeight:'140px', position:'relative', zIndex:'', top:'0', left:'', border:'1px solid !important', objectFit:'contain', margin:'0 auto'}} /><br />
-  Rex
-
-<blockquote style={{width:'100%', minWidth:'', position:'relative', fontsize:'clamp(.8rem, 1vw, 1.5rem)'}}>With three dogs, keeping the yard clean was a constant challenge. Dog Poopers made it easy and stress-free.<span>- Happy dogs in Woolmarket</span></blockquote>
-</div>
-</div>
-
-</div>
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="scroll-container" style={{display:''}}>
-	<div class="nameblock flexcheek headline" style={{width:'100%', padding: '1vh 2vh', margin:'5vh auto', maxHeight: '', fontSize:'clamp(1.4rem,3.9vw,4rem)', textAlign:'center', position:'relative', top:'', textShadow: '0 2px 3px #000', background:'rgba(8, 44, 20, 0.3)', backdropFilter:'blur(12px)', color:'#fff' }}>
-		<h2 class="glow">Our Latest News</h2>
-	  </div>
-			<div class="contentpanel horizontal-scroll panels">
-			<div class="contentpanel grid-container panels" transition:animate="slide">
-				<div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }}></div>
+<div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
 
 				{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}
 
-				<div
-					style={{
-						textAlign: "center",
-						display: "grid",
-						placeContent: "center",
-						padding: "1vh 1vw",
-						width: "100%",
-						position: "relative",
-						top: "0",
-						borderRadius: "12px",
-						transition: "all .3s ease-in-out",
-					}}
-				>
-					<div
-						class="panel"
-						style={{
-							maxWidth: "500px",
-							color: "#ddd",
-							borderRadius: "5px",
-						}}
-					>
-						<a
-							class="button"
-							href="/posts/"
-							style={{
-								textDecoration: "none",
-								color: "#fff",
-								textAlign: "center",
-								display:"none",
-							}}
-						>
-							View More
-						</a>
-					</div>
-				</div>
-				
+				{ShowMore && <a class="button no-underline text-white text-center block" href="/posts/" style="padding:1vh 1rem; margin:0 50px 50px 50px;">
+					{language.data.viewmore}
+				</a>
+				}
 			</div>
-</div>
+		</section>
+	)}
 
 
 
-<a href="map/#top" target="mapframe" class="stripe-button button scroll-to-top major font" style="max-width:280px; justify-content:center; margin:1vh auto 5vh auto; position: relative;">Get Started Now!</a>
-
-
-
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  var links = document.querySelectorAll('.scroll-to-top');
-	  links.forEach(function(link) {
-		link.addEventListener('click', function() {
-		  // Change text to "connecting..."
-		  link.textContent = 'connecting...';
-  
-		  // Delay before scrolling to the top
-		  setTimeout(function() {
-			window.scrollTo(0, 0);
-  
-			// Delay after scrolling to revert text back to original
-			setTimeout(function() {
-			  link.textContent = 'Get Started Now!';
-			}, 1000); // Adjust the delay (in milliseconds) as needed
-		  }, 0); // Delay to ensure other actions complete
-		});
-	  });
-	});
-  </script>
-  
-  
-  
-  
 
 
 </PageLayout>
-
-
-
-
-

@@ -1,7 +1,10 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts, getUniqueTagsWithCount } from "@/data/post";
-import GoBack from "../../components/GoBack";
+import GoBack from "@/components/GoBack.astro";
+import { getEntry } from 'astro:content';
+
+const language = await getEntry('language', 'index');
 
 const allPosts = await getAllPosts();
 const allTags = getUniqueTagsWithCount(allPosts);
@@ -13,10 +16,10 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
-	<GoBack client:load />
-	<div style="padding:0 4%">
-	<h1 class="title mb-6">Tags</h1>
-	<ul class="container" style="padding:3vh 1vw 0 1vw; margin:0;">
+	<GoBack  />
+	<div style="padding:0 4%;">
+	<h1 class="title my-4">{language.data.tags}</h1>
+	<ul class="container" style="padding:3vh 1vw 0 1vw; margin:0 auto; max-width: 70%;">
 		
 		{
 			allTags.map(([tag, val]) => (

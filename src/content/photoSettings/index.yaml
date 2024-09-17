@@ -1,0 +1,12 @@
+galleryMode: directory
+showCaptions: true
+showBioOnPhotos: true
+showFaqsOnPhotos: false
+showTestimonialsOnPhotos: false
+defaultDirectory: favorites
+showGallerySelector: true
+galleryImages:
+  - image: /images/galleryImages/0/image.webp
+    caption: What a dick
+  - image: /images/galleryImages/1/image.webp
+    caption: Pirate's life for me!

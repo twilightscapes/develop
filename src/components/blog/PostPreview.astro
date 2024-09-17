@@ -6,15 +6,19 @@ type Props = {
     post: CollectionEntry<"post">;
     withDesc?: boolean;
 };
-
+import { getEntry } from 'astro:content';
 const { post, withDesc = false } = Astro.props;
-const defaultImageSrc = `${import.meta.env.BASE_URL}social-card.webp`;
+const defaultImageSrc = `${import.meta.env.BASE_URL}socialCard.webp`;
 const defaultImageWidth = 800; 
 const defaultImageHeight = 450; 
+
+const siteSettings = await getEntry('siteSettings', 'main');
+const { showTitles } = siteSettings.data;
+
 ---
 
 <div class="post-card1">
-    <a transition:animate="slide" href={`/posts/${post.slug}/`} class="cactus-link" rel="prefetch">
+    <a transition:animate="slide" href={`/posts/${post.slug}/`} class="pirate-link" rel="prefetch">
         {post.data.coverImage && typeof post.data.coverImage === "object" && post.data.coverImage.src ? (
             <Image
                 src={post.data.coverImage.src}
@@ -36,6 +40,8 @@ const defaultImageHeight = 450;
                 height={defaultImageHeight}
             />
         )}
+        
+    {typeof showTitles !== 'undefined' && showTitles && (
         <div
             class="panel"
             style={{
@@ -49,15 +55,17 @@ const defaultImageHeight = 450;
                 fontSize: "clamp(1rem, 1rem, 1rem)",
             }}
         >
+            {showTitles && (
             <h2 class="title" style={{ color: "", fontSize: "" }}>
                 {post.data.title}
             </h2>
-
+            )}
             {withDesc && (
                 <div class="line-clamp-1 block snippet" style={{ display: "none" }}>
                     {post.data.description}
                 </div>
             )}
         </div>
+        )}
     </a>
 </div>

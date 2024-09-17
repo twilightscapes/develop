@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
+
+interface Props {
+  content: {
+    youtube?: {
+      url: string;
+      title?: string;
+      controls?: boolean;
+      mute?: boolean;
+      loop?: boolean;
+      start?: number;
+      end?: number;
+      useCustomPlayer?: boolean;
+    };
+    title: string;
+    featureImage?: {
+      src: string;
+      alt: string;
+    };
+  };
+}
+
+const { content } = Astro.props;
+---
+
+{
+  content.youtube && content.youtube.url ? (
+    <YouTubeEmbed
+      url={content.youtube.url}
+      title={content.youtube.title}
+      controls={content.youtube.controls}
+      useCustomPlayer={content.youtube.useCustomPlayer}
+      mute={content.youtube.mute}
+      loop={content.youtube.loop}
+      start={content.youtube.start}
+      end={content.youtube.end}
+    />
+  ) : content.featureImage && content.featureImage.src ? (
+    <div class="" style="display:flex; justify-content:center;">
+      <Image
+        alt={content.featureImage.alt || ""}
+        // class="object-cover"
+        fetchpriority="high"
+        loading="eager"
+        src={content.featureImage.src}
+        width={1600}
+        height={900}
+      />
+    </div>
+  ) : null
+}

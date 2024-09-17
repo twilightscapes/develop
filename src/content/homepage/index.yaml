@@ -1,0 +1,20 @@
+featureImage:
+  src: /images/homepage/featureImage/src.webp
+  alt: We pick up the poop!
+showFeature: true
+showBioOnHome: true
+showHomeGallery: false
+showPosts: true
+showMore: false
+showFaqOnHome: true
+showTestOnHome: true
+pitch: Whoop Ass
+testimonialtitle: Frequently Asked Questions
+postsectiontitle: Our Latest News
+youtube:
+  controls: false
+  useCustomPlayer: true
+  mute: true
+  loop: false
+  start: .nan
+  end: .nan

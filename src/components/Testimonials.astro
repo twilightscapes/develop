@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Testimonial {
+  id: string;
+  collection: "testimonials";
+  data: {
+    order?: number;
+    testimonialTitle?: string;
+    name?: string;
+    location?: string;
+    quote?: string;
+    image?: string;
+  };
+}
+const testimonials = await getCollection('testimonials');
+const sortedTestimonials = testimonials.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));---
+
+<div class="horizontal-slider px-[30%] py-[3vh] h-[50vh]">
+  {sortedTestimonials.map((testimonial: Testimonial) => (
+    <div class="quotecard">
+      <div class="flex flex-col justify-center text-center min-w-[380px]">
+        {testimonial.data.image && (
+          <Image
+            src={testimonial.data.image}
+            loading="lazy"
+            alt={`${testimonial.data.name ?? 'Testimonial'} Image`}
+            width={140}
+            height={140}
+            class="max-h-[140px] relative border border-solid object-contain mx-auto"
+          />
+        )}
+        <br />
+        {testimonial.data.name && <div>{testimonial.data.name}</div>}
+        {testimonial.data.quote && (
+          <blockquote class="w-full relative text-[clamp(.8rem,1vw,1.5rem)]">
+            {testimonial.data.quote}
+            {testimonial.data.location && <span>- {testimonial.data.location}</span>}
+          </blockquote>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

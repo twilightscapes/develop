@@ -1,0 +1,14 @@
+siteFont: Bowlby One
+borderRadius: 4px
+lightBg: rgba(190, 207, 195, 0.57)
+lightAccent: rgba(17, 182, 80, 1)
+lightAccent2: rgba(19, 149, 65, 1)
+darkBg: rgba(12, 95, 44, 1)
+darkAccent: rgba(39, 37, 37, 0.3)
+darkAccent2: rgba(32, 146, 40, 1)
+lightHeader: rgba(19, 103, 40, 0.9)
+darkHeader: rgba(19, 103, 40, 0.9)
+lightText: rgba(62, 86, 62, 1)
+darkText: rgba(243, 231, 231, 1)
+lightLink: rgba(0, 0, 0, 1)
+darkLink: rgba(242, 231, 243, 1)

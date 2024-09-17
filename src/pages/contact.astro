@@ -1,14 +1,13 @@
 ---
 // import aboutImg from "@/assets/about-astro.png";
-import GoBack from "@/components/GoBack";
+import GoBack from "@/components/GoBack.astro";
 // import { Image } from "astro:assets";
-import { BiLeftArrow } from "react-icons/bi";
 import PageLayout from "@/layouts/Base.astro";
 const meta = {
 	description: "Contact Dog Poopers",
 	title: "Contact Us",
 };
-import "../styles/global1.css";
+
 ---
 
 <style>
@@ -23,6 +22,7 @@ import "../styles/global1.css";
 input {
     font-size: 16px !important;
     padding: 10px;
+    margin:1vh auto;
     background:#000;
     border: 1px solid #1f3829 !important;
     color:#fff;
@@ -53,19 +53,19 @@ textarea{ height:30vh; padding:.4vh 2vw !important; outline:1px solid #12b83c; b
 
 </style>
 <!-- <GoBack client:load /> -->
-<GoBack client:load />
 
-<!-- <a  id="gobacker"
-class="back button" href="#" onclick="history.go(-1)" target="_self"><span class="icon -left" style={{ paddingRight: '' }}>
-    <BiLeftArrow />
-  </span>
-  {" "} Back</a> -->
-<!-- <PageLayout meta={meta}> -->
 
+
+<PageLayout meta={meta}>
+	<!-- <a  id="gobacker"
+	class="back button" href="#" onclick="history.go(-1)" target="_self"><span class="icon -left" style={{ paddingRight: '' }}>
+		<BiLeftArrow />
+	  </span>
+	  {" "} Back</a> -->
 	<!-- <img src="./dogpoopers-contact-header.webp" alt="Default Image" style={{height:'auto', width:'100dvw', maxHeight:'100dvh', position:'relative', zIndex:'1', top:'0', left:'0', right:'0', border:'0px solid #888 !important', objectFit:'contain', margin:'0'}} /> -->
 
 
-
+<GoBack />
 		
 
 
@@ -88,7 +88,7 @@ onclick="history.go(-1)"
         
 	
 
-    
+    <br /><br />
           
 
 <div class="" style={{display:'flex', flexDirection:'row', justifyContent:'center', width:'98%' }}>
@@ -97,7 +97,7 @@ onclick="history.go(-1)"
 </div> -->
         <form
               class=""
-              name="contact1"
+              name="contact"
               method="POST"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
@@ -125,7 +125,7 @@ onclick="history.go(-1)"
                     <input type="tel" id="phone" name="phone" placeholder="Your Phone"  />
                   </label>
                 </p>
-    
+    <br />
 
               <p>
                 <label html-for="message" aria-label="Your Message">
@@ -139,7 +139,7 @@ onclick="history.go(-1)"
               <div class="" style="display:grid; place-items: center; margin:1vh auto; color: #fff; width:100%; border:0px solid green;">
                 <button
                   class="button stripe-button"
-                  style=" margin:0 0 0 3vw"
+                  style=" margin:0"
                   type="submit"
                 >
                   Send Message

@@ -1,0 +1,45 @@
+
+---
+interface Props {
+  title: string;
+  tagline: string;
+  description: string;
+  phone: string;
+  subheading: string;
+  subcontent: string;
+  subcta: string;
+}
+
+const { title, tagline, description, phone, subheading, subcontent, subcta } = Astro.props;
+---
+
+<section class="scroll-area1 panel" id="profile">
+    <article>
+        <div id="profiletop" class="flexbutt">
+            <div class="nameblock flexcheek">
+                <div class="mob print">
+                    <h1 class="title">{title}</h1>
+                    <h2 class="tagline1">{tagline}</h2>
+                    <div class="description">
+                        <p>{description}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flexcheek mob2 print">
+                <h2 class="title"><a href={`tel:${phone}`}>Call {phone}</a></h2>
+                <div class="">
+                    <h3 class="font">{subheading}</h3>
+                </div>
+                <div>
+                    <p>{subcontent}</p>
+                    <button class="special font">
+                        <div class="fancy"></div>
+                        <a class="font" href="contact" title="Contact Us" aria-label="Contact Us">
+                            <span class="butttext font">{subcta}</span>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

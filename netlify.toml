@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm build"
+  command = "./update-theme.sh && pnpm build"
   publish = "dist"
   functions = "netlify/functions"
   

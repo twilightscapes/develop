@@ -1,327 +1,91 @@
 ---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
-import { MdOutlineCleaningServices } from "react-icons/md";
+const faqs = await getCollection('faqs');
+const sortedFaqs = faqs.sort((a, b) => (((a.data.order as number) ?? 0) - ((b.data.order as number) ?? 0)));
 ---
 <style>
-
-
-
-/* :root{
-  --principal-font: 'Kumbh Sans', sans-serif;
-  --font-size: 12px;
-
-  --bg-gradient: linear-gradient(to bottom, hsl(273, 75%, 66%), hsl(240, 73%, 65%));
-
-  --primary-dark-color: hsl(238, 29%, 16%);
-  --primary-soft-color: hsl(14, 88%, 65%);
-
-  --neutral-dark-color: hsl(237, 12%, 33%);
-  --neutral-soft-color: hsl(240, 6%, 50%);
-
-} */
-
-
-html {
-  box-sizing: border-box;
-}
-
-
-/* global */
-/*================================================*/
-
-
-
-
-/* .card-wrapper {
-  min-height: 100vh;
-  padding-bottom: 50px; 
-  padding-top: 25px;
-} */
-
-/* p {
-  margin: 0 0 12px;
-  line-height: 1.5;
-} */
-/* 
-h3 {
-  margin: 12px 0;
-} */
-
-
-/* generics */
-/*================================================*/
-
-/* .content-cc{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* FAQ card */
-/*================================================*/
-
-/* .faq-card {
-
-  background-color: #fff;
-  border-radius: 20px;
-
-  max-width: 310px;
-  margin-top: 90px;
-  
-  box-shadow: 0px 60px 50px -25px rgba(0, 0, 0, 0.35);
-} */
-
-/* FAQ card: imagenes */
-/*================================================*/
-
-
-/* .faq-ilustrations{
-  position: relative;
-} */
-
-/* .faq-ilustrations .mobile.ilust{
-  position: absolute;
-  top:-110px;
-  left:-30px;
-  right: 0;
-} */
-
-/* .mobile{
-  display: block;
-  margin: 0 auto;
-} */
-
-
-/* FAQ card: main */
-/*================================================*/
-
-.faq-content {
-  padding: 9px 25px 3rem; 
-}
-
-.faq-content h1 {
-
-  text-align: center;
-}
-
-.faq-accordion {
-  padding: 8px 0;
-  border-bottom: 1px solid ;
-}
-
-
-/* FAQ card: main title */
-/*================================================*/
-
-/* checkbox tgg-title*/
-input.tgg-title {
-  appearance: unset;
-  all:unset;
-}
-
-.faq-accordion-title label{
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.faq-accordion-title h3{
-
-  font-weight: 400;
-  color: var(--neutral-dark-color);
-}
-
-.faq-accordion-title span{
-  margin-left: auto;
-  transition: transform .4s ease-in-out;
-}
-.arrow-icon{font-size: 32px;}
-
-
-/* FAQ card: main content */
-/*================================================*/
-
-.faq-accordion-content {
-  color: var(--neutral-soft-color);
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .4s ease-in-out;
-  padding: 10px 0 0 0;
-}
-
-
-/* Effects */
-/*================================================*/
-
-/* main title, accordion title effects */
-
-/* .faq-accordion-title:hover h3{
-  color: var(--primary-soft-color)
-} */
-
-/* onclick "" */
-.faq-accordion .tgg-title:checked + div>label>h3 {
-  font-weight: 700;
-}
-
-.faq-accordion .tgg-title:checked + div>label>span {
-  will-change: transform;
-  transform: rotate(180deg);
-}
-
-/* main content, acordion text effect */
-
-.faq-accordion .tgg-title:checked ~ .faq-accordion-content{
-  will-change: max-height;
-  max-height: 500px;
-}
-
-
-
-  </style>
-  
-
-
-  <section id="" class="nameblock" style={{margin:'0 auto 0 auto', padding:'0 4% 10vh 0',alignContent:'center', display:'grid', textAlign:'left', justifyContent:'center', verticalAlign:'center', fontSize:'clamp(1rem, 1.8vw, 3.2rem)',}}>
-
-
-    <h2 id="costs" class="letter glow" style={{fontSize:'clamp(1.4rem,2.6vw,3rem)', textAlign:'center', color:'#ddd', fontStyle:'normal', marginBottom:'4vh'}}>Frequently Asked Questions</h2>
-
-    
-
-
-
-
-    <div class="card-wrapper  | content-cc">
-      <div class="faq-card">
-    
-
-    
-        <main class="faq-content">
-
-    
-            <article class="faq-accordion">
-    
-              <input type="checkbox" class="tgg-title" id="tgg-title-1">
-    
-              <div class="faq-accordion-title">
-                <label for="tgg-title-1">
-                  <h3>Do I have to be home?</h3>
-                  <span class="arrow-icon">
-                    <MdOutlineCleaningServices />
-                  </span>
-                </label>
-              </div>
-    
-              <div class="faq-accordion-content">
-                <p>No, you dont need to be home. As long as we have access to your yard, we can perform our services.</p>
-              </div>
-    
-            </article> <!-- faq accordion -->
-    
-            <article class="faq-accordion">
-    
-              <input type="checkbox" class="tgg-title" id="tgg-title-2">
-    
-              <div class="faq-accordion-title">
-                <label for="tgg-title-2">
-                  <h3>
-                    What if I have a locked gate or gate code?
-                  </h3>
-                  <span class="arrow-icon">
-                    
-                    <MdOutlineCleaningServices />
-                  </span>
-                </label>
-              </div>
-    
-              <div class="faq-accordion-content">
-                <p>No problem! You can either provide a key, tell us where the key is, or provide the gate code. </p>
-              </div>
-    
-            </article> <!-- faq accordion -->
-    
-            <article class="faq-accordion">
-    
-              <input class="tgg-title" type="checkbox" id="tgg-title-3">
-    
-              <div class="faq-accordion-title">
-                <label for="tgg-title-3">
-                  <h3>
-                    Do you still pick up with heavy rains or storms?
-                  </h3>
-                  <span class="arrow-icon">
-                    <MdOutlineCleaningServices />
-                  </span>
-                </label>
-              </div>
-    
-              <div class="faq-accordion-content">
-                <p>Yes, we usually tough it out and do our pick ups in adverse weather. If for some reason we are unable to pick up on the scheduled day, we will try again at the next possible time.</p>
-              </div>
-    
-            </article> <!-- faq accordion -->
-    
-            <article class="faq-accordion">
-    
-              <input class="tgg-title" type="checkbox" id="tgg-title-4">
-    
-              <div class="faq-accordion-title">
-                <label for="tgg-title-4">
-                  <h3>
-                    Can I cancel my subscription?
-                  </h3>
-                  <span class="arrow-icon">
-                    <MdOutlineCleaningServices />
-                  </span>
-                </label>
-              </div>
-    
-              <div class="faq-accordion-content">
-                <p>
-                  Yes! You have complete control of your subscription in your own Stripe Dashboard or through our Customer Portal. You can stop or pause your subscription at any time. If you need help, send us a message and we’ll do whatever it takes to help.</p>
-              </div>
-    
-            </article> <!-- faq accordion -->
-    
-            <article class="faq-accordion">
-    
-              <input class="tgg-title" type="checkbox" id="tgg-title-5">
-    
-              <div class="faq-accordion-title">
-                <label for="tgg-title-5">
-                  <h3>
-                    Can you clean with our dogs in the yard?
-                  </h3>
-                  <span class="arrow-icon">
-                    <MdOutlineCleaningServices />
-                  </span>
-                </label>
-              </div>
-    
-              <div class="faq-accordion-content">
-                <p> Our team loves dogs and would be happy to clean your property with them outside as long as they are friendly and allow us to do our job unimpeded. If they aren’t as friendly or simply make our job more difficult, we would prefer if you kept them inside until our services are complete.</p>
-              </div>
-    
-            </article> <!-- faq accordion -->
-    
-          </div> <!-- faq articles -->
-    
-        </main> <!-- faq -->
-    
-      </div> <!-- faq card -->
-    
-    </div> <!-- card wrapper -->
-    
-
-    
-    
-    
-    
-    
+  .faq-content {
+    padding: 9px 25px 3rem; 
+  }
+
+  .faq-content h1 {
+    text-align: center;
+  }
+
+  .faq-accordion {
+    padding: 8px 0;
+    border-bottom: 1px solid;
+  }
+
+  input.tgg-title {
+    appearance: unset;
+    all: unset;
+  }
+
+  .faq-accordion-title label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .faq-accordion-title h3 {
+    font-weight: 400;
+    color: var(--neutral-dark-color);
+  }
+
+  .faq-accordion-title span {
+    margin-left: auto;
+    transition: transform .4s ease-in-out;
+  }
+
+  .arrow-icon {
+    font-size: 32px;
+  }
+
+  .faq-accordion-content {
+    color: var(--neutral-soft-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease-in-out;
+    padding: 10px 0 0 0;
+  }
+
+  .faq-accordion .tgg-title:checked + div > label > h3 {
+    font-weight: 700;
+  }
+
+  .faq-accordion .tgg-title:checked + div > label > span {
+    will-change: transform;
+    transform: rotate(180deg);
+  }
+
+  .faq-accordion .tgg-title:checked ~ .faq-accordion-content {
+    will-change: max-height;
+    max-height: 500px;
+  }
+</style>
+
+<div class="nameblock headline w-full  mx-auto backdrop-blur-[12px]">
+  <div class="card-wrapper | content-cc" style="width:80%; max-width:800px; margin:0 auto;">
+    <div class="faq-card">
+      <main class="faq-content">
+        {sortedFaqs.map((faq: CollectionEntry<'faqs'>, index: number) => (
+          <article class="faq-accordion">
+            <input type="checkbox" class="tgg-title" id={`tgg-title-${index + 1}`} />
+            <div class="faq-accordion-title">
+              <label for={`tgg-title-${index + 1}`}>
+                <h3>{faq.data.question}</h3>
+                <span class="arrow-icon">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="30px" width="30px" xmlns="http://www.w3.org/2000/svg"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
+                </span>
+              </label>
+            </div>
+            <div class="faq-accordion-content">
+              <Fragment set:html={faq.body} />
+            </div>
+          </article>
+        ))}      </main>
     </div>
-    </section>
-  
-
-  
-    
+  </div></div>

@@ -2,8 +2,13 @@ import { siteConfig } from "@/site-config";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 /** filter out draft posts based on the environment */
+interface PostData {
+  draft: boolean;
+  // Add other properties as needed
+}
+
 export async function getAllPosts() {
-	return await getCollection("post", ({ data }) => {
+	return await getCollection("post", ({ data }: { data: PostData }) => {
 		return import.meta.env.PROD ? !data.draft : true;
 	});
 }
