@@ -1,13 +1,13 @@
 ---
-import aboutImg from "@/assets/header-blank.webp";
+// import aboutImg from "@/assets/header-blank.webp";
 // import GoBack from "@/components/GoBack";
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 // import PageLayout from "@/layouts/Base.astro";
 const meta = {
 	description: "Contact Dog Poopers",
 	title: "Contact Us",
 };
-import "../styles/global1.css";
+import "../styles/global.css";
 
 const getNextServiceDay = () => {
   const today = new Date();
@@ -49,7 +49,7 @@ const nextServiceDay = getNextServiceDay();
 }
 .backer{
   background-attachment: fixed;
-  background-image: url(/src/assets/header-blank.webp);
+  /* background-image: url(/src/assets/header-blank.webp); */
   background-size: cover;
   background-position: center bottom;
   display:grid;
