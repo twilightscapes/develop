@@ -37,9 +37,11 @@ const language = await getEntry('language', 'index');
 ---
 
 <PageLayout meta={{ title: homeContent.data.title, description: pwaSettings.data.description }}>
-	<!-- {showFeature && <Feature content={homeContent.data} />} -->
 
-	{showFeature && <div id="homemap"><Mapper /></div>}
+	
+	{showFeature && <Feature content={homeContent.data} />}
+
+	
 
 
 
@@ -51,6 +53,8 @@ const language = await getEntry('language', 'index');
 		<div class="w-full py-1 px-2 mb-4 text-center theme-accent backdrop-blur-lg">
 			<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
 		</div>
+		
+		<div id="homemap"><Mapper /></div>
 		<Faqs />
 	)}
 

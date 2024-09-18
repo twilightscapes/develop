@@ -73,7 +73,7 @@ body {
     color:#fff; padding:0vh 1vw; margin: 6px 0;
   }
 
-  
+
           #area {
   position:absolute;
   top:180px ;
@@ -97,7 +97,7 @@ body {
     filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));
   }
   @media(min-width:48rem) {
-    #applogo{display: none;}
+    /* #applogo{display: none;} */
     #area{ border-radius:10px; }
     #bottomblocker {height: 36px !important;}
   }
@@ -107,6 +107,7 @@ body {
   #bottomblocker {height: 33px !important;}
   #clearButton{top:110px !important;}
   #drawPolygonControl{top:110px !important;}
+  #missioncontrol{display:none;}
   }
   @media( display-mode:standalone) {
     #bottomblocker::after {display: none !important;}
@@ -131,7 +132,7 @@ body {
           /* .topmenu{visibility: hidden !important;}
           footer{display:none !important;} */
   
-          #bottomblocker{position:absolute; bottom:0; height:10vh; background:rgba(1, 24, 6, 0.7); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
+          #bottomblocker{position:absolute; bottom:60px; height:10vh; background:rgba(1, 24, 6, 0.7); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
           #bottomblocker::after{content:'Click "Share" and then "Save to Desktop" to install this site as a Web App'; position:absolute; width:100%; bottom:1.2vh; left:2px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.6rem, .3vw, 1rem); color:#ddd }
   
   
@@ -278,7 +279,7 @@ body {
   .hidden{display:none !important;}
 
   #map{filter: invert(80%) grayscale(.2) !important;
-    -webkit-filter: sepia(30%) hue-rotate(80deg) !important;}
+    -webkit-filter: sepia(30%) hue-rotate(80deg) !important; position:relative;}
 
     /* body:has #menu .clearmap{top:200px !important;} */
 
@@ -315,11 +316,11 @@ body {
 
 
 
-
+<section id="app" style="position:relative">
     
     <div class="search-container">
 
-        <a href="../" target="_top"><img src="/dogpooper-logo-text.svg" alt="Dog Poopers Logo" class="" 
+        <a href="../" target="_top"><img src="/images/logo/logoImage.svg" alt="Dog Poopers Logo" class="" 
             style="
                 position: relative;
                 top: 1%;
@@ -409,7 +410,7 @@ body {
 
 
 
-
+</section>
 
 
 
