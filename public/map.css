@@ -63,7 +63,7 @@
   }
   @media(max-width:48rem) {
     #area{ bottom:0 !important; border-radius:0; }
-  #applogo{display: none;}
+  /* #applogo{display: none;} */
   #bottomblocker {height: 33px !important;}
   #clearButton{top:50px !important;}
   #drawPolygonControl{top:50px !important;}
