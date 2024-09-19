@@ -35,7 +35,12 @@ body {
 
 
 
-#map{height:calc(100dvh - 60px) !important;}
+body:has(#map){height:calc(100dvh - 110px);}
+body:has(#menu) #map {height:calc(100dvh - 110px);}
+    
+    body:has(#menu) .maplogo{display: none !important;}
+    body:has(:not #menu) .maplogo{display: block !important;}
+
 
 .search-container {
     position: relative;
@@ -280,8 +285,7 @@ body {
 
   #map{filter: invert(80%) grayscale(.2) !important;
     -webkit-filter: sepia(30%) hue-rotate(80deg) !important; position:relative;}
-
-    /* body:has #menu .clearmap{top:200px !important;} */
+    
 
     
     </style>
@@ -320,7 +324,7 @@ body {
     
     <div class="search-container">
 
-        <a href="../" target="_top"><img src="/images/logo/logoImage.webp" alt="Dog Poopers Logo" class="" 
+        <a href="../" target="_top"><img class="maplogo" src="/images/logo/logoImage.webp" alt="Dog Poopers Logo"  
             style="
                 position: relative;
                 top: 1%;

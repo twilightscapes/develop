@@ -18,7 +18,7 @@
     margin: 0 auto 0 auto;
   }
   .search-container input, #customer-email, #customer-name {
-    font-size: 16px;
+    font-size: 16px !important;
     padding:.4vh 2vw  ;
     background:#000;
     border: 1px solid #1f3829 !important;
@@ -27,7 +27,7 @@
   .search-container input{width:100%; max-width: 500px; padding:.4vh 2vw !important; height:30px !important; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
   .search-container input::placeholder{color:rgb(253, 255, 253); font-size:clamp(.8rem,1.5vw,2.2rem) !important;}
 
-  .payarea input::placeholder{color:rgb(119, 150, 119) !important;}
+  .payarea input::placeholder{color:rgb(119, 150, 119) !important; font-size:clamp(.8rem,1.5vw,2.2rem) !important;}
 
   .search-container input, .payarea input{width:100%; max-width: 500px; height:30px; outline:1px solid #12b83c !important; border-radius: 5px; background:rgba(28, 23, 23, 0.8);}
 
@@ -36,19 +36,18 @@
   .search-container select{ font-size:clamp(.8rem, .8vw, 1.4rem) !important; background:#000;
     color:#fff; padding:0vh 1vw; margin: 6px 0;
   }
-
   
           #area {
-  position:absolute;
+  position:absolute; bottom:130px ;
   left:0; right:0;
     display: flex;
-    justify-content: center;
+    place-content: center;
     flex-direction: column;
     align-items: center;
     background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 0;
-    padding: 1vh 0 2vh 0;
+    padding: 0 0 2vh 0;
     margin: 0 auto .5vh auto;
     color:#fff;
     font-size: 16px;
@@ -59,7 +58,7 @@
     filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));
   }
   @media(min-width:48rem) {
-    #area{ top:80px; border-radius:10px; }
+    #area{ top:80px ; border-radius:10px; }
     #bottomblocker {height: 23px !important;}
   }
   @media(max-width:48rem) {
@@ -73,7 +72,7 @@
     #bottomblocker::after {display: none !important;}
   }
 
-  .search-container input::placeholder{font-size:clamp(1rem,1vw,1rem) !important; }
+
 
   a, a:hover, a:visited{color:#fff;}
   
@@ -100,7 +99,7 @@
           
   
     input, select {
-    font-size: 16px;
+    font-size: 16px !important;
   }
   
   
@@ -178,7 +177,7 @@
   
   #area-info, #rate-info {font-size:clamp(1.8rem, 1.8vw, 2rem);}
   
-  #cost-info {font-size:clamp(2rem, 2vw, 3rem); color:#07d56e;}
+  #cost-info {font-size:clamp(2rem, 3vw, 3rem); color:#07d56e;}
   
   /* .dogs{background: none !important; color:#07d56e !important; outline:1px solid #06a154 !important; font-size: clamp(1rem, 1vw, 1.8rem) !important;} */
   

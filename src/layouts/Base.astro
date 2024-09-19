@@ -51,10 +51,10 @@ const pageOgImage = ogImage || meta?.ogImage;
 	
 	<body>
 		<SkipLink />
-		<!-- <section id="maptop" class="mapsection" style="height:100vh; z-index:12; margin:0 auto -60px auto;"><iframe id="frontmap" name="mapframe" title="location map" class="flexcheek beta" width="100vw" height="65vh" frame-border="0" scrolling="no" margin-height="0" margin-width="0" src="/intro" allow-full-screen={true} loading="eager" style={{maxWidth:'100%', width:'100vw', minHeight:'78vh', margin:'0 auto', border:'0 solid rgba(0,0,0,0.60)', borderRadius:'', pointerEvents:'', zIndex:'11'}}></iframe></section> -->
+		
 		<Header transition:persist />
 
-			<main id="main" transition:animate="slide">
+		<main id="main" transition:animate="slide">
 				<slot />
 		</main>
 
