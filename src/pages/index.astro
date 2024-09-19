@@ -43,6 +43,8 @@ const language = await getEntry('language', 'index');
 <style>
 	.scroll-snap-container {
   height: 100vh;
+  max-width:100vw;
+  overflow-x: hidden;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   /* scroll-padding-top: 60px; */
@@ -70,17 +72,21 @@ const language = await getEntry('language', 'index');
 		</div> -->
 		<Mapper />
 	</section>
+	
 </section>
+
+
 	<section>
 	<InfoBlock content={homeContent.data} />
+	<br />
 	{showFaqOnHome && (<Faqs />)}
 	</section>
 	
 
 	{showPosts && (
-			// <div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
-			// 	<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
-			// </div>
+			<div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
+				<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
+			</div>
 			<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="">
 <div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
 				{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}

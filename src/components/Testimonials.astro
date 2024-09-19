@@ -15,7 +15,7 @@ interface Testimonial {
   };
 }
 const testimonials = await getCollection('testimonials');
-const sortedTestimonials = testimonials.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));---
+const sortedTestimonials = testimonials.sort((a: Testimonial, b: Testimonial) => (a.data.order ?? 0) - (b.data.order ?? 0));---
 
 <div class="horizontal-slider px-[30%] py-[3vh] h-[50vh]">
   {sortedTestimonials.map((testimonial: Testimonial) => (
