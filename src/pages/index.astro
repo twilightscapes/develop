@@ -47,47 +47,42 @@ const language = await getEntry('language', 'index');
   overflow-x: hidden;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
-  /* scroll-padding-top: 60px; */
 }
-
 .scroll-snap-container > * {
   scroll-snap-align: start;
   height: 100%;
 }
 </style>
 <PageLayout meta={{ title: homeContent.data.title, description: pwaSettings.data.description }}>
-<section class="scroll-snap-container">
 
-	{showHomeGallery && <section><PhotoSection /></section>}
-	
-	<section>
+{showHomeGallery && <section><PhotoSection /></section>}
+<section>
 	{showFeature && <Feature content={homeContent.data} />}
 	{showBioOnHome && <Bio />}
 	</section>
-
+<section class="scroll-snap-container">
+	
 
 	<section id="homemap">
-		<!-- <div class="w-full py-1 px-2 mb-4 text-center theme-accent backdrop-blur-lg">
-			<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
-		</div> -->
 		<Mapper />
 	</section>
-	
 </section>
 
 
 	<section>
 	<InfoBlock content={homeContent.data} />
-	<br />
+	<div class="w-full py-1 px-2 text-center theme-accent backdrop-blur-lg">
+		<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
+	</div>
 	{showFaqOnHome && (<Faqs />)}
 	</section>
 	
 
 	{showPosts && (
-			<div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
-				<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
-			</div>
-			<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="">
+	<div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
+	<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
+	</div>
+	<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="">
 <div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
 				{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}
 
@@ -99,13 +94,6 @@ const language = await getEntry('language', 'index');
 	)}
 
 
-
-
-
-
-
-
-
-
 {showTestOnHome && <Testimonials />}
+
 </PageLayout>
