@@ -9,6 +9,11 @@ import Bio from "@/components/Bio.astro";
 import { getEntry } from 'astro:content';
 import keystaticConfig from '../../keystatic.config';
 import { createReader } from '@keystatic/core/reader';
+
+
+import InfoBlock from "@/components/InfoBlock.astro";
+
+
 import PhotoSection from "@/components/PhotoGallery.astro"
 const siteSettings = await getEntry('siteSettings', 'main');
 const pwaSettings = await getEntry('pwaSettings', 'index');
@@ -41,24 +46,23 @@ const language = await getEntry('language', 'index');
 	
 	{showFeature && <Feature content={homeContent.data} />}
 
-	
-
-
-
 	{showHomeGallery && <PhotoSection />}
 
 	{showBioOnHome && <Bio />}
 
-	{showFaqOnHome && (
-		<div class="w-full py-1 px-2 mb-4 text-center theme-accent backdrop-blur-lg">
+<!-- <div class="w-full py-1 px-2 mb-4 text-center theme-accent backdrop-blur-lg">
 			<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
-		</div>
-		
-		<div id="homemap"><Mapper /></div>
-		<Faqs />
+		</div> -->
+
+	<section id="homemap"><Mapper /></section>
+
+	<section><InfoBlock content={homeContent.data} /></section>
+
+	{showFaqOnHome && (
+		<section><Faqs /></section>
 	)}
 
-	{showTestOnHome && <Testimonials />}
+	
 
 	{showPosts && (
 		<section class="scroll-container mb-4 px-2 home">
@@ -81,6 +85,7 @@ const language = await getEntry('language', 'index');
 	)}
 
 
+{showTestOnHome && <section><Testimonials /></section>}
 
 
 

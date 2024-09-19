@@ -264,6 +264,15 @@ body {
 		top:0;
 		object-fit:cover;
 	  }
+
+
+	 .featured img{
+		object-fit:contain !important; 
+		width: 100%; 
+		max-width: 100vw;
+	  }
+
+
 /* user css */
 	  
 /* user css */

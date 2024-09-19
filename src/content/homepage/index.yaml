@@ -7,9 +7,9 @@ showHomeGallery: false
 showPosts: true
 showMore: false
 showFaqOnHome: true
-showTestOnHome: true
+showTestOnHome: false
 pitch: Whoop Ass
-testimonialtitle: Frequently Asked Questions
+testimonialtitle: Get Started Now!
 postsectiontitle: Our Latest News
 youtube:
   controls: false

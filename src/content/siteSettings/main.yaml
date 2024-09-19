@@ -1,4 +1,4 @@
-logoImage: /images/logo/logoImage.svg
+logoImage: /images/logo/logoImage.webp
 showHeader: true
 showLogo: true
 showHome: true
@@ -8,7 +8,7 @@ showSearch: false
 showFooter: true
 defaultView: grid
 showTitles: false
-showDates: true
+showDates: false
 MAX_POSTS: 3
 MAX_POSTS_PER_PAGE: 20
-showShare: true
+showShare: false

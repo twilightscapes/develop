@@ -16,12 +16,12 @@ const language = await getEntry('language', 'index');
 			{siteConfig.author}
 		</div>
 		<nav
-			aria-label="More on this site"
+			aria-label="Menu"
 			class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500"
 		>
 		{showHome && (
 			<>
-			<a class="px-4 py-2 sm:px-2 sm:py-0 sm:hover:text-textColor sm:hover:underline" href="/">{language.data.homelink}</a>
+			<a class="px-4 py-2 sm:px-2 sm:py-0 sm:hover:text-textColor sm:hover:underline" href="/" style="color:inherit">{language.data.homelink}</a>
 			</>
 		)}
 			{
@@ -30,6 +30,7 @@ const language = await getEntry('language', 'index');
 						<a
 							href={link.path || '#'}
 							class="px-4 py-2 sm:px-2 sm:py-0 sm:hover:text-textColor sm:hover:underline"
+							style="color:inherit"
 						>
 							{link.title}
 						</a>

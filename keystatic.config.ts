@@ -582,8 +582,8 @@ ui: {
     name: ' ',
     mark: ({ colorScheme }) => {
       let path = colorScheme === 'dark'
-        ? '/images/logo/logoImage.svg'
-        : '/images/logo/logoImage.svg';
+        ? '/images/logo/logoImage.webp'
+        : '/images/logo/logoImage.webp';
       return React.createElement('img', { src: path, height: 40, alt: "Pirate Logo" });
     },
   },

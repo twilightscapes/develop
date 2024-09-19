@@ -35,7 +35,7 @@ body {
 
 
 
-#map{height:calc(100dvh - 120px) !important;}
+#map{height:calc(100dvh - 60px) !important;}
 
 .search-container {
     position: relative;
@@ -99,14 +99,14 @@ body {
   @media(min-width:48rem) {
     /* #applogo{display: none;} */
     #area{ border-radius:10px; }
-    #bottomblocker {height: 36px !important;}
+    #bottomblocker {height: 24px !important;}
   }
   @media(max-width:48rem) {
-    #area{ top:160px !important;  left:1vw; border-radius:0; }
+    #area{ top:120px !important;  left:1vw; border-radius:0; }
   #applogo{display: none;}
-  #bottomblocker {height: 33px !important;}
-  #clearButton{top:110px !important;}
-  #drawPolygonControl{top:110px !important;}
+  #bottomblocker {height: 24px !important;}
+  #clearButton{top:60px !important;}
+  #drawPolygonControl{top:60px !important;}
   #missioncontrol{display:none;}
   }
   @media( display-mode:standalone) {
@@ -117,12 +117,12 @@ body {
 
   a, a:hover, a:visited{color:#fff;}
   
-  #drawPolygonControl{position:absolute; top: 110px; right: 0 !important;  z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#06a154;  color:#fff; border:1px solid #a3d4a9; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8)); display:flex; align-items: center; text-shadow: 1px 2px 1px #1f3829;}
+  #drawPolygonControl{position:absolute; top: 70px; right: 0 !important;  z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#06a154;  color:#fff; border:1px solid #a3d4a9; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8)); display:flex; align-items: center; text-shadow: 1px 2px 1px #1f3829;}
   
 
   #editShapesButton{position:absolute; top: 170px; right: 0 !important;  z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#08ba32;  color:#fff; border:1px solid #a3d4a9; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));}
 
-  #clearButton{position:absolute; left:0!important; top:110px; z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#000; color:#fff; border:1px solid #d10c0c; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));}
+  #clearButton{position:absolute; left:0!important; top:70px; z-index: 2; font-size:clamp(1rem, 1.5vw, 2rem); padding:.4vh 2vw; background:#000; color:#fff; border:1px solid #d10c0c; border-radius: 3px; font-weight: bold; filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));}
 
   #clearButton:hover {background-color: #e03a3a;}
   #drawPolygonControl:hover {background-color: #12b83c;}
@@ -132,8 +132,8 @@ body {
           /* .topmenu{visibility: hidden !important;}
           footer{display:none !important;} */
   
-          #bottomblocker{position:absolute; bottom:60px; height:10vh; background:rgba(1, 24, 6, 0.7); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
-          #bottomblocker::after{content:'Click "Share" and then "Save to Desktop" to install this site as a Web App'; position:absolute; width:100%; bottom:1.2vh; left:2px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.6rem, .3vw, 1rem); color:#ddd }
+          #bottomblocker{position:absolute; bottom:0; height:10vh; background:rgba(1, 24, 6, 0.7); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
+          #bottomblocker::after{content:'Click "Share" and "Save to Desktop" to install our Web App'; position:absolute; width:100%; top:0; left:2px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.9rem, .6vw, 1rem); color:#fff }
   
   
           .green{color:rgba(27, 39, 33, 0.5)}
@@ -320,14 +320,13 @@ body {
     
     <div class="search-container">
 
-        <a href="../" target="_top"><img src="/images/logo/logoImage.svg" alt="Dog Poopers Logo" class="" 
+        <a href="../" target="_top"><img src="/images/logo/logoImage.webp" alt="Dog Poopers Logo" class="" 
             style="
                 position: relative;
                 top: 1%;
                 left: 1%;
                 padding: 0 0 0 0;
                 max-height: 60px;
-                min-height: 60px;
                 max-width: 100px;
         "
 

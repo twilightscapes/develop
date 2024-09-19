@@ -32,7 +32,6 @@ const sortedFaqs = faqs.sort((a, b) => (((a.data.order as number) ?? 0) - ((b.da
 
   .faq-accordion-title h3 {
     font-weight: 400;
-    color: var(--neutral-dark-color);
   }
 
   .faq-accordion-title span {
@@ -45,11 +44,12 @@ const sortedFaqs = faqs.sort((a, b) => (((a.data.order as number) ?? 0) - ((b.da
   }
 
   .faq-accordion-content {
-    color: var(--neutral-soft-color);
     overflow: hidden;
     max-height: 0;
     transition: max-height .4s ease-in-out;
-    padding: 10px 0 0 0;
+    /* margin-top: 10px; */
+    padding: 0 10px 0 10px;
+    
   }
 
   .faq-accordion .tgg-title:checked + div > label > h3 {
@@ -68,7 +68,7 @@ const sortedFaqs = faqs.sort((a, b) => (((a.data.order as number) ?? 0) - ((b.da
 </style>
 
 <div class="nameblock headline w-full  mx-auto backdrop-blur-[12px]">
-  <div class="card-wrapper | content-cc" style="width:80%; max-width:800px; margin:0 auto;">
+  <div class="card-wrapper | content-cc" style="width:100%; max-width:800px; margin:0 auto;">
     <div class="faq-card">
       <main class="faq-content">
         {sortedFaqs.map((faq: CollectionEntry<'faqs'>, index: number) => (
@@ -83,7 +83,7 @@ const sortedFaqs = faqs.sort((a, b) => (((a.data.order as number) ?? 0) - ((b.da
               </label>
             </div>
             <div class="faq-accordion-content">
-              <Fragment set:html={faq.body} />
+              <div style="background: rgba(0, 0, 0, 0.1); padding:15px 10px 20px 10px; border-radius: var(--border-radius);"><Fragment set:html={faq.body} /></div>
             </div>
           </article>
         ))}      </main>
