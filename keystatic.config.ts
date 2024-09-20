@@ -7,22 +7,22 @@ import { colorPicker } from './src/components/ColorPicker.tsx';
 
 
 
+const isProduction: boolean = import.meta.env.PROD;
 
-const isProduction: boolean = process.env.NODE_ENV === 'production'
 
 export default config({
   storage: isProduction
-    ? {
-        kind: 'cloud',
-      }
-    : {
-        kind: 'local',
-      },
-  cloud: isProduction
-    ? {
-        project: process.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
-      }
-    : undefined,  
+  ? {
+      kind: 'cloud',
+    }
+  : {
+      kind: 'local',
+    },
+cloud: isProduction
+  ? {
+      project: import.meta.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
+    }
+  : undefined,
   collections: {
     posts: collection({
       label: 'Posts',
