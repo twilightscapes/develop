@@ -9,7 +9,7 @@ import { colorPicker } from './src/components/ColorPicker.tsx';
 
 const isProduction: boolean = import.meta.env.PROD;
 
-
+console.log('KEYSTATIC_PROJECT:', process.env.KEYSTATIC_PROJECT);
 export default config({
   storage: isProduction
   ? {
