@@ -20,7 +20,7 @@ export default config({
     },
 cloud: isProduction
   ? {
-      project: import.meta.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
+      project: import.meta.env.KEYSTATIC_PROJECT || 'poop/outofluck',
     }
   : undefined,
   collections: {
