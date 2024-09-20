@@ -11,6 +11,10 @@ const isProduction: boolean = process.env.CONTEXT === 'production'
 const projectKey = process.env.KEYSTATIC_PROJECT || 'noproject/nope'
 
 console.log('KEYSTATIC_PROJECT:', projectKey);
+console.log('All environment variables:', process.env);
+console.log('KEYSTATIC_PROJECT:', process.env.KEYSTATIC_PROJECT);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('CONTEXT:', process.env.CONTEXT);
 
 export default config({
   storage: isProduction
