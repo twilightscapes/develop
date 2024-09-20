@@ -81,6 +81,24 @@ body {
 		margin: 1vh auto;
 		transition: opacity 0.5s ease-in;
 	  }
+
+	  .viewmore {
+		/* background-color: var(--theme-accent2); */
+		background:rgba(17, 17, 17, 0.7);
+		border: none;
+		padding: 1vh 1.5vw;
+		font-size: clamp(1.1rem, 1vw, 1.4rem);
+		font-weight: bold;
+		text-shadow: 0px 1px 2px #111;
+		border-radius: var(--border-radius);
+		cursor: pointer;
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		margin: 1vh auto;
+		transition: opacity 0.5s ease-in;
+	  }
 	  
 	  
 	  
@@ -324,7 +342,7 @@ body {
 		z-index: 0;
 		position: relative;
 		top: 0;
-		padding-right: 10vw;
+		padding:0 10vw;
 	  }
 	  
 	  .horizontal-slider {
@@ -397,13 +415,14 @@ body {
 	}
 
 	#directorySelect {
-		position: fixed;
-		top: 8px;
+		position: absolute;
+		top:0;
 		left: 0;
 		right: 0;
 	  	z-index: 2;
 		max-width: 300px;
 		margin: 0 auto;
+		margin-top:-60px;
 		padding: 1vh 1vw;
 		background: var(--theme-header)
 	  }

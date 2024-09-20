@@ -3,9 +3,10 @@ featureImage:
   alt: We pick up the poop!
 showFeature: true
 showBioOnHome: true
+showApp: true
 showHomeGallery: false
 showPosts: true
-showMore: false
+showMore: true
 showFaqOnHome: true
 showTestOnHome: true
 pitch: Whoop Ass
@@ -18,3 +19,10 @@ youtube:
   loop: false
   start: .nan
   end: .nan
+featureOrder: 2
+bioOrder: 3
+appOrder: .nan
+galleryOrder: 4
+postsOrder: 5
+faqOrder: 6
+testimonialsOrder: 7

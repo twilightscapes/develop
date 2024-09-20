@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-
+import { getEntry } from 'astro:content';
 interface Testimonial {
   id: string;
   collection: "testimonials";
@@ -15,9 +15,16 @@ interface Testimonial {
   };
 }
 const testimonials = await getCollection('testimonials');
-const sortedTestimonials = testimonials.sort((a: Testimonial, b: Testimonial) => (a.data.order ?? 0) - (b.data.order ?? 0));---
+const sortedTestimonials = testimonials.sort((a: Testimonial, b: Testimonial) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
-<div class="horizontal-slider px-[30%] py-[3vh] h-[50vh]">
+
+const siteSettings = await getEntry('siteSettings', 'main');
+const { defaultView } = siteSettings.data;
+
+---
+
+<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="padding-top:70px">
+  <div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
   {sortedTestimonials.map((testimonial: Testimonial) => (
     <div class="quotecard">
       <div class="flex flex-col text-center min-w-[380px]">

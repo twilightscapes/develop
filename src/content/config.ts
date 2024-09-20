@@ -84,6 +84,7 @@ const home = defineCollection({
     subcta: z.string().optional(),
     faqtitle: z.string().optional(),
     showMore: z.string().optional(),
+    showApp: z.string().optional(),
     testimonialtitle: z.string().optional(),
     postsectiontitle: z.string().optional(),
     featureImage: z.object({

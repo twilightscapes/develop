@@ -37,6 +37,8 @@ const showGallerySelector = photoSettings?.showGallerySelector && galleryMode ==
 const siteSettings = await getEntry('siteSettings', 'main');
 const { defaultView } = siteSettings.data;
 ---
+<div style="position:relative;">
+
 
 {showGallerySelector && (
   <div class="cattags" style={{ maxWidth: '', margin: '0px auto 0 auto', display: 'flex', placeSelf: 'center', gap: '0', color: '' }}>
@@ -77,6 +79,10 @@ const { defaultView } = siteSettings.data;
 </div>
 
 <GalleryLightbox client:only="react" images={allImages} showCaptions={showCaptions} />
+
+
+</div>
+
 
 <style>
 

@@ -1,9 +1,9 @@
 logoImage: /images/logo/logoImage.webp
 showHeader: true
 showLogo: true
-showHome: true
+showHome: false
 showTheme: true
-showSwitch: false
+showSwitch: true
 showSearch: false
 showFooter: true
 defaultView: grid

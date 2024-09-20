@@ -284,7 +284,6 @@ export default config({
       label: 'Home Page',
       path: 'src/content/homepage/',
       schema: {
-
         featureImage: fields.object({
           src: fields.image({
             label: 'Feature Image',
@@ -304,12 +303,17 @@ export default config({
           defaultValue: false,
         }),
 
+        showApp: fields.checkbox({
+          label: 'Show App Module',
+          description: 'Hide/Show custom App section on the home page',
+          defaultValue: false,
+        }),
+
         showHomeGallery: fields.checkbox({ label: 'Show Home Photo Gallery', description: 'Hide/Show the Photo section on home page', defaultValue: false }),
 
         showPosts: fields.checkbox({ label: 'Show Posts', description: 'Hide/Show the Posts section on the home page', defaultValue: false }),
 
         showMore: fields.checkbox({ label: 'Show More Button', description: 'Hide/Show the Show More Button (for the posts section above)', defaultValue: false }),
-
 
         showFaqOnHome: fields.checkbox({
           label: 'Show FAQ Module',
@@ -322,8 +326,6 @@ export default config({
           description: 'Hide/Show the Testomonials section on the home page',
           defaultValue: false,
         }),
-      
-        
 
         divider: fields.empty(),
 
@@ -339,7 +341,6 @@ export default config({
 
         divider2: fields.empty(),
 
-
         youtube: fields.object({
           url: fields.text({ 
             label: 'YouTube Video URL',
@@ -351,19 +352,25 @@ export default config({
             description: 'Enter a title for the video (optional, leave blank for no title)',
             validation: { isRequired: false }
           }),
-          // controls: fields.checkbox({ label: 'Show Controls', defaultValue: true }),
           controls: fields.checkbox({ label: 'Use YouTube Player Controls' }),
-              useCustomPlayer: fields.checkbox({ 
-                label: 'Use Custom Player Controls', 
-                defaultValue: true 
-              }),
+          useCustomPlayer: fields.checkbox({ 
+            label: 'Use Custom Player Controls', 
+            defaultValue: true 
+          }),
           mute: fields.checkbox({ label: 'Mute Video', defaultValue: false }),
           loop: fields.checkbox({ label: 'Loop Video', defaultValue: false }),
           start: fields.number({ label: 'Start Time (seconds)', defaultValue: 0 }),
           end: fields.number({ label: 'End Time (seconds)' }),
           divider: fields.empty(),
         }),
-      
+
+        featureOrder: fields.number({ label: 'Feature Section Order', defaultValue: 1 }),
+        bioOrder: fields.number({ label: 'Bio Section Order', defaultValue: 2 }),
+        appOrder: fields.number({ label: 'App Section Order', defaultValue: 3 }),
+        galleryOrder: fields.number({ label: 'Gallery Section Order', defaultValue: 4 }),
+        postsOrder: fields.number({ label: 'Posts Section Order', defaultValue: 5 }),
+        faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
+        testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
       },
     }),    photoSettings: singleton({
       label: 'Photo Gallery Settings',

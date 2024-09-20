@@ -19,7 +19,7 @@ const siteSettings = await getEntry('siteSettings', 'main');
 const pwaSettings = await getEntry('pwaSettings', 'index');
 const { defaultView, MAX_POSTS } = siteSettings.data;
 const homeContent = await getEntry('homepage', 'index');
-import Mapper from '@/components/checkout.html';
+import App from '@/components/checkout.html';
 const reader = createReader(process.cwd(), keystaticConfig);
 
 
@@ -32,6 +32,7 @@ const showTestOnHome = homepage?.showTestOnHome ?? false;
 const showFeature = homepage?.showFeature ?? false;
 const showPosts = homepage?.showPosts ?? false;
 const ShowMore = homepage?.showMore ?? false;
+const ShowApp = homepage?.showApp ?? false;
 
 
 const showHomeGallery = homepage?.showHomeGallery ?? false;
@@ -39,10 +40,26 @@ const showHomeGallery = homepage?.showHomeGallery ?? false;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 const language = await getEntry('language', 'index');
+
+
+const sections = [
+  { name: 'feature', show: homepage?.showFeature, order: homepage?.featureOrder, component: Feature },
+  { name: 'bio', show: homepage?.showBioOnHome, order: homepage?.bioOrder, component: Bio },
+  { name: 'app', show: homepage?.showApp, order: homepage?.appOrder, component: App },
+  { name: 'gallery', show: homepage?.showHomeGallery, order: homepage?.galleryOrder, component: PhotoSection },
+  { name: 'posts', show: homepage?.showPosts, order: homepage?.postsOrder, component: showPosts },
+  { name: 'faq', show: homepage?.showFaqOnHome, order: homepage?.faqOrder, component: Faqs },
+  { name: 'testimonials', show: homepage?.showTestOnHome, order: homepage?.testimonialsOrder, component: Testimonials },
+];
+
+const sortedSections = sections
+  .filter(section => section.show)
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 ---
 <style>
 	.scroll-snap-container {
-  height: 100vh;
+flex-direction: column;
+  height: calc(99vh - (100px));
   max-width:100vw;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -56,52 +73,47 @@ const language = await getEntry('language', 'index');
 }
 </style>
 <PageLayout meta={{ title: homeContent.data.title, description: pwaSettings.data.description }}>
-	<div class="scroll-snap-container">
-
-{showHomeGallery && <section><PhotoSection /></section>}
-
-
-	
-	{showFeature && <section style=""><Feature content={homeContent.data} /></section>}
-
-	{showBioOnHome && <section><Bio /></section>}
-	
-
-	<section id="homemap">
-		<Mapper />
-	</section>
-
-
-
-	
-	<section><InfoBlock content={homeContent.data} /></section>
-
-	<!-- <div class="w-full py-1 px-2 text-center theme-accent backdrop-blur-lg">
-		<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.testimonialtitle}</h2>
-	</div> -->
-
-
-
-	{showFaqOnHome && (<section><Faqs /></section>)}
-	
-	
-
-	{showPosts && (
-	<section><div class="w-full py-1 px-6 mb-1 text-center theme-accent backdrop-blur-lg">
-	<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text">{homeContent.data.postsectiontitle}</h2>
-	</div>
-	<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="">
-<div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
-				{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}
-
-				{ShowMore && <a class="button no-underline text-white text-center block" href="/posts/" style="padding:1vh 1rem; margin:0 50px 50px 50px;">
-					{language.data.viewmore}
-				</a>
-				}
-			</div></section>
-	)}
-
-
-{showTestOnHome && <section><Testimonials /></section>}
+	<div class="scroll-snap-container flex flex-col">
+		{sortedSections.map(section => (
+			<section style="padding-bottom: 10vh;">
+				{(() => {
+					switch (section.name) {
+						case 'feature':
+							return <Feature content={homeContent.data} />;
+						case 'bio':
+							return <Bio />;
+						case 'app':
+							return <App />;
+						case 'gallery':
+							return <PhotoSection />;
+						case 'posts':
+							return (
+								<>
+									<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.postsectiontitle}</h2>
+									<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`}>
+										{allPostsByDate.map((p) => <PostPreview post={p} withDesc />)}
+										{ShowMore && (
+											<a class="viewmore no-underline text-white text-center block" href="/posts/" style="padding:1vh 1rem; margin:0 50px 50px 50px;">
+												{language.data.viewmore}
+											</a>
+										)}
+									</div>
+								</>
+							);
+						case 'faq':
+							return (
+								<>
+									<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.testimonialtitle}</h2>
+									<Faqs />
+								</>
+							);
+						case 'testimonials':
+							return <Testimonials />;
+						default:
+							return null;
+					}
+				})()}
+			</section>
+		))}
 	</div>
 </PageLayout>
