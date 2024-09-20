@@ -379,11 +379,11 @@ body {
 		min-width: 70vw;
 		max-height:68vh; 
 	 }
-	 .home .slider img{
-		object-fit:contain; 
-		width: 100%; 
+	 .testi .slider img{
+		object-fit:contain !important; 
+		width: 100% !important; 
 		border-radius: var(--border-radius);
-		min-width: 50vw;
+		min-width: 20vw !important;
 	 }
 
 

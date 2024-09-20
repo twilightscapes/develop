@@ -1,28 +1,25 @@
+showFeature: true
 featureImage:
   src: /images/homepage/featureImage/src.webp
   alt: We pick up the poop!
-showFeature: true
+youtube:
+  discriminant: false
 showBioOnHome: true
-showApp: true
+showApp: false
 showHomeGallery: false
 showPosts: true
-showMore: true
+showMore: false
 showFaqOnHome: true
 showTestOnHome: true
 pitch: Whoop Ass
-testimonialtitle: FAQs
-postsectiontitle: Our Latest News
-youtube:
-  controls: false
-  useCustomPlayer: true
-  mute: true
-  loop: false
-  start: .nan
-  end: .nan
 featureOrder: 2
 bioOrder: 3
-appOrder: .nan
+appOrder: 1
 galleryOrder: 4
-postsOrder: 5
-faqOrder: 6
+postsOrder: 6
+faqOrder: 5
 testimonialsOrder: 7
+photosectiontitle: Photo Gallery
+faqsectiontitle: FAQs
+testimonialtitle: What the dogs are sayin'
+postsectiontitle: Our Latest News

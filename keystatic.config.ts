@@ -7,28 +7,22 @@ import { colorPicker } from './src/components/ColorPicker.tsx';
 
 
 
-const isProduction: boolean = process.env.CONTEXT === 'production'
-const projectKey = process.env.KEYSTATIC_PROJECT || 'noproject/nope'
+const isProduction: boolean = import.meta.env.PROD;
 
-console.log('KEYSTATIC_PROJECT:', projectKey);
-console.log('All environment variables:', process.env);
-console.log('KEYSTATIC_PROJECT:', process.env.KEYSTATIC_PROJECT);
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('CONTEXT:', process.env.CONTEXT);
 
 export default config({
   storage: isProduction
-    ? {
-        kind: 'cloud',
-      }
-    : {
-        kind: 'local',
-      },
-  cloud: isProduction
-    ? {
-        project: projectKey,
-      }
-    : undefined,
+  ? {
+      kind: 'cloud',
+    }
+  : {
+      kind: 'local',
+    },
+cloud: isProduction
+  ? {
+      project: import.meta.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
+    }
+  : undefined,
   collections: {
     posts: collection({
       label: 'Posts',
@@ -285,10 +279,12 @@ export default config({
           publicPath: '/images/pwa'
         })
       }
-    }),    home: singleton({
+    }),
+    home: singleton({
       label: 'Home Page',
       path: 'src/content/homepage/',
       schema: {
+        showFeature: fields.checkbox({ label: 'Show Feature', description: 'Hide/Show the Feature section on home page', defaultValue: false }),
         featureImage: fields.object({
           src: fields.image({
             label: 'Feature Image',
@@ -299,9 +295,43 @@ export default config({
             label: 'Featured Image Alt Text',
           }),
         }),
+        youtube: fields.conditional(
+          fields.checkbox({ label: 'Include YouTube Video' }),
+          {
+            true: fields.object({
+              url: fields.text({ 
+                label: 'YouTube Video URL',
+                description: 'Enter the full YouTube video URL'
+              }),
+              title: fields.text({ 
+                label: 'Video Title',
+                description: 'Enter a title for the video (optional, leave blank for no title)',
+                validation: { isRequired: false }
+              }),
+              controls: fields.checkbox({ label: 'Use YouTube Player Controls' }),
+              useCustomPlayer: fields.checkbox({ 
+                label: 'Use Custom Player Controls', 
+                defaultValue: true 
+              }),
+              mute: fields.checkbox({ label: 'Mute Video' }),
+              loop: fields.checkbox({ label: 'Loop Video' }),
+              start: fields.number({ 
+                label: 'Start Time (seconds)', 
+                defaultValue: 0,
+                validation: { min: 0 }
+              }),
+              end: fields.number({ 
+                label: 'End Time (seconds)', 
+                validation: { min: 0, isRequired: false }
+              }),
+              videoOnly: fields.checkbox({ label: 'Video Only', defaultValue: false }),
+            }),
+            false: fields.empty(),
+          }
+        ),
 
-        showFeature: fields.checkbox({ label: 'Show Feature', description: 'Hide/Show the Feature section on home page', defaultValue: false }),
-
+        divider9: fields.empty(),
+        divider7: fields.empty(),
         showBioOnHome: fields.checkbox({
           label: 'Show Bio Module',
           description: 'Hide/Show the Bio/Info section on the home page',
@@ -340,35 +370,8 @@ export default config({
         }),
 
         divider1: fields.empty(),
+        divider6: fields.empty(),
         
-        testimonialtitle: fields.text({ label: 'Testimonials or Faq Title Header' }),
-        postsectiontitle: fields.text({ label: 'Posts Section Title Header'  }),
-
-        divider2: fields.empty(),
-
-        youtube: fields.object({
-          url: fields.text({ 
-            label: 'YouTube Video URL',
-            description: 'Enter the full YouTube video URL'
-          }),
-
-          title: fields.text({ 
-            label: 'Video Title',
-            description: 'Enter a title for the video (optional, leave blank for no title)',
-            validation: { isRequired: false }
-          }),
-          controls: fields.checkbox({ label: 'Use YouTube Player Controls' }),
-          useCustomPlayer: fields.checkbox({ 
-            label: 'Use Custom Player Controls', 
-            defaultValue: true 
-          }),
-          mute: fields.checkbox({ label: 'Mute Video', defaultValue: false }),
-          loop: fields.checkbox({ label: 'Loop Video', defaultValue: false }),
-          start: fields.number({ label: 'Start Time (seconds)', defaultValue: 0 }),
-          end: fields.number({ label: 'End Time (seconds)' }),
-          divider: fields.empty(),
-        }),
-
         featureOrder: fields.number({ label: 'Feature Section Order', defaultValue: 1 }),
         bioOrder: fields.number({ label: 'Bio Section Order', defaultValue: 2 }),
         appOrder: fields.number({ label: 'App Section Order', defaultValue: 3 }),
@@ -376,8 +379,19 @@ export default config({
         postsOrder: fields.number({ label: 'Posts Section Order', defaultValue: 5 }),
         faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
         testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
+        divider5: fields.empty(),
+
+        photosectiontitle: fields.text({ label: 'Photo Section Title Header'  }),
+        faqsectiontitle: fields.text({ label: 'FAQ Title Header'  }),
+        testimonialtitle: fields.text({ label: 'Testimonials Title Header' }),
+        postsectiontitle: fields.text({ label: 'Posts Title Header'  }),
+
+        divider2: fields.empty(),
+
+        
       },
-    }),    photoSettings: singleton({
+    }),    
+    photoSettings: singleton({
       label: 'Photo Gallery Settings',
       path: 'src/content/photoSettings/',
       schema: {

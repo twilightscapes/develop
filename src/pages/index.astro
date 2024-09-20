@@ -85,7 +85,7 @@ flex-direction: column;
 						case 'app':
 							return <App />;
 						case 'gallery':
-							return <PhotoSection />;
+							return (<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.photosectiontitle}</h2><PhotoSection />);
 						case 'posts':
 							return (
 								<>
@@ -103,12 +103,13 @@ flex-direction: column;
 						case 'faq':
 							return (
 								<>
-									<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.testimonialtitle}</h2>
+									<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.faqsectiontitle}</h2>
 									<Faqs />
 								</>
 							);
 						case 'testimonials':
-							return <Testimonials />;
+							return <div class="testi" style="padding:30px;">
+								<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.testimonialtitle}</h2><Testimonials /></div>;
 						default:
 							return null;
 					}
