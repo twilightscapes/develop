@@ -7,22 +7,24 @@ import { colorPicker } from './src/components/ColorPicker.tsx';
 
 
 
-const isProduction: boolean = import.meta.env.PROD;
+const isProduction: boolean = process.env.CONTEXT === 'production'
+const projectKey = process.env.KEYSTATIC_PROJECT || 'noproject/nope'
 
-console.log('KEYSTATIC_PROJECT:', process.env.KEYSTATIC_PROJECT);
+console.log('KEYSTATIC_PROJECT:', projectKey);
+
 export default config({
   storage: isProduction
-  ? {
-      kind: 'cloud',
-    }
-  : {
-      kind: 'local',
-    },
-cloud: isProduction
-  ? {
-      project: import.meta.env.KEYSTATIC_PROJECT || 'poop/outofluck',
-    }
-  : undefined,
+    ? {
+        kind: 'cloud',
+      }
+    : {
+        kind: 'local',
+      },
+  cloud: isProduction
+    ? {
+        project: projectKey,
+      }
+    : undefined,
   collections: {
     posts: collection({
       label: 'Posts',
