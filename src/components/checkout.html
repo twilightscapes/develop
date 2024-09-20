@@ -18,7 +18,7 @@
 
     <style>   
 
-body{font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Ubuntu,roboto,noto,segoe ui,arial,sans-serif;--font-family-mono:Menlo,Consolas,Monaco,Liberation Mono,Lucida Console,monospace; line-height: 1.5;}
+/* body{font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Ubuntu,roboto,noto,segoe ui,arial,sans-serif;--font-family-mono:Menlo,Consolas,Monaco,Liberation Mono,Lucida Console,monospace; line-height: 1.5; } */
 
 .gmnoprint[role="menubar"]{display:none !important;}
 body {
@@ -29,7 +29,6 @@ body {
     max-width: 100vw;
     /* overscroll-behavior: none !important; */
     position: relative;
-    background:#333;
   }
 #tip::placeholder{font-size:.9rem !important;}
 
@@ -134,8 +133,8 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
   
       
           /* #menu {display:none !important;} */
-          /* .topmenu{visibility: hidden !important;}
-          footer{display:none !important;} */
+          /* .topmenu{visibility: hidden !important;} */
+          /* footer{display:none !important;} */
   
           #bottomblocker{position:absolute; bottom:0; height:10vh; background:rgba(1, 24, 6, 0.7); display:block; width:100%; z-index: 999999; backdrop-filter:blur(22px); -webkit-backdrop-filter: blur(22px); opacity:.9;}
           #bottomblocker::after{content:'Click "Share" and "Save to Desktop" to install our Web App'; position:absolute; width:100%; top:0; left:2px; text-shadow: 1px 1px 2px #222; text-align: center; font-size:clamp(.9rem, .6vw, 1rem); color:#fff }
@@ -225,7 +224,6 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
   
   #cost-info {font-size:clamp(2rem, 2vw, 3rem); color:#07d56e;}
   
-  /* .dogs{background: none !important; color:#07d56e !important; outline:1px solid #06a154 !important; font-size: clamp(1rem, 1vw, 1.8rem) !important;} */
   
   #dogSelect {background: #03914a !important; color:#ddd !important; outline:1px solid #06a154 !important; font-size: clamp(.8rem, .9vw, 1.8rem) !important; margin:6px 0; border-radius: 3px; padding:.6rem 1vw .6rem 1vw; filter:drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8)); cursor: pointer; text-shadow: 1px 1px 1px #1c1717; font-weight: bold;}
 
@@ -235,21 +233,11 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
   
   
   select {
-
-    /* background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBmaWxsPSJncmF5IiBkPSJNMTAsMjMyLjdsNDkwLDUzNC41bDQ5MC01MzQuNUgxMHoiIC8+DQo8L3N2Zz4=);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 10px;
-    color: #fff !important;
-    position:relative;
-    display:flex !important; */
-    /* appearance:var(); */
     --webkit-appearance: none;
     appearance: none;
-    
 }
 
-/* select::after{content:'down'; position:absolute; top:0; right:0; z-index: 5;} */
+
 
 
   .sqfoot {
@@ -289,7 +277,8 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 
     
     </style>
-<link rel="stylesheet" src="./map.css" />
+
+
 <script>
     async function loadGoogleMapsApi() {
       try {
@@ -322,7 +311,7 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 
 <section id="app" style="position:relative">
     
-    <div class="search-container">
+    <div class="search-container font">
 
         <a href="../" target="_top"><img class="maplogo" src="/images/logo/logoImage.webp" alt="Dog Poopers Logo"  
             style="
@@ -355,9 +344,9 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
         </select>
     </div>
 
-    <div class="custom-control draw-polygon" id="drawPolygonControl"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path></svg> &nbsp; Draw Yard</div>
+    <div class="custom-control draw-polygon font" id="drawPolygonControl"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path></svg> &nbsp; Draw Yard</div>
     <div class="custom-control draw-rectangle" id="drawRectangleControl">Draw Rectangle</div>
-    <button class="custom-control button" id="clearButton">Clear</button>
+    <button class="custom-control button font" id="clearButton">Clear</button>
 
 
 
@@ -393,7 +382,7 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 <label for="tip" style="margin:1vh 0 0 0; font-size: .7rem; display: flex; align-items: center; gap:.5vw; color:#999;">Optional<input class="" type="number" id="tip" name="tip" min="0" step="1" placeholder="Tip your Pooper?" style="max-width: 140px; color:#ddd;"></label>
     
 
-<button type="submit" id="checkout-button" class="stripe-button hidden">Order Now</button>
+<button type="submit" id="checkout-button" class="stripe-button hidden font">Order Now</button>
 
 </div>
 

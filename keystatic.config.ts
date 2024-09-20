@@ -20,10 +20,9 @@ export default config({
       },
   cloud: isProduction
     ? {
-        project: 'tool/toolpirate',
+        project: process.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
       }
-    : undefined,
-  
+    : undefined,  
   collections: {
     posts: collection({
       label: 'Posts',

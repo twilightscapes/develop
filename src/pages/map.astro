@@ -1,6 +1,6 @@
 ---
 import Mapper from '@/components/checkout.html';
-// import PageLayout from "@/layouts/Base.astro";
+import PageLayout from "@/layouts/Base.astro";
 
 
 
@@ -11,15 +11,15 @@ const meta = {
 // import '../../public/map.css';
 
 ---
-<link
+<!-- <link
 	href="../map.css"
 	rel="stylesheet"
-/>
+/> -->
 <!-- <link
 	href="/map-headless.css"
 	rel="stylesheet"
 /> -->
-<!-- <PageLayout meta={meta}> -->
+<PageLayout meta={meta}>
 
 <style>
   body {
@@ -34,7 +34,7 @@ const meta = {
     position: relative;
     background:#222;
   }
-
+.header{display: none;}
 
   
 
@@ -51,4 +51,4 @@ const meta = {
   <Mapper />
 
 
-<!-- </PageLayout> -->
+</PageLayout>
