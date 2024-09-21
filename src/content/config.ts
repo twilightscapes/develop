@@ -217,6 +217,7 @@ const pitches = defineCollection({
   type: 'data',
   schema: z.object({
     title: z.string().optional(),
+    showTitle: z.boolean().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     description: z.string().optional(),
@@ -224,7 +225,9 @@ const pitches = defineCollection({
     subheading1: z.string().optional(),
     text1: z.string().optional(),
     subheading2: z.string().optional(),
+    subheading3: z.string().optional(),
     text2: z.string().optional(),
+    text3: z.string().optional(),
     phone: z.string().optional(),
     subcontent: z.string().optional(),
     subcta: z.string().optional(),

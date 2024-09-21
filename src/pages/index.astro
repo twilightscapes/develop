@@ -31,15 +31,18 @@ type PitchData = {
   tagline: string;
   text1: string;
   text2: string;
+  text3: string;
   phone: string;
   subheading1: string;
   subheading2: string;
+  subheading3: string;
   subcontent: string;
   subcta: string;
   image: string | null;
   imageAlt: string;
   description: string;
   title: string | null;
+  showTitle: boolean | null;
   divider: string | null;
   divider2: string | null;
 }
@@ -57,11 +60,14 @@ if (selectedPitchSlug) {
     selectedPitch = {
       slug: selectedPitchSlug,
       tagline: pitchData.tagline ?? '',
+	  showTitle: pitchData.showTitle ?? '',
       text1: pitchData.text1 ?? '',
       text2: pitchData.text2 ?? '',
+	  text3: pitchData.text3 ?? '',
       phone: pitchData.phone ?? '',
       subheading1: pitchData.subheading1 ?? '',
       subheading2: pitchData.subheading2 ?? '',
+	  subheading3: pitchData.subheading3 ?? '',
       subcontent: pitchData.subcontent ?? '',
       subcta: pitchData.subcta ?? '',
       image: pitchData.image ?? null,
@@ -80,11 +86,14 @@ if (selectedPitchSlug2) {
     selectedPitch2 = {
       slug: selectedPitchSlug2,
       tagline: pitchData2.tagline ?? '',
+	  showTitle: pitchData2.showTitle ?? '',
       text1: pitchData2.text1 ?? '',
       text2: pitchData2.text2 ?? '',
+	  text3: pitchData2.text3 ?? '',
       phone: pitchData2.phone ?? '',
       subheading1: pitchData2.subheading1 ?? '',
       subheading2: pitchData2.subheading2 ?? '',
+	  subheading3: pitchData2.subheading3 ?? '',
       subcontent: pitchData2.subcontent ?? '',
       subcta: pitchData2.subcta ?? '',
       image: pitchData2.image ?? null,
@@ -103,11 +112,14 @@ if (selectedPitchSlug3) {
     selectedPitch3 = {
       slug: selectedPitchSlug3,
       tagline: pitchData3.tagline ?? '',
+	  showTitle: pitchData3.showTitle ?? '',
       text1: pitchData3.text1 ?? '',
       text2: pitchData3.text2 ?? '',
+	  text3: pitchData3.text3 ?? '',
       phone: pitchData3.phone ?? '',
       subheading1: pitchData3.subheading1 ?? '',
       subheading2: pitchData3.subheading2 ?? '',
+	  subheading3: pitchData3.subheading3 ?? '',
       subcontent: pitchData3.subcontent ?? '',
       subcta: pitchData3.subcta ?? '',
       image: pitchData3.image ?? null,

@@ -43,13 +43,14 @@ const optimizedImage = await getImage({src: content.featureImage?.src || '/defau
       end={content.youtube.end}
     />
   ) : content.featureImage && content.featureImage.src ? (
-    <div class="featured" style="">
-        <img
-          alt={content.featureImage.alt || ""}
-          src={optimizedImage.src}
-          width={optimizedImage.attributes.width}
-          height={optimizedImage.attributes.height}
-          class="max-w-full h-auto border-transparent"
-        />
+    <div class="featured">
+      <Image
+        src={optimizedImage.src}
+        alt={content.featureImage.alt || ""}
+        width={optimizedImage.attributes.width}
+        height={optimizedImage.attributes.height}
+        class="max-w-full h-auto border-transparent"
+      />
     </div>
-  ) : null}
+  ) : null
+}

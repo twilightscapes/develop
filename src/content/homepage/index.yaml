@@ -7,14 +7,13 @@ youtube:
 showBioOnHome: true
 showApp: false
 showHomeGallery: false
-showInfoBlock: true
 showPosts: true
 showMore: false
 showFaqOnHome: true
 showTestOnHome: true
-pitch: Info Block Title
-pitch2: This is a second block
-pitch3: OMG a 3rd block!
+pitch: How It Works
+pitch2: Part 2
+pitch3: part 3
 featureOrder: 1
 bioOrder: 2
 appOrder: .nan

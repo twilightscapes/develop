@@ -107,10 +107,11 @@ cloud: isProduction
     }),
 
     pitches: collection({
-      label: 'Info Block',
+      label: 'Content Modules',
       path: 'src/content/pitches/*',
       schema: {
         title: fields.text({ label: 'Title' }),
+        showTitle: fields.checkbox({ label: 'Show Title', description: 'Hide/Show the section title', defaultValue: true }),
         image: fields.image({
           label: 'Image',
           directory: 'public/images/pitches',
@@ -127,6 +128,8 @@ cloud: isProduction
         text1: fields.text({ label: 'Text 1', multiline: true }),
         subheading2: fields.text({ label: 'Subheading2' }),
         text2: fields.text({ label: 'Text 2', multiline: true }),
+        subheading3: fields.text({ label: 'Subheading3' }),
+        text3: fields.text({ label: 'Text 3', multiline: true }),
 
         phone: fields.text({ label: 'Phone' }),
         subcontent: fields.text({ label: 'Subcontent' }),
@@ -354,11 +357,7 @@ cloud: isProduction
 
         showHomeGallery: fields.checkbox({ label: 'Show Home Photo Gallery', description: 'Hide/Show the Photo section on home page', defaultValue: false }),
 
-        showInfoBlock: fields.checkbox({
-          label: 'Show Info Block Module',
-          description: 'Hide/Show the Bio/Info section on the home page',
-          defaultValue: false,
-        }),
+
 
         showPosts: fields.checkbox({ label: 'Show Posts', description: 'Hide/Show the Posts section on the home page', defaultValue: false }),
 
@@ -379,17 +378,17 @@ cloud: isProduction
         divider: fields.empty(),
 
         pitch: fields.relationship({
-          label: 'Select Pitch',
+          label: 'Content Block 1',
           collection: 'pitches',
         }),
 
         pitch2: fields.relationship({
-          label: 'Select Pitch 2',
+          label: 'Content Module 2',
           collection: 'pitches',
         }),
 
         pitch3: fields.relationship({
-          label: 'Select Pitch 3',
+          label: 'Content Module 3',
           collection: 'pitches',
         }),
 
@@ -403,9 +402,9 @@ cloud: isProduction
         postsOrder: fields.number({ label: 'Posts Section Order', defaultValue: 5 }),
         faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
         testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
-        infoblockOrder: fields.number({ label: 'Info Block Order', defaultValue: 8 }),
-        infoblock2Order: fields.number({ label: 'Info Block 2 Order', defaultValue: 9 }),
-        infoblock3Order: fields.number({ label: 'Info Block 3 Order', defaultValue: 10 }),
+        infoblockOrder: fields.number({ label: 'Content Block 1 Order', defaultValue: 8 }),
+        infoblock2Order: fields.number({ label: 'Content Block 2 Order', defaultValue: 9 }),
+        infoblock3Order: fields.number({ label: 'Content Block 3 Order', defaultValue: 10 }),
 
         
         divider5: fields.empty(),        
