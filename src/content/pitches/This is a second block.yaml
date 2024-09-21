@@ -1,0 +1,18 @@
+image: /images/pitches/This is a second block/image.png
+imageAlt: Image alt text here
+description: This is a sober image
+tagline: Another cool tagline
+subheading1: Subhead 1
+text1: >+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nulla nibh,
+  dictum vitae condimentum et, ullamcorper vel risus. 
+
+subheading2: Sub header 2
+text2: >-
+  Nulla lacus nibh, volutpat et justo at, tincidunt dapibus leo. In porttitor,
+  ante nec ultricies varius, metus orci efficitur orci, vitae malesuada sapien
+  risus ac ligula. Fusce sed metus bibendum, facilisis justo a, vulputate ipsum.
+  Vestibulum luctus sem et sem 
+phone: '2285551212'
+subcontent: some sub content here
+subcta: CTA Text yo!

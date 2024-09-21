@@ -383,6 +383,16 @@ cloud: isProduction
           collection: 'pitches',
         }),
 
+        pitch2: fields.relationship({
+          label: 'Select Pitch 2',
+          collection: 'pitches',
+        }),
+
+        pitch3: fields.relationship({
+          label: 'Select Pitch 3',
+          collection: 'pitches',
+        }),
+
         divider1: fields.empty(),
         divider6: fields.empty(),
         
@@ -394,7 +404,13 @@ cloud: isProduction
         faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
         testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
         infoblockOrder: fields.number({ label: 'Info Block Order', defaultValue: 8 }),
-        divider5: fields.empty(),
+        infoblock2Order: fields.number({ label: 'Info Block 2 Order', defaultValue: 9 }),
+        infoblock3Order: fields.number({ label: 'Info Block 3 Order', defaultValue: 10 }),
+
+        
+        divider5: fields.empty(),        
+        
+        
         photosectiontitle: fields.text({ label: 'Photo Section Title Header'  }),
         faqsectiontitle: fields.text({ label: 'FAQ Title Header'  }),
         testimonialtitle: fields.text({ label: 'Testimonials Title Header' }),

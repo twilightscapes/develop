@@ -13,14 +13,18 @@ showMore: false
 showFaqOnHome: true
 showTestOnHome: true
 pitch: Info Block Title
+pitch2: This is a second block
+pitch3: OMG a 3rd block!
 featureOrder: 1
 bioOrder: 2
-appOrder: 9
-galleryOrder: 4
-postsOrder: 6
-faqOrder: 5
-testimonialsOrder: 7
+appOrder: .nan
+galleryOrder: .nan
+postsOrder: 7
+faqOrder: 6
+testimonialsOrder: 9
 infoblockOrder: 3
+infoblock2Order: 4
+infoblock3Order: 5
 photosectiontitle: Photo Gallery
 faqsectiontitle: FAQs
 testimonialtitle: What the dogs are sayin'
