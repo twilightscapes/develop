@@ -7,18 +7,20 @@ youtube:
 showBioOnHome: true
 showApp: false
 showHomeGallery: false
+showInfoBlock: true
 showPosts: true
 showMore: false
 showFaqOnHome: true
 showTestOnHome: true
-pitch: Whoop Ass
-featureOrder: 2
-bioOrder: 3
-appOrder: 1
+pitch: Info Block Title
+featureOrder: 1
+bioOrder: 2
+appOrder: 9
 galleryOrder: 4
 postsOrder: 6
 faqOrder: 5
 testimonialsOrder: 7
+infoblockOrder: 3
 photosectiontitle: Photo Gallery
 faqsectiontitle: FAQs
 testimonialtitle: What the dogs are sayin'

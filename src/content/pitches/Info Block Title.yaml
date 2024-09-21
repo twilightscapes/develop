@@ -1,0 +1,16 @@
+image: /images/pitches/Info Block Title/image.png
+imageAlt: This is alt text
+description: 'Stinkfist rules '
+tagline: This is the tagline
+subheading1: This is subheading 1
+text1: >-
+  This is text 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Phasellus nulla nibh, dictum vitae condimentum et, ullamcorper vel risus. 
+subheading2: This is subheading 2
+text2: >-
+  This is text 2 Cras lacus urna, eleifend eget neque a, dapibus consectetur
+  felis. Aenean sed tempor nisl. Etiam euismod accumsan augue, nec sollicitudin
+  elit interdum ac.
+phone: phone number
+subcontent: sub content
+subcta: Cta text here

@@ -24,8 +24,20 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 
 const homepage = await reader.singletons.home.read();
+import type { CollectionEntry } from 'astro:content';
 
+type PitchData = CollectionEntry<'pitches'>['data'] & { slug: string };
 
+const selectedPitchSlug = homepage?.pitch;
+let selectedPitch: PitchData | undefined;
+
+if (selectedPitchSlug) {
+  const pitchData = await reader.collections.pitches.read(selectedPitchSlug);
+  selectedPitch = {
+    ...pitchData,
+    slug: selectedPitchSlug
+  };
+}
 const showBioOnHome = homepage?.showBioOnHome ?? false;
 const showFaqOnHome = homepage?.showFaqOnHome ?? false;
 const showTestOnHome = homepage?.showTestOnHome ?? false;
@@ -33,6 +45,7 @@ const showFeature = homepage?.showFeature ?? false;
 const showPosts = homepage?.showPosts ?? false;
 const ShowMore = homepage?.showMore ?? false;
 const ShowApp = homepage?.showApp ?? false;
+// const showInfoBlock = homepage?.showInfoBlock ?? false;
 
 
 const showHomeGallery = homepage?.showHomeGallery ?? false;
@@ -40,7 +53,6 @@ const showHomeGallery = homepage?.showHomeGallery ?? false;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 const language = await getEntry('language', 'index');
-
 
 const sections = [
   { name: 'feature', show: homepage?.showFeature, order: homepage?.featureOrder, component: Feature },
@@ -50,8 +62,8 @@ const sections = [
   { name: 'posts', show: homepage?.showPosts, order: homepage?.postsOrder, component: showPosts },
   { name: 'faq', show: homepage?.showFaqOnHome, order: homepage?.faqOrder, component: Faqs },
   { name: 'testimonials', show: homepage?.showTestOnHome, order: homepage?.testimonialsOrder, component: Testimonials },
+  { name: 'infoblock', show: !!selectedPitch, order: homepage?.infoblockOrder ?? 8, component: InfoBlock },
 ];
-
 const sortedSections = sections
   .filter(section => section.show)
   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
@@ -86,7 +98,18 @@ flex-direction: column;
 							return <App />;
 						case 'gallery':
 							return (<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.photosectiontitle}</h2><PhotoSection />);
-						case 'posts':
+											case 'infoblock':
+												return (
+													<>
+														{selectedPitch && (
+															<>
+																
+																<InfoBlock pitch={selectedPitch} />
+															</>
+														)}
+													</>
+												);
+											case 'posts':
 							return (
 								<>
 									<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg">{homeContent.data.postsectiontitle}</h2>

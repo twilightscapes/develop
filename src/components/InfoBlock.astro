@@ -1,69 +1,51 @@
 ---
-// import { Image } from "astro:assets";
-// import featureImage from '/images/homepage/featureImage/src.webp';
-
 import { Image } from "astro:assets";
-import Poop1 from "@/public/infoblock/dog-poop1.jpg"
-import ReportCard from "@/public/infoblock/report-card.webp"
-import HappyYard from "@/public/infoblock/happy-yard.webp"
 
 interface Props {
-  content: {
-    title: string;
+  pitch?: {
+    slug: string;
+    tagline: string;
+    text1: string;
+    text2: string;
+    phone: string;
+    subheading1: string;
+    subheading2: string;
+    subcontent: string;
+    subcta: string;
+    image: string | null;
+    imageAlt: string;
+    description: string;
   };
 }
+
+const { pitch } = Astro.props;
 ---
 
+<h2 class="glow text-[clamp(1.4rem,3.9vw,4rem)] shadow-text text-center theme-accent backdrop-blur-lg" style="margin:2vh auto;">
+  {pitch?.slug || 'Default Title'}
+</h2>
 
+<section id="SecondaryInfo4" class="nameblock" style="margin: 0 auto; padding: 0 0 0 0; align-content: center; display: grid; text-align: left; justify-content: center; vertical-align: center; font-size: clamp(1rem, 1.8vw, 3.2rem); backdrop-filter: blur(8px); border-radius: 10px; max-width: 95%;">
 
-<div class="nameblock flexcheek headline" style={{position:'', marginTop:'2vh', width:'100vw', padding: '1vh 4vh', margin:'0 auto 0 auto', maxHeight: '', fontSize: 'clamp(1.3rem, 3.5vw, 3.2rem)', textAlign:'center', textShadow: '0 2px 3px #000',
-background:'var(--header-bg)', 
-backdropFilter:'blur(12px)', color:'' }}>
-    <h2 class="glow">How It Works</h2>
+  <div class="flexbutt" style="display: flex; flex: 1; gap: 2vw; width: 100%;">
+
+    <div class="flexcheek" style="display: flex; flex-direction: column; justify-content: center; width:100%;">
+      <!-- <p>{pitch?.phone ?? ''}</p> -->
+      <h3 style="font-size: clamp(1rem, 3vw, 2.2rem); margin-bottom: 1vh;">{pitch?.tagline ?? ''}</h3> 
+      <h4>{pitch?.subheading1 ?? ''}</h4>
+      <p>{pitch?.text1 ?? ''}</p>
+      <br />
+      <h4>{pitch?.subheading2 ?? ''}</h4>
+      <p>{pitch?.text2 ?? ''}</p>
+
+      <p>{pitch?.subcontent ?? ''}</p>
+      <p>{pitch?.subcta ?? ''}</p>
+    </div>
+    <div class="flexcheek" style="display: flex; flex-direction: column; justify-content: center; width:100%; align-content: center; align-items: center;">
+      {pitch?.image && (
+        <Image src={pitch.image} alt={pitch.imageAlt ?? ''} width={800} height={600} style="height: auto; width: 100%; max-height: 100vh; position: relative; z-index: 1; top: 0; left: 0;  object-fit: contain; margin: 0 auto; border-radius:var(--border-radius); margin:0 auto;" />
+      )}
+      {pitch?.description ?? ''}
+    </div>
   </div>
-<section id="SecondaryInfo4" class="nameblock" style={{margin:'0 auto 0 auto', padding:'5vh 4% 0 0',alignContent:'center', display:'grid', textAlign:'left', justifyContent:'center', verticalAlign:'center',
-  border:'0px solid red', 
-  fontSize:'clamp(1rem, 1.8vw, 3.2rem)',
-  backdropFilter:'blur(8px)',
-  borderRadius:'10px',
-  maxWidth:'95%' ,
-  }}>
-
-<div class="flexbutt" style={{gap:'10vw'}}>
-<div class="flexcheek mobileporkfat" style={{ display:'flex', flexDirection:'column', justifyContent:'space-around', order:'2'}}>
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Place Your Order:</h3> 
-<p>Using the Dog Poopers website, simply locate your yard on the map and select "Draw Yard". Proceed to outline your yard by dropping points on the boundaries. Once your area is defined,  you simply select the number of dogs and the frequency of service.
-</p>
-
-<!-- <h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Our Services:</h3> <p>Our friendly and professional team will arrive at your residence on Mondays and Thursdays. You don’t need to be home – just provide us access to your yard, and we’ll take care of the rest. </p>
-
-
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>You Can Rest Assured:</h3> <p>Dog Poopers provides a Poopers Report Card that will let you know when we did our business, as well as monitor your dog's business too! With our provided service cards we'll let you know if there was blood or worms present when we picked up.</p>
-
-<h3 style={{fontSize: 'clamp(1rem, 3vw, 2.2rem)'}}>Enjoy your yard:</h3> <p>It's about time for you to start enjoying your back yard again! With the poop gone, you can enjoy a clean, fresh yard without the hassle.
-<br /><br />
-Let us take care of the mess so you can enjoy a spotless yard and more quality time with your four-legged friends. Schedule your first service today and experience the delight of a poop-free yard!
-<br /><br />Our team is trained, insured, and dedicated to providing top-notch service with a smile.</p> -->
-</div>
-
-<div class="flexcheek mobilepork" style={{display:'flex', gap:'2vw', flexDirection:'column', justifyContent:'space-between', fontSize: 'clamp(1rem, 1vw, 2.2rem)', textAlign:'left', padding:'1rem 0', order:'1'}}> 
-
-
-
-<Image src={Poop1} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Dog Poopers will scan your yard for hidden "bundles of joy", removing all the waste and leaving both you and your pet happy!
-
-
-<!-- 
-<Image src={ReportCard} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Dog Poopers provides a Poopers Report Card on each visit, keeping you involved with your pet's health.
-
-
-<Image src={HappyYard} loading="lazy" alt="Dog Poop Clean Up" style={{height:'auto', width:'', maxHeight:'100vh', position:'relative', zIndex:'', top:'', left:'', border:'1px solid #222', objectFit:'contain', margin:'0 auto'}} />
-Happy pets that will thank you for keeping their yard clean AND you can have company over again and not be embarrassed!  -->
-
-</div>
-</div>
-
-
 </section>

@@ -97,17 +97,16 @@ const home = defineCollection({
         url: z.string().optional(),
         title: z.string().optional(),
         controls: z.boolean().optional(),
+        useCustomPlayer: z.boolean().optional(),
         mute: z.boolean().optional(),
         loop: z.boolean().optional(),
         start: z.number().optional(),
         end: z.number().optional(),
-        useCustomPlayer: z.boolean().optional(),
         videoOnly: z.boolean().optional(),
       }).optional()
     }).optional(),
   }),
-});
-const siteSettings = defineCollection({
+});const siteSettings = defineCollection({
   type: 'data',
   schema: z.object({
     showHeader: z.boolean().optional(),
@@ -214,6 +213,24 @@ const post = defineCollection({
   schema: postSchema
 });
 
+const pitches = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    image: z.string().optional(),
+    imageAlt: z.string(),
+    description: z.string(),
+    tagline: z.string(),
+    subheading1: z.string(),
+    text1: z.string(),
+    subheading2: z.string(),
+    text2: z.string(),
+    phone: z.string(),
+    subcontent: z.string(),
+    subcta: z.string(),
+  }),
+});
+
 export const collections = {
   post,
   faqs, 
@@ -221,7 +238,8 @@ export const collections = {
   home, 
   siteSettings, 
   pwaSettings,
-  menuItems
+  menuItems,
+  pitches
 };
 
 

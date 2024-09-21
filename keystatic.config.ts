@@ -111,22 +111,30 @@ cloud: isProduction
       path: 'src/content/pitches/*',
       schema: {
         title: fields.text({ label: 'Title' }),
-        tagline: fields.text({ label: 'Tagline' }),
-        description: fields.text({ label: 'Description', multiline: true }),
-        phone: fields.text({ label: 'Phone' }),
-        subheading: fields.text({ label: 'Subheading' }),
-        subcontent: fields.text({ label: 'Subcontent' }),
-        subcta: fields.text({ label: 'CTA Text' }),
         image: fields.image({
           label: 'Image',
           directory: 'public/images/pitches',
           publicPath: '/images/pitches',
         }),
+        imageAlt: fields.text({ label: 'Image Alt Text' }),
+        description: fields.text({ label: 'Image description/caption' }),
+
+        divider: fields.empty(),
+        divider2: fields.empty(),
+
+        tagline: fields.text({ label: 'Tagline' }),
+        subheading1: fields.text({ label: 'Subheading1' }),
+        text1: fields.text({ label: 'Text 1', multiline: true }),
+        subheading2: fields.text({ label: 'Subheading2' }),
+        text2: fields.text({ label: 'Text 2', multiline: true }),
+
+        phone: fields.text({ label: 'Phone' }),
+        subcontent: fields.text({ label: 'Subcontent' }),
+        subcta: fields.text({ label: 'CTA Text' }),
+        
       },
       slugField: 'title'
-    }),
-
-    
+    }),    
 
     faqs: collection({
       label: 'FAQs',
@@ -346,6 +354,12 @@ cloud: isProduction
 
         showHomeGallery: fields.checkbox({ label: 'Show Home Photo Gallery', description: 'Hide/Show the Photo section on home page', defaultValue: false }),
 
+        showInfoBlock: fields.checkbox({
+          label: 'Show Info Block Module',
+          description: 'Hide/Show the Bio/Info section on the home page',
+          defaultValue: false,
+        }),
+
         showPosts: fields.checkbox({ label: 'Show Posts', description: 'Hide/Show the Posts section on the home page', defaultValue: false }),
 
         showMore: fields.checkbox({ label: 'Show More Button', description: 'Hide/Show the Show More Button (for the posts section above)', defaultValue: false }),
@@ -379,8 +393,8 @@ cloud: isProduction
         postsOrder: fields.number({ label: 'Posts Section Order', defaultValue: 5 }),
         faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
         testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
+        infoblockOrder: fields.number({ label: 'Info Block Order', defaultValue: 8 }),
         divider5: fields.empty(),
-
         photosectiontitle: fields.text({ label: 'Photo Section Title Header'  }),
         faqsectiontitle: fields.text({ label: 'FAQ Title Header'  }),
         testimonialtitle: fields.text({ label: 'Testimonials Title Header' }),
