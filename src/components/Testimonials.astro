@@ -23,10 +23,10 @@ const { defaultView } = siteSettings.data;
 
 ---
 
-<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} >
+<div class="contentpanel slider panels horizontal-slider" >
   <div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
   {sortedTestimonials.map((testimonial: Testimonial) => (
-    <div class="quotecard post-card12" >
+    <div class="quotecard post-card11" >
       <div class="flex flex-col text-center">
         {testimonial.data.image && (
           <Image
