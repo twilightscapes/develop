@@ -104,22 +104,28 @@ exports.handler = async (event, context) => {
 
     // Fetch the connected account ID
     const connectedAccountId = await getConnectedAccountId();
+    // Create a new active product
+    const product = await stripe.products.create({
+      name: `Dog Pooper's Pick Up By The Foot | ${poopArea} sq ft - ${numberOfDogs}`,
+      description: `Total area for pick up: ${poopArea} sq ft\nTotal Dogs: ${numberOfDogs}\n | Manage Your Lawn Map and account details by clicking this link: ${pageUrl}`,
+      active: true, // Explicitly set the product as active
+    });
 
-    // Create line items for the session
+    // Create a new price for the product
+    const price = await stripe.prices.create({
+      product: product.id,
+      unit_amount: Math.round(dynamicAmountCents),
+      currency: 'usd',
+      recurring: mode === 'subscription' ? {
+        interval: interval,
+        interval_count: intervalCount,
+      } : undefined,
+    });
+
+    // Update the line items to use the new price
     const lineItems = [
       {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: `Dog Pooper's Pick Up By The Foot | ${poopArea} sq ft - ${numberOfDogs}`,
-            description: `Total area for pick up: ${poopArea} sq ft\nTotal Dogs: ${numberOfDogs}\n | Manage Your Lawn Map and account details by clicking this link: ${pageUrl}`,
-          },
-          recurring: mode === 'subscription' ? {
-            interval: interval,
-            interval_count: intervalCount,
-          } : undefined,
-          unit_amount: dynamicAmountCents,
-        },
+        price: price.id,
         quantity: 1,
       },
       {
@@ -127,7 +133,6 @@ exports.handler = async (event, context) => {
         quantity: 1,
       },
     ];
-
     // Add the tip line item if a tip amount is provided
     if (tipAmountCents > 0) {
       lineItems.push({

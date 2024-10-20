@@ -26,7 +26,7 @@ const { defaultView } = siteSettings.data;
 <div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} >
   <div class="sliderSpacer" style={{ height: "", paddingTop: "", display: "" }} />
   {sortedTestimonials.map((testimonial: Testimonial) => (
-    <div class="quotecard post-card1">
+    <div class="quotecard post-card12" >
       <div class="flex flex-col text-center">
         {testimonial.data.image && (
           <Image
@@ -35,6 +35,7 @@ const { defaultView } = siteSettings.data;
             alt={`${testimonial.data.name ?? 'Testimonial'} Image`}
             width={200}
             height={100}
+            style="max-height:140px"
             class="max-h-[140px] relative object-contain mx-auto"
           />
         )}

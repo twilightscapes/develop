@@ -21,8 +21,15 @@ export function getPostSortDate(post: CollectionEntry<"post">) {
 }
 
 /** sort post by date (by siteConfig.sortPostsByUpdatedDate), desc.*/
-export function sortMDByDate(posts: CollectionEntry<"post">[]) {
+export function sortMDByDate(posts: CollectionEntry<"post">[], prioritizeOrder = false) {
 	return posts.sort((a, b) => {
+		if (prioritizeOrder) {
+			if (a.data.order?.value !== undefined && b.data.order?.value !== undefined) {
+				return a.data.order.value - b.data.order.value;
+			}
+			if (a.data.order?.value !== undefined) return -1;
+			if (b.data.order?.value !== undefined) return 1;
+		}
 		const aDate = getPostSortDate(a).valueOf();
 		const bDate = getPostSortDate(b).valueOf();
 		return bDate - aDate;

@@ -1,14 +1,14 @@
 export interface SiteConfig {
-	author: string;
+	author: string | undefined;
 	date: {
 		locale: string | string[] | undefined;
 		options: Intl.DateTimeFormatOptions;
 	};
-	description: string;
+	description: string | undefined;
 	lang: string;
 	ogLocale: string;
 	sortPostsByUpdatedDate: boolean;
-	title: string;
+	title: string | undefined;
 	webmentions?: {
 		link: string;
 		pingback?: string;

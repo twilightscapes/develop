@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
 	ogLocale: "en",
 	sortPostsByUpdatedDate: false,
 	webmentions: {
-		link: "",
+		link: "https://webmention.io/{{siteUrl}}/webmention",
 	},
 };
 

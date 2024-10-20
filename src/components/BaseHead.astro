@@ -20,7 +20,7 @@ const { articleDate, description, ogImage, title } = Astro.props;
 
 const titleSeparator = "•";
 const siteTitle = `${description} ${titleSeparator} ${siteConfig.title}`;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.com');const socialImageURL = new URL(ogImage ? ogImage : "/socialCard.webp", Astro.url).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.com'); const socialImageURL = new URL(ogImage ? ogImage : "/socialCard.webp", Astro.url).href;
 ---
 
 <meta charset="utf-8" />
@@ -32,15 +32,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.
 <link href={siteSettings.data.logoImage} rel="icon" type="image/svg+xml" />
 <link href={pwaSettings.data.icon192} rel="apple-touch-icon" />
 <link href="/manifest.webmanifest" rel="manifest" />
-<link href={canonicalURL} rel="canonical" />
+<link href={canonicalURL.toString()} rel="canonical" />
 
 {/* Primary Meta Tags */}
 <meta content={siteTitle} name="title" />
 <meta content={description} name="description" />
 <meta content={siteConfig.author} name="author" />
-{/*<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com; frame-src 'self' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; connect-src 'self'; object-src 'self' data:;">*/}
+{/* <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com; frame-src 'self' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; connect-src 'self'; object-src 'self' data:;"> */}
 
 {/*<meta http-equiv="Content-Security-Policy" content={`default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src 'self' * data:; media-src 'self' *; font-src 'self' *; connect-src 'self' *; object-src 'self' *; frame-src 'self' *;`}/>*/}
+
+
+
+{/*<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com; frame-src 'self' https://www.youtube.com https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com https://img.youtube.com; connect-src 'self'; object-src 'none';">*/}
 
 
 
@@ -79,6 +83,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.
 <meta content={title} property="twitter:title" />
 <meta content={description} property="twitter:description" />
 <meta content={socialImageURL} property="twitter:image" />
+<meta content={canonicalURL.toString()} property="twitter:url" />
 
 {/* Sitemap */}
 <link href="/sitemap-index.xml" rel="sitemap" />
@@ -98,6 +103,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.
 	)
 }
 
+
+
 {/* Google Fonts */}
 <link rel="preconnect" href="https://fonts.googleapis.com" cross-origin="anonymous" />
 <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin="anonymous" />
@@ -112,9 +119,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://example.
   #menu,.menu,.font,.full-width-image:after,.h1,.h2,.h3,.h4,.header .menu-icon:before,.slider:before,.intro:after,.intro:before,.scrolldown,h1,h2,h3,h4,input.special{font-family: ${siteFont}, sans-serif;}
 `}>
 </style>
-
 <meta content={Astro.generator} name="generator" />
-
+<meta content={canonicalURL.toString()} property="og:url" />
 <meta name="mobile-web-app-capable" content="yes">
 
 <link rel="apple-touch-startup-image" href="/images/siteimages/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />

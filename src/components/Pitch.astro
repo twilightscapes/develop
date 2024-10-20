@@ -6,11 +6,10 @@ interface Props {
   description: string;
   phone: string;
   subheading: string;
-  subcontent: string;
-  subcta: string;
+
 }
 
-const { title, tagline, description, phone, subheading, subcontent, subcta } = Astro.props;
+const { title, tagline, description, phone, subheading } = Astro.props;
 ---
 
 <section class="scroll-area1 panel" id="profile">
@@ -31,11 +30,11 @@ const { title, tagline, description, phone, subheading, subcontent, subcta } = A
                     <h3 class="font">{subheading}</h3>
                 </div>
                 <div>
-                    <p>{subcontent}</p>
+                    
                     <button class="special font">
                         <div class="fancy"></div>
-                        <a class="font" href="contact" title="Contact Us" aria-label="Contact Us">
-                            <span class="butttext font">{subcta}</span>
+                        <a class="font" href="contact" title={title} aria-label={title}>
+                            <span class="butttext font">{title}</span>
                         </a>
                     </button>
                 </div>

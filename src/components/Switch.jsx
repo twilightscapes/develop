@@ -28,52 +28,21 @@ const SwipeIcon = () => (
   </svg>
 );
 
-
-
 function Switch({ defaultView }) {
+  const STORAGE_KEY = "siteViewPreference";
+  
   const [isSliderVisible, setIsSliderVisible] = useState(() => {
     if (typeof window !== 'undefined') {
-      const storedValue = localStorage.getItem("isSliderVisible");
-      try {
-        return JSON.parse(storedValue) ?? (defaultView === 'swipe');
-      } catch (error) {
-        return defaultView === 'swipe';
-      }
+      const storedValue = localStorage.getItem(STORAGE_KEY);
+      return storedValue !== null ? JSON.parse(storedValue) : defaultView === 'swipe';
     }
     return defaultView === 'swipe';
   });
 
-  const [showIcon, setShowIcon] = useState(false);
-
-  useEffect(() => {
-    setShowIcon(true);
-  }, []);
-
-  const toggleSlider = () => {
-    setIsSliderVisible((prev) => {
-      const newValue = !prev;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem("isSliderVisible", JSON.stringify(newValue));
-        window.dispatchEvent(new StorageEvent("storage", { key: "isSliderVisible" }));
-        const elements = document.querySelectorAll('.contentpanel', '.slider');
-        elements.forEach((el) => {
-          if (newValue) {
-            el.classList.remove('grid-container');
-            el.classList.add('slider', 'panels');
-          } else {
-            el.classList.add('grid-container');
-            el.classList.remove('slider', 'panels');
-          }
-        });
-      }
-      return newValue;
-    });
-  };
-
   useEffect(() => {
     const handleStorageChange = (event) => {
-      if (event.key === "isSliderVisible" && typeof window !== 'undefined') {
-        const storedValue = localStorage.getItem("isSliderVisible");
+      if (event.key === STORAGE_KEY && typeof window !== 'undefined') {
+        const storedValue = localStorage.getItem(STORAGE_KEY);
         setIsSliderVisible(JSON.parse(storedValue));
       }
     };
@@ -88,17 +57,45 @@ function Switch({ defaultView }) {
   }, []);
 
   useEffect(() => {
-    const elements = document.querySelectorAll('.contentpanel');
-    elements.forEach((el) => {
-      if (isSliderVisible) {
-        el.classList.remove('grid-container');
-        el.classList.add('slider', 'panels', 'horizontal-slider');
-      } else {
-        el.classList.add('grid-container');
-        el.classList.remove('slider', 'panels', 'horizontal-slider');
+    const initializeView = () => {
+      const contentPanel = document.querySelector('.contentpanel');
+      if (contentPanel) {
+        if (isSliderVisible) {
+          contentPanel.classList.add('slider', 'panels', 'horizontal-slider');
+          contentPanel.classList.remove('grid-container');
+        } else {
+          contentPanel.classList.add('grid-container');
+          contentPanel.classList.remove('slider', 'panels', 'horizontal-slider');
+        }
       }
-    });
+      // Reinitialize scroll listener here if needed
+    };
+
+    initializeView();
+
+    if (typeof window !== 'undefined') {
+      document.addEventListener('DOMContentLoaded', initializeView);
+      document.addEventListener('astro:after-swap', initializeView);
+
+      return () => {
+        document.removeEventListener('DOMContentLoaded', initializeView);
+        document.removeEventListener('astro:after-swap', initializeView);
+      };
+    }
   }, [isSliderVisible]);
+
+  const toggleSlider = () => {
+    setIsSliderVisible((prev) => {
+      const newValue = !prev;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue));
+        window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
+        // Dispatch a custom event
+        window.dispatchEvent(new CustomEvent('viewModeChanged'));
+      }
+      return newValue;
+    });
+  };
 
   return (
     <div>
@@ -108,7 +105,7 @@ function Switch({ defaultView }) {
         className="flex items-center justify-center rounded-md ring-zinc-400 transition-all hover:ring-2"
       >
         <div className="themer">
-          {showIcon && (isSliderVisible ? <GridIcon /> : <SwipeIcon />)}
+          {isSliderVisible ? <GridIcon /> : <SwipeIcon />}
         </div>
       </button>
     </div>
@@ -116,4 +113,3 @@ function Switch({ defaultView }) {
 }
 
 export default Switch;
-

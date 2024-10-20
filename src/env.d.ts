@@ -15,3 +15,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
 }
+
+declare module '@/site-config' {
+	export function getMenuLinks(): Promise<any[]>;
+	export const siteConfig: any;
+}

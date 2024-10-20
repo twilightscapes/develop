@@ -6,7 +6,7 @@ import Pagination from "@/components/Paginator.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, getUniqueTags, groupPostsByYear, sortMDByDate } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
-import GoBack from "@/components/GoBack.astro";
+
 
 
 
@@ -16,6 +16,8 @@ const language = await getEntry('language', 'index');
 export const getStaticPaths = (async ({ paginate }) => {
 	const siteSettings = await getEntry('siteSettings', 'main');
 const { MAX_POSTS_PER_PAGE } = siteSettings.data;
+
+
 
 	const allPosts = await getAllPosts();
 	const allPostsByDate = sortMDByDate(allPosts);
@@ -54,33 +56,34 @@ const groupedByYear = groupPostsByYear(page.data);
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 
 const siteSettings = await getEntry('siteSettings', 'main');
-const { defaultView } = siteSettings.data;
+const { defaultView, showTags, showDates } = siteSettings.data;
 ---
 
 <PageLayout meta={meta}>
-	<GoBack />
+
 	
 		
 
 		<div class={`contentpanel ${defaultView === 'swipe' ? 'slider panels horizontal-slider' : 'grid-container'}`} style="min-height:; padding-top:7vh;">
 			<div class="sliderSpacer"></div>
+				{descYearKeys.map((yearKey) => (
+					<>
+						{typeof showDates !== 'undefined' && showDates && (
+							<div class="grid place-content-center">
+								<h2 class="title text-lg">{yearKey}</h2>
+							</div>
+						)}
+						{groupedByYear[yearKey]?.map((p) => (
+							<PostPreview post={p} />
+						))}
+					</>
+				))}
 
-			{descYearKeys.map((yearKey) => (
-				<>
-					<div class="grid place-content-center">
-						<h2 class="title text-lg">{yearKey}</h2>
-					</div>
-					{groupedByYear[yearKey]?.map((p) => (
-						<PostPreview post={p}  />
-					))}
-				</>
-			))}
-
-			<div class="grid place-content-center min-w-[380px] min-h-[180px] max-h-[85%]">
-				<Pagination {...paginationProps} />
+				<div class="grid place-content-center min-w-[380px] min-h-[180px] max-h-[85%]">
+					<Pagination {...paginationProps} />
+				</div>
 			</div>
-		</div>
-
+		{typeof showTags !== 'undefined' && showTags && (
 <div class="">
 		{!!uniqueTags.length && (
 			<aside class="p-4 flex gap-4 items-center" style="max-width: 100%;">
@@ -123,7 +126,8 @@ const { defaultView } = siteSettings.data;
 				</span>
 			</aside>
 		)}
-
-
 	</div>
+
+)}
+
 </PageLayout>

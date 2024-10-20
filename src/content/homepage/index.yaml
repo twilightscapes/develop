@@ -1,12 +1,14 @@
-showFeature: true
+showFeature: false
 featureImage:
   src: /images/homepage/featureImage/src.webp
   alt: We pick up the poop!
 youtube:
   discriminant: false
+cta: Get Started
 showBioOnHome: true
 showApp: false
 showHomeGallery: false
+showResume: false
 showPosts: true
 showMore: false
 showFaqOnHome: true
@@ -14,9 +16,9 @@ showTestOnHome: true
 pitch: How It Works
 pitch2: Part 2
 pitch3: part 3
-featureOrder: 1
+featureOrder: 10
 bioOrder: 2
-appOrder: .nan
+appOrder: 1
 galleryOrder: .nan
 postsOrder: 7
 faqOrder: 6

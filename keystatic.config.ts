@@ -1,28 +1,11 @@
 import React from 'react';
 import { config, fields, collection, singleton } from '@keystatic/core';
 import { colorPicker } from './src/components/ColorPicker.tsx';
-
-
-
-
-
-
-const isProduction: boolean = import.meta.env.PROD;
-
-
 export default config({
-  storage: isProduction
-  ? {
-      kind: 'cloud',
-    }
-  : {
-      kind: 'local',
-    },
-cloud: isProduction
-  ? {
-      project: import.meta.env.KEYSTATIC_PROJECT || 'tool/toolpirate',
-    }
-  : undefined,
+  storage: import.meta.env.PROD ? { kind: 'cloud' } : { kind: 'local' },
+  cloud: import.meta.env.PROD
+    ? { project: import.meta.env.VITE_KEYSTATIC_PROJECT || 'pirate/pirate' }
+    : undefined,
   collections: {
     posts: collection({
       label: 'Posts',
@@ -31,14 +14,22 @@ cloud: isProduction
       path: 'src/content/post/*/',
       format: { contentField: 'content' },
       schema: {
+        publishDate: fields.datetime({ label: 'Publish Date' }),
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({ label: 'Description', validation: { length: { min: 50, max: 160 } } }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
+        order: fields.conditional(
+          fields.checkbox({ label: 'Make Sticky On Homepage?' }),
+          {
+            true: fields.number({ label: 'Sort Order' }),
+            false: fields.empty()
+          }
+        ),
         content: fields.markdoc({ label: 'Content' }),
         
-        publishDate: fields.datetime({ label: 'Publish Date' }),
-        updatedDate: fields.datetime({ label: 'Updated Date' }),
-        divider: fields.empty(),
+
+        // updatedDate: fields.datetime({ label: 'Updated Date' }),
+
         coverImage: fields.object({
           src: fields.image({
             label: 'Image file',
@@ -49,7 +40,10 @@ cloud: isProduction
             label: 'Alt Text',
           }),
         }),
-        divider2: fields.empty(),
+
+        externalUrl: fields.text({ label: 'External Url', description: 'A url of an external site will be loaded into an iframe', }),
+
+
         youtube: fields.conditional(
           fields.checkbox({ label: 'Include YouTube Video' }),
           {
@@ -84,10 +78,10 @@ cloud: isProduction
             false: fields.empty(),
           }
         ),
-        divider1: fields.empty(),        tags: fields.array(fields.text({ label: 'Tag' }), {
+        divider1: fields.empty(),        
+        tags: fields.array(fields.text({ label: 'Tag' }), {
           label: 'Tags',
-          itemLabel: (props) => props.value,
-        }),
+          itemLabel: (props: any) => props.value,        }),
       },
     }),    pages: collection({      label: 'Other Pages',
       path: 'src/content/pages/*',
@@ -106,8 +100,61 @@ cloud: isProduction
       },
     }),
 
+    CTAs: collection({
+      label: 'Call-To-Actions',
+      path: 'src/content/ctas/*',
+      schema: {
+        title: fields.text({ label: 'CTA Title', description: 'The text on the CTA Button' }),
+        ctaUrl: fields.text({ label: 'CTA Url', description: 'The location of your CTA', defaultValue: '/', validation: { length: { min: 1 } } }),
+        description: fields.text({ label: 'Description', description: 'The description for the CTA', multiline: true }),
+        showFancy: fields.checkbox({ label: 'Show Fancy Button', description: 'Use the Fancy style with animated button', defaultValue: true }),
+      },
+      slugField: 'description'
+    }),
+
+
+
+
+    socialLinks: collection({
+      label: 'Social Links',
+      path: 'src/content/socialLinks/*',
+      schema: {
+        friendlyName: fields.text({ label: 'Friendly Name' }),
+        link: fields.text({ label: 'Link URL' }),
+        icon: fields.select({
+          label: 'Icon',
+          options: [
+            { label: 'X/Twitter', value: 'mdi:twitter' },
+            { label: 'GitHub', value: 'mdi:github' },
+            { label: 'Facebook', value: 'mdi:facebook' },
+            { label: 'YouTube', value: 'mdi:youtube' },
+            { label: 'Twitch', value: 'mdi:twitch' },
+            { label: 'LinkedIn', value: 'mdi:linkedin' },
+            { label: 'Instagram', value: 'mdi:instagram' },
+            { label: 'Mastodon', value: 'mdi:mastodon' },
+            { label: 'Patreon', value: 'mdi:patreon' },
+            { label: 'Pinterest', value: 'mdi:pinterest' },
+            { label: 'Reddit', value: 'mdi:reddit' },
+            { label: 'Skype', value: 'mdi:skype' },
+            { label: 'Slack', value: 'mdi:slack' },
+            { label: 'Snapchat', value: 'mdi:snapchat' },
+            { label: 'SoundCloud', value: 'mdi:soundcloud' },
+            { label: 'WhatsApp', value: 'mdi:whatsapp' },
+            { label: 'Wordpress', value: 'mdi:wordpress' },
+          ],
+          defaultValue: 'mdi:twitter'
+        }),
+        isWebmention: fields.checkbox({ label: 'Is Webmention', defaultValue: true }),
+      },
+      slugField: 'friendlyName'
+    }),
+    
+    
+
+
+    
     pitches: collection({
-      label: 'Content Modules',
+      label: 'Content Blocks',
       path: 'src/content/pitches/*',
       schema: {
         title: fields.text({ label: 'Title' }),
@@ -130,10 +177,6 @@ cloud: isProduction
         text2: fields.text({ label: 'Text 2', multiline: true }),
         subheading3: fields.text({ label: 'Subheading3' }),
         text3: fields.text({ label: 'Text 3', multiline: true }),
-
-        phone: fields.text({ label: 'Phone' }),
-        subcontent: fields.text({ label: 'Subcontent' }),
-        subcta: fields.text({ label: 'CTA Text' }),
         
       },
       slugField: 'title'
@@ -155,6 +198,26 @@ cloud: isProduction
         order: fields.number({ label: 'Order' }),
       },
     }),
+
+
+    resume: collection({
+      label: 'Resume Blocks',
+      path: 'src/content/resume/*',
+      slugField: 'section',
+      format: { contentField: 'content' },
+      schema: {
+        section: fields.slug({ name: { label: 'Title' } }),
+        showTitle: fields.checkbox({ label: 'Show Title', description: 'Hide/Show the section title', defaultValue: true }),
+        content: fields.document({
+          label: 'Content',
+          formatting: true,
+          dividers: true,
+          links: true,
+        }),
+      },
+    }),
+
+
     testimonials: collection({
       label: 'Testimonials',
       path: 'src/content/testimonials/*',
@@ -170,7 +233,9 @@ cloud: isProduction
         }),
         order: fields.number({ label: 'Order' }),
       },
+  
     }),
+    
     menuItems: collection({
       label: 'Menu Items',
       path: 'src/content/menu/*',
@@ -181,7 +246,47 @@ cloud: isProduction
         order: fields.number({ label: 'Order' }),
       },
     }),
+
+    piratePosts: collection({
+      label: 'Pirate Posts',
+      path: 'src/content/piratePosts/*',
+      format: { contentField: 'content' },
+      slugField: 'title',
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        content: fields.markdoc({ label: 'Content' }),
+        createdAt: fields.datetime({ label: 'Created At' }),
+      },
+    }),
+
+    pirateFeeds: collection({
+      label: 'Pirate Feeds',
+      path: 'src/content/pirateFeeds/*',
+      slugField: 'title',
+      schema: {
+        title: fields.text({ label: 'Title' }),
+        feedUrl: fields.text({ label: 'Feed Url', description: 'The address to the Pirate users feed that you want to follow' }),
+        order: fields.number({ label: 'Order' }),
+      },
+    }),
+
+
+
+
+    
+
+
+    
   },
+
+
+
+
+
+
+
+
+
   singletons: {
     siteSettings: singleton({
       label: 'Site Settings',
@@ -218,6 +323,13 @@ cloud: isProduction
         }),
         showTitles: fields.checkbox({ label: 'Show Post Titles', description: 'Hide/Show the post titles', defaultValue: false }),
         showDates: fields.checkbox({ label: 'Show Dates', description: 'Hide/Show the post dates', defaultValue: true }),
+        enableImageBlur: fields.checkbox({ 
+          label: 'Enable Image Blur Effect', 
+          defaultValue: true 
+        }),
+        showSocial: fields.checkbox({ label: 'Show Social Links in Posts' }),
+        showCheck: fields.checkbox({ label: 'Show Pirate Link', description: 'Hide/Show the Pirate Link', defaultValue: true }),
+        showTags: fields.checkbox({ label: 'Show Post Tags', description: 'Hide/Show the post tags', defaultValue: false }),
         MAX_POSTS: fields.number({ label: 'Number of posts to display on home page', defaultValue: 3 }),
         MAX_POSTS_PER_PAGE: fields.number({ label: 'Number of posts to display on other pages', defaultValue: 3 }),
 
@@ -230,12 +342,12 @@ cloud: isProduction
       },
     }),
     pwaSettings: singleton({
-      label: 'PWA Settings',
+      label: 'PWA/SEO Settings',
       path: 'src/content/pwaSettings/',
       schema: {
         showRobots: fields.checkbox({
           label: 'SEO VISIBILITY',
-          description: 'Set robots meta tag to index site and follow links - checking this box will make your site appear in search engines',
+          description: 'Set the robots meta tag to index site and follow links - checking this box will make your site appear in search engines',
           defaultValue: false,
         }),
         siteUrl: fields.text({ label: 'Site Url', description: 'The address to your website' }),
@@ -250,7 +362,7 @@ cloud: isProduction
           directory: 'public/images/pwa',
           publicPath: '/images/pwa',
         }),
-        description: fields.text({ label: 'Description', description: 'The description, is used on Android in the PWA install dialogue window', }),
+        description: fields.text({ label: 'SEO/App Description', description: 'The description is used as the title of the homepage for SEO, and on Android in the PWA install dialogue window', }),
 
         divider2: fields.empty(),
 
@@ -341,11 +453,22 @@ cloud: isProduction
           }
         ),
 
+
+        cta: fields.relationship({
+          label: 'HOME BOTTOM CTA',
+          description: 'CTA at the bottom of the homepage',
+          collection: 'CTAs',
+        }),
         divider9: fields.empty(),
+        // homeCTA: fields.relationship({
+        //   label: 'BOTTOM CTA',
+        //   description: 'CTA at the bottom of the homepage',
+        //   collection: 'CTAs',
+        // }),
         divider7: fields.empty(),
         showBioOnHome: fields.checkbox({
-          label: 'Show Bio Module',
-          description: 'Hide/Show the Bio/Info section on the home page',
+          label: 'Show Profile Module',
+          description: 'Hide/Show the Profile section on the home page',
           defaultValue: false,
         }),
 
@@ -356,6 +479,12 @@ cloud: isProduction
         }),
 
         showHomeGallery: fields.checkbox({ label: 'Show Home Photo Gallery', description: 'Hide/Show the Photo section on home page', defaultValue: false }),
+
+        showResume: fields.checkbox({
+          label: 'Show Resume',
+          description: 'Hide/Show Resume section on the home page',
+          defaultValue: false,
+        }),
 
 
 
@@ -392,14 +521,17 @@ cloud: isProduction
           collection: 'pitches',
         }),
 
+        
+
         divider1: fields.empty(),
         divider6: fields.empty(),
         
         featureOrder: fields.number({ label: 'Feature Section Order', defaultValue: 1 }),
-        bioOrder: fields.number({ label: 'Bio Section Order', defaultValue: 2 }),
+        bioOrder: fields.number({ label: 'Profile Section Order', defaultValue: 2 }),
         appOrder: fields.number({ label: 'App Section Order', defaultValue: 3 }),
         galleryOrder: fields.number({ label: 'Gallery Section Order', defaultValue: 4 }),
         postsOrder: fields.number({ label: 'Posts Section Order', defaultValue: 5 }),
+        resumeOrder: fields.number({ label: 'Resume Section Order', defaultValue: 11 }),
         faqOrder: fields.number({ label: 'FAQ Section Order', defaultValue: 6 }),
         testimonialsOrder: fields.number({ label: 'Testimonials Section Order', defaultValue: 7 }),
         infoblockOrder: fields.number({ label: 'Content Block 1 Order', defaultValue: 8 }),
@@ -441,7 +573,7 @@ cloud: isProduction
         divider: fields.empty(),
 
         showBioOnPhotos: fields.checkbox({
-          label: 'Show Bio Module',
+          label: 'Show Profile Module',
           defaultValue: false,
         }),
 
@@ -455,6 +587,10 @@ cloud: isProduction
           defaultValue: false,
         }),
 
+        pitch: fields.relationship({
+          label: 'Content Block 1',
+          collection: 'pitches',
+        }),
         
 
         divider5: fields.empty(),
@@ -492,8 +628,7 @@ cloud: isProduction
           }),
           {
             label: 'CMS-managed Gallery Images',
-            itemLabel: (props) => props.fields.caption.value || 'Image',
-          }
+            itemLabel: (props: { fields: { caption: { value: string } } }) => props.fields.caption.value || 'Image',          }
         ),        divider4: fields.empty(),
 
       },
@@ -609,7 +744,7 @@ cloud: isProduction
   
 
     bio: singleton({
-      label: 'Bio',
+      label: 'Profile',
       path: 'src/content/bio/',
       schema: {
         title: fields.text({ label: 'Title' }),
@@ -623,11 +758,74 @@ cloud: isProduction
         phone: fields.text({ label: 'Phone' }),
         subheading: fields.text({ label: 'Sub Heading' }),
         subcontent: fields.text({ label: 'Sub Content', multiline: true }),
-        subcta: fields.text({ label: 'CTA Text' }),
+        cta: fields.relationship({
+          label: 'CTA',
+          collection: 'CTAs',
+        }),
+        showSocial: fields.checkbox({ label: 'Show Social Links' }),
+      },
+    }),    
+
+
+    pirateSocial: singleton({
+      label: 'Settings',
+      path: 'src/content/pirate/',
+      schema: {
+        profile: fields.text({ label: 'Profile Name' }),
+        description: fields.text({ label: 'Profile Description' }),
+
+        // autoDeletePiratePosts: fields.checkbox({
+        //   label: 'Auto-delete Pirate Posts',
+        //   description: 'Enable this to automatically delete Pirate Posts',
+        //   defaultValue: false,
+        // }),
+        // autoDeleteTime: fields.number({
+        //   label: 'Auto-delete Time (in minutes)',
+        //   description: 'Set the time after which Pirate Posts will be deleted',
+        //   defaultValue: 1440, // 24 hours in minutes
+        // }),
       },
     }),
-    
+
+
+
+    resumeSettings: singleton({
+      label: 'Resume Settings',
+      path: 'src/content/resumeSettings/',
+      schema: {
+        title: fields.text({ label: 'Resume Title' }),
+        showTitle: fields.checkbox({ label: 'Show Title', defaultValue: true }),
+        name: fields.text({ label: 'Your Name' }),
+        contact: fields.text({ label: 'Your Contact Details', description:'Enter your email address or phone number - (injected into print style sheet to prevent bots)' }),
+        
+        leftColumnItems: fields.array(
+          fields.relationship({
+            label: 'Left Column Item',
+            collection: 'resume',
+          }),
+          {
+            label: 'Left Column Items',
+            itemLabel: (props) => props.value || 'Resume Item',
+          }
+        ),
+        rightColumnItems: fields.array(
+          fields.relationship({
+            label: 'Right Column Item',
+            collection: 'resume',
+          }),
+          {
+            label: 'Right Column Items',
+            itemLabel: (props) => props.value || 'Resume Item',
+          }
+        ),
+      },
+    }),
+
+
   },
+
+
+
 
 
 
@@ -635,15 +833,15 @@ cloud: isProduction
 ui: {
   brand: {
     name: ' ',
-    mark: ({ colorScheme }) => {
+    mark: ({ colorScheme }: { colorScheme: string }) => {
       let path = colorScheme === 'dark'
-        ? '/images/logo/logoImage.webp'
-        : '/images/logo/logoImage.webp';
+        ? '/images/logo/logoImage.svg'
+        : '/images/logo/logoImage.svg';
       return React.createElement('img', { src: path, height: 40, alt: "Pirate Logo" });
     },
   },
   navigation: {
-    'Pages and Posts': [
+    'Site Pages and Posts': [
       'home',
       'pages',
       'posts',
@@ -653,7 +851,8 @@ ui: {
       'faqs',
       'testimonials',
       'pitches',
-      
+      'CTAs',
+      'resume',
     ],
     'Settings': [
       'siteSettings',
@@ -663,6 +862,15 @@ ui: {
       'photoSettings',
       'styleAppearance',
       'language',
+      'resumeSettings',
+    ],
+    'Pirate Social': [
+      'pirateSocial',
+      'piratePosts',
+      'pirateFeeds',
+      'socialLinks',
     ],
   },
 },});
+
+

@@ -1,4 +1,3 @@
-{/* Inlined to avoid FOUC. */}
 <script is:inline>
 	const lightModePref = window.matchMedia("(prefers-color-scheme: light)");
 
@@ -14,7 +13,7 @@
 		const bgColor = getComputedStyle(root).getPropertyValue(newTheme === 'light' ? '--theme-bg-light' : '--theme-bg-dark');
 		document.body.style.backgroundColor = bgColor;
 		
-		console.log('Theme set to:', newTheme, 'Background color:', bgColor);
+		// console.log('Theme set to:', newTheme, 'Background color:', bgColor);
 
 		const colorThemeMetaTag = document.querySelector("meta[name='theme-color']");
 		const bgColour = getComputedStyle(document.body).getPropertyValue("--theme-bg");
@@ -25,7 +24,6 @@
 	}
 	document.addEventListener('DOMContentLoaded', () => {
 		setTheme(getUserPref());
-		// ... other initial setup code ...
 	});
 
 	// View Transitions hook to restore theme

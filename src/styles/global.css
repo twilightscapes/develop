@@ -23,7 +23,7 @@
 	}
 }
 
-/* Rest of your CSS remains the same */
+
 html {
 	@apply scroll-smooth;
 }
@@ -33,7 +33,17 @@ body {
 }
 
 
-
+.kbd, kbd {
+    border: 1px solid;
+    border-radius:4px;
+    box-shadow: 1px 1px #777, 1px 1px #666;
+    font-family: monospace;
+    font-size: clamp(1.2rem, 1vw, 1rem);
+    height: 30px;
+    line-height: calc(1em + .4vw);
+    margin: 2px .25rem;
+    padding: .0625rem .5rem;
+}
 	  
 	  html, body {
 		padding: 0;
@@ -66,6 +76,7 @@ body {
 		height: 0px;
 		width: 0px;
 	  }
+	
 	  
 	  .button {
 		background-color: var(--theme-accent2);
@@ -100,7 +111,8 @@ body {
 		transition: opacity 0.5s ease-in;
 	  }
 	  
-	  
+
+
 	  
 	  @property --rotate{
 		syntax: "<angle>";
@@ -225,54 +237,39 @@ body {
 		text-align: right;
 	  }
 	  
-	  @media (max-width: 48rem) {
-		.mobilehide { display: none; }
-		.flexbutt { flex-direction: column; }
-		.flexcheek { position: inherit; top: inherit; width: 100%; }
-		.quotecard { flex-direction: column; }
-	  }
-	  
-	  @media (min-width: 320px) and (max-width: 759.5px) {
-		.grid-container { column-count: 2; }
-	  }
-	  
-	  @media (min-width: 760px) and (max-width: 979.5px) {
-		.grid-container { column-count: 3; }
-	  }
-	  
-	  @media (min-width: 980px) and (max-width: 1023.5px) {
-		.grid-container { column-count: 4; }
-	  }
-	  
-	  @media (min-width: 1024px) {
-		.grid-container { column-count: 5; }
-	  }
+
 	  
 	  
-	  /* old */
+
 	  
 	  header.header {height:0;}
 
-	  #missioncontrol{line-height: 1; position:fixed; top:6px; right:4px; z-index: 600; color:#fff; fill:#fff; background: var(--theme-header); padding:4px 6px; border-radius:var(--border-radius); opacity:.95; }
+	  #missioncontrol{line-height: 1; position:fixed; bottom:0; left:0; right:0; z-index:10; color:#fff; fill:#fff; background: var(--theme-header);  border-radius:var(--border-radius); border-bottom-right-radius: 0; border-bottom-left-radius: 0; opacity:.95; padding:.5vh 1vw; }
 	  
-	  
+	  #missioncontrol button{margin-top:1vh; margin-bottom:1vh;}
+
 	  .flexbutt{display:flex; }
 	  .flexcheek{
 		/* position:-webkit-sticky;position:sticky;top:0; */
 		width:50%}
 	  
-	  #gobacker, .button {
+	  /* .button {
 		display: flex;
 		align-items:center;
 		justify-content: center;
 		padding: .5vh .5vw;
+		margin-right:1vw;
 		background: var(--theme-header);
 		color:#ddd;
 		border-radius:var(--border-radius);
-	  }
+	  } */
 
+#gobacker.button{margin:0 auto; max-width: 200px; height:60px; padding:1rem !important;}
 
-	  #gobacker{position:fixed; display:flex;  right:10px; z-index:11; top:65px;}
+#gobacker {position: absolute !important; bottom:0;  right:60px !important;}
+
+/* body.home #gobacker{display: none;} */
+	  /* #gobacker{position:fixed; display:flex;  right:10px; z-index:5; top:65px;} */
 	  
 	  .backimage{
 		height: 100vh;
@@ -291,17 +288,20 @@ body {
 	  }
 
 
-/* user css */
-	  
-/* user css */
-
 	  
 	  .sliderSpacer{display:none;}
 	  
 	  .slider .sliderSpacer{display:block; width:50%; height:50% ; }
 	  
 
-
+#feature .homeCTA{
+	position:absolute;
+	display:grid;
+	place-self: center;
+	bottom:15vh;
+	left:0; right:0;
+	z-index: 11;
+}
 
 	  .grid-container {
 		display: grid;
@@ -323,10 +323,13 @@ body {
 	  }
 	  
 	  .grid-container .post-card1 img {
-		max-height: 25vh;
+		max-height: 30vh;
 		margin: 0 auto;
 		border-radius: var(--border-radius);
+	
 	  }
+
+	  .grid-container .custom-youtube-player {margin-bottom: 0;}
 	  
 	  .slider {
 		display: flex;
@@ -369,8 +372,18 @@ body {
 	  }
 
 
+	  .grid-container .topblock, .grid-container .botblock{height:0 !important;}
+	  .grid-container .video-title{font-size: 80%;}
 
-	
+
+
+	  .slider .video-container, .slider .post-card1, .slider .custom-youtube-player{ min-width: 80vw ;}
+
+	  .slider .iframe-container{ min-width: 80vw;}
+
+
+
+
 
 	  .slider img{
 		object-fit:contain; 
@@ -380,18 +393,81 @@ body {
 		max-height:68vh; 
 	 }
 	 .testi .slider img{
-		object-fit:contain !important; 
-		width: 100% !important; 
+		object-fit:contain ; 
+		width: 100% ; 
 		border-radius: var(--border-radius);
-		min-width: 20vw !important;
+		min-width: 20vw ;
+	 }
+
+
+
+	 .grid-container .iframe-container, .grid-container .iframe-container iframe {
+        position: relative;
+		min-width: 30vw !important;
+		width:100%;
+		min-height: 30vh;
+    }
+
+	.grid-container .video-container iframe  {
+		min-height: 30vh;
+	}
+
+
+	 @media (min-width: 1500px) {
+
+	 .grid-container .iframe-container, .grid-container .iframe-container iframe {
+        position: relative;
+		min-width: 10vw !important;
+		width:100%;
+		min-height: 30vh;
+    }
+
+	.grid-container .video-container iframe  {
+		min-height: 30vh;
+	}
+
 	 }
 
 
 	   @media (max-width: 48rem) {
+
 		.home .slider .post-card1 {
 			min-width: 70vw;
 		  }
+
+		  .grid-container .iframe-container, .grid-container .iframe-container iframe {
+			position: relative;
+			min-width: 96vw !important;
+			min-height: 40vh !important;
+		}
+		
+		.grid-container .video-container, .grid-container .video-container .youtube-embed iframe,  .slider .video-container .youtube-embed iframe {min-height: 30vh !important; max-height: 30vh !important;}
 	  }
+
+
+	  @media (max-width: 48rem) {
+		.mobilehide { display: none; }
+		.flexbutt { flex-direction: column; }
+		.flexcheek { position: inherit; top: inherit; width: 100%; }
+		.quotecard { flex-direction: column; }
+	  }
+	  
+	  @media (min-width: 320px) and (max-width: 759.5px) {
+		.grid-container { column-count: 2; }
+	  }
+	  
+	  @media (min-width: 760px) and (max-width: 979.5px) {
+		.grid-container { column-count: 3; }
+	  }
+	  
+	  @media (min-width: 980px) and (max-width: 1023.5px) {
+		.grid-container { column-count: 4; }
+	  }
+	  
+	  @media (min-width: 1024px) {
+		.grid-container { column-count: 5; }
+	  }
+
 
 
 
@@ -407,11 +483,9 @@ body {
 
 
 	.panel {
-		/* background-color: rgba(255, 255, 255, 0.1); */
 		backdrop-filter: blur(54px);
 		-webkit-backdrop-filter: blur(54px);
 		text-shadow: 0 1px 1px var(--theme-header);
-		/* transform: translateZ(0); */
 	}
 
 	#directorySelect {
@@ -422,14 +496,20 @@ body {
 	  	z-index: 2;
 		max-width: 300px;
 		margin: 0 auto;
-		margin-top:-60px;
+		margin-top:5px;
 		padding: 1vh 1vw;
 		background: var(--theme-header)
 	  }
 
 	  body:has(#homemap) {overflow-y:auto !important;}
 
-	body:has(.header) #directorySelect{top:72px !important;}
+	  body:has(.header) #directorySelect{top:5px !important;}
+
+	  /* body:has(.home) #footer{display: none;} */
+
+	  #footer{padding-bottom: 80px;}
+
+	  body:has(.home) #gobacker{display: none !important;}
 
 	select {
 		--webkit-appearance: none;
@@ -442,7 +522,7 @@ body {
 
 	  
 	  #menu{
-		position:sticky;
+		position:relatuve;
 		width: 100vw;
 		top:0;
 		left:0;
@@ -469,9 +549,65 @@ body {
 		.mobilehide{display:none}
 		.flexbutt{flex-direction:column}
 	  .flexcheek{position:inherit;top:inherit;width:100%}
-	  
+	  aside{display: none;}
+	  }
+
+
+#details{display:none;}
+
+
+	  @media print{
+
+		@page {
+			size: A4 landscape;
+		  }
+		  
+	  body, p {
+	  font: 10pt;
+	  background:#ffffff !important;
+	  color:#111111 !important;
+	  /* writing-mode: tb-rl; */
 	  }
 
 
 
+	  
+		a[href^="https://"]:after, a[href^="https://"]:after {
+	  content: " (" attr(href) ")";
+	  }
+	  
+	  #details {
+		display: flex !important;
+		width:100vw !important;
+		margin-bottom: 10px;
+		border: 1px solid #bbb;
+		padding: 3px 5px;
+		font-style: italic;
+		text-align: center;
+		justify-content: center;
+		gap:25vw;
+		page-break-before: always;
+		}
 
+	  /* section.resume:before {
+	  display: block;
+	  content: "Thank you for printing my resume";
+	  margin-bottom: 10px;
+	  border: 1px solid #bbb;
+	  padding: 3px 5px;
+	  font-style: italic;
+	  text-align: center;
+	  } */
+	  
+	  section, .backimage{display:none !important;}
+	  .home section{display:none !important;}
+	  section.resume{display:block !important; overflow: visible !important;column-count: 2; column-gap: 20px;}
+	  
+	 
+	  section.resume h2, section.resume h3, section.resume h4{font-size: 10pt !important;}
+
+
+
+	  #menu, .keyboard, .resumetitle, footer{display: none !important;}
+	  
+		}

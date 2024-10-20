@@ -1,42 +1,42 @@
 ---
+import { getEntry, getCollection } from 'astro:content';
 import { Icon } from "astro-icon/components";
+import BlueCheck from "@/components/BlueCheck.astro";
 
-/** 
-	Uses https://www.astroicon.dev/getting-started/
-	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
-	Only installed pack is: @iconify-json/mdi
-*/
-const socialLinks: {
-	friendlyName: string;
-	isWebmention?: boolean;
-	link: string;
-	name: string;
-}[] = [
-	{
-		friendlyName: "Github",
-		link: "https://github.com/chrismwilliams/astro-pirate",
-		name: "mdi:github",
-	},
-];
+const siteSettings = await getEntry('siteSettings', 'main');
+const { showCheck } = siteSettings.data;
+
+const socialLinks = await getCollection('socialLinks') as unknown as Array<{
+  id: string;
+  data: {
+    link: string;
+    icon: string;
+    isWebmention: boolean;
+  };
+}>;
 ---
 
-<div class="flex flex-wrap items-end gap-x-2">
-	<p>Find me on</p>
-	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
-		{
-			socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
-				<li class="flex">
-					<a
-						class="inline-block p-1 sm:hover:text-link"
-						href={link}
-						rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
-						target="_blank"
-					>
-						<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
-						<span class="sr-only">{friendlyName}</span>
-					</a>
-				</li>
-			))
-		}
+<div class="flex flex-wrap items-end gap-x-2" style="justify-content:center;">
+	<ul class="flex items-center gap-x-2" style="margin:0 auto 3vh auto;">
+		<li class="flex">
+			<a
+					class="inline-block p-1 sm:hover:text-link"
+					href="https://piratesocial.org"
+					rel={`noopener noreferrer `}
+					target="_blank"
+				>{showCheck && <BlueCheck />}</a></li>
+		{socialLinks.map((link) => (
+			<li class="flex">
+				<a
+					class="inline-block p-1 sm:hover:text-link"
+					href={link.data.link}
+					rel={`noopener noreferrer ${link.data.isWebmention ? "me authn" : ""}`}
+					target="_blank"
+				>
+					<Icon aria-hidden="true" class="h-10 w-10" focusable="false" name={link.data.icon} />
+					<span class="sr-only">{link.id}</span>
+				</a>
+			</li>
+		))}
 	</ul>
 </div>
