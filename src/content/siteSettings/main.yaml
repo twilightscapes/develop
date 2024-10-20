@@ -6,7 +6,7 @@ showTheme: false
 showSwitch: false
 showSearch: false
 showFooter: false
-defaultView: swipe
+defaultView: grid
 showTitles: false
 showDates: false
 enableImageBlur: true
