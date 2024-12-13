@@ -16,7 +16,7 @@
 
 
 
-    <style>   
+<style>   
 
 
 .gmnoprint[role="menubar"]{display:none !important;}
@@ -278,7 +278,6 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
     
     </style>
 
-
 <script>
     async function loadGoogleMapsApi() {
       try {
@@ -309,18 +308,19 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 
 
 
-<section id="app" style="position:relative">
-    
-    <div class="search-container font">
 
-        <a href="../" target="_top"><img class="maplogo" src="/images/logo/logoImage.webp" alt="Dog Poopers Logo"  
+    
+    <div class="search-container">
+
+        <a href="../" target="_top"><img src="/dogpooper-logo-text.svg" alt="Dog Poopers Logo" class="" 
             style="
                 position: relative;
                 top: 1%;
                 left: 1%;
                 padding: 0 0 0 0;
                 max-height: 60px;
-                max-width: 80px;
+                min-height: 60px;
+                max-width: 100px;
         "
 
                 loading="eager"
@@ -344,18 +344,18 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
         </select>
     </div>
 
-    <div class="custom-control draw-polygon font" id="drawPolygonControl"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path></svg> &nbsp; Draw Yard</div>
+    <div class="custom-control draw-polygon" id="drawPolygonControl"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 2px rgba(8, 38, 27, 0.8));"><path d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path></svg> &nbsp; Draw Yard</div>
     <div class="custom-control draw-rectangle" id="drawRectangleControl">Draw Rectangle</div>
-    <button class="custom-control button font" id="clearButton">Clear</button>
+    <button class="custom-control button" id="clearButton">Clear</button>
 
 
 
 <div class="notification" id="notification"></div>
 
-<!-- <div id="area" class="hidden" style="display: flex !important;"> -->
+
 <form id="area" class="hidden" onsubmit="return false;">
     <span style="font-size:.7rem; text-align: center; padding:1vh 0 0 0;">Your Selected Area:</span>
-        <div style="display:flex; align-items: center; width:100%; justify-content: space-around; border:1px 0 1px 0 solid #233a23; box-shadow: 0 0 2px rgba(22, 212, 12, 0.5); border-radius:0; gap:10px; padding: 1vh 2rem; margin:1vh 0;">
+        <div style="display:flex; align-items: center; width:100%; justify-content: space-around; border:1px 0 1px 0 solid #233a23; box-shadow: 0 0 2px rgba(22, 212, 12, 0.5); border-radius:0; gap:10px; padding: 1vh 0; margin:1vh 0;">
 
             <div style="display:flex; flex-direction: column; line-height: 1;">
                 <span class="info" id="area-info">0.00</span><span style="font-size:.7rem; text-align: left;">total sq. ft.</span>
@@ -366,7 +366,7 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 
             <div style="display:flex; flex-direction: column; line-height: 1;"><span class="info" id="rate-info">0.00</span><span style="font-size:.7rem; text-align: right;">per sq. ft.</span></div>
         </div>
-        <span style="font-size: clamp(1rem,1.5vw,2.2rem); line-height: 1; padding:1vh 0;text-shadow: 0px 1px 2px #111;">Place Your Order</span>
+        <div style="font-size: clamp(1rem,1.5vw,2.2rem); line-height: 1; padding:1vh 0;text-shadow: 0px 1px 2px #111;">Place Your Order</div>
     
     <span style=" color:#999; font-size:.7rem; text-align: center; padding:1vh 0 1vh 0;">Enter your name and email:</span>
 <div class="payarea" data-astro-reload class="hidden1" style="display:flex; flex-direction: column; gap:1vw; margin: 0vh auto; align-items: center;">
@@ -382,27 +382,40 @@ body:has(#menu) #map {height:calc(100dvh - 110px);}
 <label for="tip" style="margin:1vh 0 0 0; font-size: .7rem; display: flex; align-items: center; gap:.5vw; color:#999;">Optional<input class="" type="number" id="tip" name="tip" min="0" step="1" placeholder="Tip your Pooper?" style="max-width: 140px; color:#ddd;"></label>
     
 
-<button type="submit" id="checkout-button" class="stripe-button hidden font">Order Now</button>
+<button type="submit" id="checkout-button" class="stripe-button hidden">Order Now</button>
 
 </div>
 
-<span style="margin:1vh 0 0 0;"><a style=" color:#999;" href="/contact"  target="_self">Need Help? Contact Us</a></span>
+<span style="margin:1vh 0 0 0;"><a style=" color:#999;" href="/contact"  target="mapframe">Need Help? Contact Us</a></span>
 
     </form>
 
 
     
+
     
-    
+<script>
+        function isRunningStandalone() {
+        if (typeof window !== 'undefined') {
+            return window.matchMedia('(display-mode: standalone)').matches;
+        }
+        return false;
+    }
+    {!isRunningStandalone() ? (
+        ""
+      ) : (
+        ""
+      )} 
+</script>
     
 
+<div id="bottomblocker"></div>
 
-    <div id="bottomblocker"></div>
     <div id="map" ></div>
 
 
 
-</section>
+
 
 
 
@@ -870,7 +883,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
         const session = await response.json();
 
         if (response.ok) {
-            const stripe = Stripe('pk_test_51O3tWYKHJvXfkmw3hQZoonC7lle3IIkuhioddtQCk7qhx7qUNfN2kqLeW9BWTZib9PVVPZCtGyOSjJmCRLrbTHjm00PrPZc1BM');
+            const stripe = Stripe('pk_live_51O3tWYKHJvXfkmw3F98KZ7I7367B5T8zSl7qIWhmDzP5o4XR4hRlCWdsAdiLDaLZ3Kfal2jTTitRIDC2azwyuwgl00T2NoCR5m');
             const result = await stripe.redirectToCheckout({ sessionId: session.id });
             if (result.error) {
                 console.error(result.error.message);
