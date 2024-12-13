@@ -24,7 +24,9 @@
       frame-ancestors *;
     """
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"[[redirects]]
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[redirects]]
   from = "/pirate/*"
   to = "/pirate/:splat"
   status = 200
