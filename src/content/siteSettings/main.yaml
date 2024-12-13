@@ -1,12 +1,12 @@
 logoImage: /images/logo/logoImage.webp
 showHeader: true
 showLogo: true
-showHome: false
-showTheme: false
+showHome: true
+showTheme: true
 showSwitch: false
 showSearch: false
 showFooter: false
-defaultView: grid
+defaultView: swipe
 showTitles: false
 showDates: false
 enableImageBlur: true
