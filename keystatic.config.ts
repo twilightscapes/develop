@@ -83,7 +83,8 @@ export default config({
           label: 'Tags',
           itemLabel: (props: any) => props.value,        }),
       },
-    }),    pages: collection({      label: 'Other Pages',
+    }),    
+    pages: collection({      label: 'Other Pages',
       path: 'src/content/pages/*',
       slugField: 'title',
       format: { contentField: 'content' },
@@ -121,33 +122,46 @@ export default config({
       schema: {
         friendlyName: fields.text({ label: 'Friendly Name' }),
         link: fields.text({ label: 'Link URL' }),
+        
         icon: fields.select({
           label: 'Icon',
           options: [
-            { label: 'X/Twitter', value: 'mdi:twitter' },
-            { label: 'GitHub', value: 'mdi:github' },
-            { label: 'Facebook', value: 'mdi:facebook' },
-            { label: 'YouTube', value: 'mdi:youtube' },
-            { label: 'Twitch', value: 'mdi:twitch' },
-            { label: 'LinkedIn', value: 'mdi:linkedin' },
-            { label: 'Instagram', value: 'mdi:instagram' },
-            { label: 'Mastodon', value: 'mdi:mastodon' },
+            { label: 'Pirate', value: 'game-icons:pirate-flag' },
+            { label: 'X/Twitter', value: 'bi:twitter-x' },
+            { label: 'Bluesky', value: 'simple-icons:bluesky' },
+            { label: 'Threads', value: 'bi:threads' },
+            { label: 'Facebook', value: 'bi:facebook' },
+            { label: 'Mastodon', value: 'bi:mastodon' },
+            { label: 'Instagram', value: 'bi:instagram' },
+            { label: 'GitHub', value: 'bi:github' },
+            { label: 'YouTube', value: 'bi:youtube' },
+            { label: 'Twitch', value: 'bi:twitch' },
+            { label: 'LinkedIn', value: 'bi:linkedin' },
+            { label: 'Pinterest', value: 'bi:pinterest' },
             { label: 'Patreon', value: 'mdi:patreon' },
-            { label: 'Pinterest', value: 'mdi:pinterest' },
-            { label: 'Reddit', value: 'mdi:reddit' },
-            { label: 'Skype', value: 'mdi:skype' },
-            { label: 'Slack', value: 'mdi:slack' },
-            { label: 'Snapchat', value: 'mdi:snapchat' },
+            { label: 'Reddit', value: 'bi:reddit' },
+            { label: 'Skype', value: 'bi:skype' },
+            { label: 'Slack', value: 'bi:slack' },
+            { label: 'Snapchat', value: 'bi:snapchat' },
             { label: 'SoundCloud', value: 'mdi:soundcloud' },
-            { label: 'WhatsApp', value: 'mdi:whatsapp' },
-            { label: 'Wordpress', value: 'mdi:wordpress' },
+            { label: 'WhatsApp', value: 'bi:whatsapp' },
+            { label: 'Wordpress', value: 'bi:wordpress' },
           ],
-          defaultValue: 'mdi:twitter'
+          defaultValue: 'game-icons:pirate-flag'
         }),
+
+
+        order: fields.number({ 
+          label: 'Order',
+          description: 'Optional: Leave blank for alphabetical sorting'
+        }),
+
         isWebmention: fields.checkbox({ label: 'Is Webmention', defaultValue: true }),
       },
       slugField: 'friendlyName'
+      
     }),
+    
     
     
 
@@ -247,31 +261,39 @@ export default config({
       },
     }),
 
-    piratePosts: collection({
-      label: 'Pirate Posts',
-      path: 'src/content/piratePosts/*',
-      format: { contentField: 'content' },
-      slugField: 'title',
+    // piratePosts: collection({
+    //   label: 'Pirate Posts',
+    //   path: 'src/content/piratePosts/*',
+    //   format: { contentField: 'content' },
+    //   slugField: 'title',
+    //   schema: {
+    //     title: fields.slug({ name: { label: 'Title' } }),
+    //     content: fields.markdoc({ label: 'Content' }),
+    //     createdAt: fields.datetime({ label: 'Created At' }),
+    //   },
+    // }),
+
+    // pirateFeeds: collection({
+    //   label: 'Pirate Feeds',
+    //   path: 'src/content/pirateFeeds/*',
+    //   slugField: 'title',
+    //   schema: {
+    //     title: fields.text({ label: 'Title' }),
+    //     feedUrl: fields.url({ label: 'Feed Url', description: 'The address to the Pirate users feed that you want to follow' }),
+    //     order: fields.number({ label: 'Order' }),
+    //   },
+    // }),
+
+
+    rssFeeds: collection({
+      label: 'RSS Feeds',
+      path: 'src/content/rss-feeds/*/',
+      slugField: 'name',
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        content: fields.markdoc({ label: 'Content' }),
-        createdAt: fields.datetime({ label: 'Created At' }),
+        name: fields.text({ label: 'Feed Name' }),
+        rssFeedUrl: fields.url({ label: 'RSS Feed URL' }),
       },
     }),
-
-    pirateFeeds: collection({
-      label: 'Pirate Feeds',
-      path: 'src/content/pirateFeeds/*',
-      slugField: 'title',
-      schema: {
-        title: fields.text({ label: 'Title' }),
-        feedUrl: fields.text({ label: 'Feed Url', description: 'The address to the Pirate users feed that you want to follow' }),
-        order: fields.number({ label: 'Order' }),
-      },
-    }),
-
-
-
 
     
 
@@ -605,6 +627,12 @@ export default config({
         showGallerySelector: fields.checkbox({
           label: 'Show Gallery Drop Down Menu',
           description: '(Directory-based mode only) Hiding this or leaving the default directory empty, will automatically show all the images in all directories',
+          defaultValue: false,
+        }),
+
+        showSwitch: fields.checkbox({
+          label: 'Show Swipe/Scroll Icon',
+          description: 'This will show the Swipe/Scroll icon making it possible to change the view from the set default',
           defaultValue: true,
         }),
 
@@ -650,12 +678,12 @@ export default config({
           label: 'Light Background Color', 
           description: '(light) Page Background - can use any color value',
         }),
-        lightAccent: colorPicker({ 
-          label: 'Light Accent Color', 
-          description: '(light) Accent - can use any color value',
-        }),
+        // lightAccent: colorPicker({ 
+        //   label: 'Light Accent Color', 
+        //   description: '(light) Accent - can use any color value',
+        // }),
         lightAccent2: colorPicker({ 
-          label: 'Light Accent2 Color', 
+          label: 'Light Button Color', 
           description: '(light) Accent2 - can use any color value',
         }),
         divider6: fields.empty(),
@@ -663,12 +691,12 @@ export default config({
           label: 'Dark Background Color', 
           description: '(dark) Page Background - can use any color value',
         }),
-        darkAccent: colorPicker({ 
-          label: 'Dark Accent Color', 
-          description: '(dark) Accent Color - can use any color value',
-        }),
+        // darkAccent: colorPicker({ 
+        //   label: 'Dark Accent Color', 
+        //   description: '(dark) Accent Color - can use any color value',
+        // }),
         darkAccent2: colorPicker({ 
-          label: 'Dark Accent2 Color', 
+          label: 'Dark Button Color', 
           description: '(dark) Accent Color2 - can use any color value',
         }),
         divider7: fields.empty(),
@@ -689,15 +717,16 @@ export default config({
           label: 'Dark Text Color', 
           description: '(dark) Text Color - can use any color value',
         }),
-        divider9: fields.empty(),
-        lightLink: colorPicker({ 
-          label: 'Light Link Color', 
-          description: '(light) Link Color - can use any color value',
-        }),
-        darkLink: colorPicker({ 
-          label: 'Dark Link Color', 
-          description: '(dark) Link Color - can use any color value',
-        }),
+        divider9: fields.empty(),  
+        // divider9: fields.empty(),
+        // lightLink: colorPicker({ 
+        //   label: 'Light Link Color', 
+        //   description: '(light) Link Color - can use any color value',
+        // }),
+        // darkLink: colorPicker({ 
+        //   label: 'Dark Link Color', 
+        //   description: '(dark) Link Color - can use any color value',
+        // }),
 
         customCSS: fields.text({ label: 'Custom CSS', description:'Additional CSS can be written here, overwriting the sites default styles.', multiline: true }),
 
@@ -767,25 +796,25 @@ export default config({
     }),    
 
 
-    pirateSocial: singleton({
-      label: 'Settings',
-      path: 'src/content/pirate/',
-      schema: {
-        profile: fields.text({ label: 'Profile Name' }),
-        description: fields.text({ label: 'Profile Description' }),
+    // pirateSocial: singleton({
+    //   label: 'Settings',
+    //   path: 'src/content/pirate/',
+    //   schema: {
+    //     profile: fields.text({ label: 'Profile Name' }),
+    //     description: fields.text({ label: 'Profile Description' }),
 
-        // autoDeletePiratePosts: fields.checkbox({
-        //   label: 'Auto-delete Pirate Posts',
-        //   description: 'Enable this to automatically delete Pirate Posts',
-        //   defaultValue: false,
-        // }),
-        // autoDeleteTime: fields.number({
-        //   label: 'Auto-delete Time (in minutes)',
-        //   description: 'Set the time after which Pirate Posts will be deleted',
-        //   defaultValue: 1440, // 24 hours in minutes
-        // }),
-      },
-    }),
+    //     // autoDeletePiratePosts: fields.checkbox({
+    //     //   label: 'Auto-delete Pirate Posts',
+    //     //   description: 'Enable this to automatically delete Pirate Posts',
+    //     //   defaultValue: false,
+    //     // }),
+    //     // autoDeleteTime: fields.number({
+    //     //   label: 'Auto-delete Time (in minutes)',
+    //     //   description: 'Set the time after which Pirate Posts will be deleted',
+    //     //   defaultValue: 1440, // 24 hours in minutes
+    //     // }),
+    //   },
+    // }),
 
 
 
@@ -835,15 +864,15 @@ ui: {
     name: ' ',
     mark: ({ colorScheme }: { colorScheme: string }) => {
       let path = colorScheme === 'dark'
-        ? '/images/logo/logoImage.svg'
-        : '/images/logo/logoImage.svg';
+        ? 'https://pirateweb.org/images/logo/logoImage.svg'
+        : 'https://pirateweb.org/images/logo/logoImage.svg';
       return React.createElement('img', { src: path, height: 40, alt: "Pirate Logo" });
     },
   },
   navigation: {
     'Site Pages and Posts': [
       'home',
-      'pages',
+      // 'pages',
       'posts',
     ],
     'Content Modules': [
@@ -863,13 +892,8 @@ ui: {
       'styleAppearance',
       'language',
       'resumeSettings',
-    ],
-    'Pirate Social': [
-      'pirateSocial',
-      'piratePosts',
-      'pirateFeeds',
       'socialLinks',
-    ],
+    ]
   },
 },});
 

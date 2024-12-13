@@ -6,13 +6,18 @@ import ThemeProvider from "@/components/ThemeProvider.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import { siteConfig } from "@/site-config";
+import SiteLinks from '@/components/SocialList.astro';
 import DynamicTheme from '@/components/DynamicTheme.astro';
 // import { ViewTransitions } from 'astro:transitions';
 // <ViewTransitions />
 
 
-
-
+function isRunningStandalone() {
+    if (typeof window !== 'undefined') {
+        return window.matchMedia('(display-mode: standalone)').matches;
+    }
+    return;
+}
 
 interface Props {
   meta?: {
@@ -55,12 +60,47 @@ const pageOgImage = ogImage || meta?.ogImage;
 			ogImage={pageOgImage} 
 		/>
 		<DynamicTheme />
+
+
+
 	</head>
 	
 	<body>
 		<SkipLink />
+				<div id="nav-container"></div>
+
+				<SiteLinks />
+
+				
+				  
+				  <script is:inline>
+					// Check both standalone mode and window.navigator
+					const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
+								  (window.navigator.standalone) || 
+								  document.referrer.includes('android-app://');
+								  
+					document.querySelector('.pwa-persistent-nav').style.display = isPWA ? 'flex' : 'none';
+				  </script>
+				  
+				  <style>
+					.pwa-persistent-nav {
+					  position: relative;
+					  top: 0;
+					  left: 0;
+					  right: 0;
+					  z-index: 1000;
+					  display: none;
+					  justify-content: space-around;
+					  padding: 1rem;
+					  background: var(--theme-surface-1);
+					  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+					}
+				  </style>
+
 		
-		<Header transition:persist />
+			<Header transition:persist>
+
+			</Header>
 		
 				<main id="main">
 					<div id="top"></div>
@@ -149,6 +189,8 @@ const pageOgImage = ogImage || meta?.ogImage;
 			const horizontalScrollClassName = 'horizontal-slider';
 			const scrollMultiplier = .5;
 
+			
+
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
@@ -195,4 +237,6 @@ const pageOgImage = ogImage || meta?.ogImage;
 		});
 		window.addEventListener('viewModeChanged', initializeScrollListener);
 	</script>
+
+
 </html>		
