@@ -178,7 +178,8 @@ exports.handler = async (event, context) => {
         enabled: true
       },
       // Use application_fee_amount for subscriptions to cover platform fees
-      application_fee_amount: isNewCustomer ? 500 : 0, // Adjust as needed
+      // application_fee_amount: isNewCustomer ? 500 : 0, 
+      
       // In subscription mode, `transfer_data` is not supported
     });
 
