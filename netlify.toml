@@ -27,6 +27,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[redirects]]
-  from = "/pirate/*"
-  to = "/pirate/:splat"
+  from = "/*"
+  to = "/"
   status = 200
