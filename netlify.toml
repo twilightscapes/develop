@@ -1,11 +1,9 @@
 [build]
-  command = "./update-theme.sh && pnpm build"
+  command = "pnpm build"
   publish = "dist"
   functions = "netlify/functions"
   
 [functions]
   node_bundler = "esbuild"
-
-
 
 

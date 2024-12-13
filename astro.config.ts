@@ -100,7 +100,7 @@ export default defineConfig({
   },
   output: output,
   prefetch: true,
-  site: pwaConfig.siteUrl ?? 'https://example.com',  redirects: {
+  site: pwaConfig.siteUrl ?? 'https://dev.dogpoopers.com',  redirects: {
     '/admin': '/keystatic'
   },
   vite: {
